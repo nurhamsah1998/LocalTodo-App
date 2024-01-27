@@ -1,5 +1,5 @@
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
-import { sideBarMenu } from "../const";
+import { sideBarMenu } from "../const/sideBarMenu";
 import { Outlet } from "react-router-dom";
 import { IconType } from "react-icons";
 

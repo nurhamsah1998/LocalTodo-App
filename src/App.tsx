@@ -1,13 +1,17 @@
 import ThemeProvider from "@/theme/ThemeProvider";
-import React from "react";
+import QueryProvider from "@/utils/QueryProvider";
+import Router from "./Router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const yu = "asd";
-
   return (
-    <ThemeProvider>
-      <p>tes</p>
-    </ThemeProvider>
+    <QueryProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
+    </QueryProvider>
   );
 }
 

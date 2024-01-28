@@ -1,12 +1,8 @@
-import { Text, TextProps } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { textVariant } from "@/const/textVariant";
-import { TEXT_VARIANT } from "../interface";
+import { TEXT_VARIANT, TYPOGRAPHY } from "../interface";
 
-interface IO extends TextProps {
-  children?: string;
-  variantText?: string;
-}
-export const Typography: React.FunctionComponent<IO> = ({
+export const Typography: React.FunctionComponent<TYPOGRAPHY> = ({
   variantText,
   children,
   ...props

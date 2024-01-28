@@ -1,9 +1,9 @@
-import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, HStack, Text } from "@chakra-ui/react";
 import { sideBarMenu } from "../const/sideBarMenu";
 import { Outlet } from "react-router-dom";
 import { IconType } from "react-icons";
 
-const DESKTOP_SIDEBAR_WIDTH: number = 200;
+const DESKTOP_SIDEBAR_WIDTH: number = 250;
 function DrawerApp() {
   return (
     <Box
@@ -11,7 +11,7 @@ function DrawerApp() {
         height: "100dvh",
       }}
     >
-      <HStack sx={{ alignItems: "flex-start" }}>
+      <HStack sx={{ alignItems: "flex-start", width: "100dvw" }}>
         <Box
           sx={{
             bgColor: "pink",
@@ -24,18 +24,25 @@ function DrawerApp() {
               const Icon: IconType = item.icon;
               return (
                 <Button key={index}>
-                  <HStack>
+                  <Flex>
                     <Icon size={16} style={{ color: "blue" }} />
                     <Text>{item.label}</Text>
-                  </HStack>
+                  </Flex>
                 </Button>
               );
             })}
+            asdadada sdas dasd asd ada dad adwrf aafsdasd
           </Box>
         </Box>
-        <Box>
+        <Container
+          sx={{
+            width: "100%",
+            p: 2,
+            pl: 0,
+          }}
+        >
           <Outlet />
-        </Box>
+        </Container>
       </HStack>
     </Box>
   );

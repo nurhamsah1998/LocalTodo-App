@@ -1,10 +1,11 @@
 import { Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
-import { sideBarMenu } from "../const/sideBarMenu";
+import { sideBarTaskMenu } from "../const/sideBarMenu";
 import {
   NavigateFunction,
   Outlet,
   useLocation,
   useNavigate,
+  useParams,
 } from "react-router-dom";
 import { IconType } from "react-icons";
 import { SIDE_BAR_MENU } from "../interface";
@@ -14,10 +15,11 @@ const DESKTOP_SIDEBAR_WIDTH: number = 250;
 const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
   const { pathname } = useLocation();
   const nav: NavigateFunction = useNavigate();
+  const { id } = useParams();
   const Icon: IconType = item.icon;
   const ActiveNavigation = pathname.includes(item.path);
   const handleClickNavigation = () => {
-    nav(item.path);
+    nav(`${item.path}/${id}`);
   };
   return (
     <Box
@@ -48,7 +50,7 @@ const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
     </Box>
   );
 };
-function DrawerApp() {
+function DrawerTask() {
   return (
     <Box
       sx={{
@@ -67,7 +69,7 @@ function DrawerApp() {
           }}
         >
           <Box sx={{ m: 2, display: "flex", flexDirection: "column", gap: 2 }}>
-            {sideBarMenu.map((item, index) => {
+            {sideBarTaskMenu.map((item, index) => {
               return <NavItem key={index} item={item} />;
             })}
           </Box>
@@ -86,4 +88,4 @@ function DrawerApp() {
   );
 }
 
-export default DrawerApp;
+export default DrawerTask;

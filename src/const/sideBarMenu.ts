@@ -5,12 +5,24 @@ import { SIDE_BAR_MENU } from "../interface";
 export const sideBarMenu: SIDE_BAR_MENU[] = [
   {
     icon: IoStatsChartSharp,
-    name: "dashboard",
+    path: "/dashboard",
     label: "Dashboard",
   },
   {
     icon: IoNewspaper,
-    name: "news",
-    label: "News",
+    path: "/repo",
+    label: "Repo",
+  },
+];
+export const sideBarTaskMenu: SIDE_BAR_MENU[] = [
+  {
+    icon: IoStatsChartSharp,
+    path: "/task/overview",
+    label: "Overview",
+  },
+  {
+    icon: IoNewspaper,
+    path: "/task/todo", /// PENAMAAN PENGGANTI TAS TASK
+    label: "To Do",
   },
 ];

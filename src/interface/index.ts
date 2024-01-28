@@ -1,9 +1,9 @@
-import { TextProps } from "@chakra-ui/react";
+import { BoxProps, TextProps } from "@chakra-ui/react";
 
 export interface SIDE_BAR_MENU {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon?: any;
-  name: string;
+  path: string;
   label: string;
 }
 type SUB_VARIANT_COLOR = {
@@ -37,4 +37,7 @@ export interface TEXT_VARIANT {
 export interface TYPOGRAPHY extends TextProps {
   children?: string;
   variantText?: string;
+}
+export interface CANVAS extends BoxProps {
+  children?: React.ReactNode;
 }

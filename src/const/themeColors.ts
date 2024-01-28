@@ -2,27 +2,27 @@ import { THEME_COLORS_VARIANT } from "@/interface/index";
 
 export const colors: THEME_COLORS_VARIANT = {
   primary: {
-    light: "#c5cae9",
+    light: "#e8eaf6",
     main: "#3f51b5",
     dark: "#1a237e",
   },
   error: {
-    light: "#ffcdd2",
+    light: "#ffebee",
     main: "#f44336",
     dark: "#b71c1c",
   },
   success: {
-    light: "#c8e6c9",
+    light: "#e8f5e9",
     main: "#4caf50",
     dark: "#1b5e20",
   },
   warning: {
-    light: "#ffe0b2",
+    light: "#fff3e0",
     main: "#ff9800",
     dark: "#e65100",
   },
   info: {
-    light: "#b3e5fc",
+    light: "#e1f5fe",
     main: "#03a9f4",
     dark: "#01579b",
   },

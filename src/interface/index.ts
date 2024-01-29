@@ -41,3 +41,18 @@ export interface TYPOGRAPHY extends TextProps {
 export interface CANVAS extends BoxProps {
   children?: React.ReactNode;
 }
+export interface SIGNIN {
+  keyToken?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userData?: any;
+  mode?: string;
+}
+export interface AUTH {
+  keyToken?: string | null;
+  isAuth?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userData?: any;
+  _signIn?: (props: SIGNIN) => void;
+  _signOut?: () => void;
+  mode?: string;
+}

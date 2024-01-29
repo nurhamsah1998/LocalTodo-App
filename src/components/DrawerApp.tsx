@@ -1,5 +1,6 @@
 import { Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
 import { sideBarMenu } from "../const/sideBarMenu";
+import React from "react";
 import {
   NavigateFunction,
   Outlet,
@@ -8,6 +9,7 @@ import {
 } from "react-router-dom";
 import { IconType } from "react-icons";
 import { SIDE_BAR_MENU } from "../interface";
+import { AuthContext } from "src/store/store";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -49,6 +51,8 @@ const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
   );
 };
 function DrawerApp() {
+  const { isAuth } = React.useContext(AuthContext);
+  console.log(isAuth);
   return (
     <Box
       sx={{

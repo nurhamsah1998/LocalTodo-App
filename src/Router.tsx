@@ -6,8 +6,12 @@ import Task from "@/pages/Task/Task";
 import Repo from "@/pages/repo/Repo";
 import DrawerTask from "@/components/DrawerTask";
 import OverView from "@/pages/Task/overview/OverView";
+// import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
 import Auth from "@/pages/auth/Auth";
 import CreateDB from "@/pages/Local/createDB/CreateDB";
+import DrawerLocal from "@/components/DrawerLocal";
+import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
+import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
 
 function Router() {
   return useRoutes([
@@ -41,15 +45,24 @@ function Router() {
     },
     {
       path: "/local",
-      element: <DrawerTask />,
-      children: [{}],
+      element: <DrawerLocal />,
+      children: [
+        {
+          path: "dashboard",
+          element: <DashboardLocal />,
+        },
+        {
+          path: "repo",
+          element: <RepoLocal />,
+        },
+      ],
     },
     {
       path: "*",
       element: <NotFound />,
     },
     {
-      path: "/login",
+      path: "/auth",
       element: <Auth />,
     },
     {

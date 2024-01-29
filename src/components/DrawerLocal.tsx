@@ -1,5 +1,5 @@
 import { Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
-import { sideBarTaskMenu } from "../const/sideBarMenu";
+import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import {
   NavigateFunction,
   Outlet,
@@ -15,11 +15,12 @@ const DESKTOP_SIDEBAR_WIDTH: number = 250;
 const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
   const { pathname } = useLocation();
   const nav: NavigateFunction = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id } = useParams();
   const Icon: IconType = item.icon;
   const ActiveNavigation = pathname.includes(item.path);
   const handleClickNavigation = () => {
-    nav(`${item.path}/${id}`);
+    nav(`${item.path}`);
   };
   return (
     <Box
@@ -69,7 +70,7 @@ function DrawerLocal() {
           }}
         >
           <Box sx={{ m: 2, display: "flex", flexDirection: "column", gap: 2 }}>
-            {sideBarTaskMenu.map((item, index) => {
+            {sideBarLocalMenu.map((item, index) => {
               return <NavItem key={index} item={item} />;
             })}
           </Box>

@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, HStack,  } from "@chakra-ui/react";
 import { sideBarMenu } from "../const/sideBarMenu";
 import React from "react";
 import {
@@ -10,6 +10,7 @@ import {
 import { IconType } from "react-icons";
 import { SIDE_BAR_MENU } from "../interface";
 import { AuthContext } from "src/store/store";
+import { Typography } from "./Typography";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -38,21 +39,25 @@ const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
         <Box sx={{ color: ActiveNavigation ? "primary.main" : "gray.400" }}>
           <Icon size={16} />
         </Box>
-        <Text
+        <Typography
           sx={{
             fontWeight: 600,
             color: ActiveNavigation ? "primary.main" : "gray.400",
           }}
         >
           {item.label}
-        </Text>
+        </Typography>
       </Flex>
     </Box>
   );
 };
 function DrawerApp() {
-  const { isAuth } = React.useContext(AuthContext);
-  console.log(isAuth);
+  const { isAuth, mode } = React.useContext(AuthContext);
+  const nav = useNavigate();
+  React.useEffect(() => {
+    if (isAuth && mode?.includes("local")) return nav("/local/dashboard");
+    return;
+  }, []);
   return (
     <Box
       sx={{

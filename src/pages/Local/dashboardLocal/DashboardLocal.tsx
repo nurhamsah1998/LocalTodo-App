@@ -1,7 +1,8 @@
+import { Typography } from "@/components/Typography";
 import React from "react";
 
 function DashboardLocal() {
-  return <div>DashboardLocal</div>;
+  return <Typography>DashboardLocal</Typography>;
 }
 
 export default DashboardLocal;

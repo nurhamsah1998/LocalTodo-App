@@ -7,6 +7,7 @@ export const Button = {
   baseStyle: {
     textTransform: "capitalize",
     borderRadius: "5px",
+    fontFamily: "Poppins",
     _focus: {
       outline: "none",
     },

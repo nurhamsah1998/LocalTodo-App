@@ -14,9 +14,9 @@ function Auth() {
   const nav = useNavigate();
   const handleClickOfflineMode = () => {
     cookie.set("@token", "offline-mode-mamamia", { path: "/" });
-    cookie.set("@mode", "offline", { path: "/" });
+    cookie.set("@mode", "local", { path: "/" });
     _signIn({
-      mode: "offline",
+      mode: "local",
       keyToken: "offline-mode-mamamia",
     });
     nav("/create-db");

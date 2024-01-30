@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, HStack } from "@chakra-ui/react";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import {
   NavigateFunction,
@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { IconType } from "react-icons";
 import { SIDE_BAR_MENU } from "../interface";
+import { Typography } from "./Typography";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -39,14 +40,14 @@ const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
         <Box sx={{ color: ActiveNavigation ? "primary.main" : "gray.400" }}>
           <Icon size={16} />
         </Box>
-        <Text
+        <Typography
           sx={{
             fontWeight: 600,
             color: ActiveNavigation ? "primary.main" : "gray.400",
           }}
         >
           {item.label}
-        </Text>
+        </Typography>
       </Flex>
     </Box>
   );

@@ -18,6 +18,7 @@ export const ModalBase: React.FunctionComponent<
     isDisabled?: boolean;
     isLoading?: boolean;
     onClose: () => void;
+    handleSubmit?: () => void;
     children?: any;
     labelSubmit?: string;
     labelClose?: string;
@@ -28,6 +29,7 @@ export const ModalBase: React.FunctionComponent<
   isDisabled,
   isLoading,
   onClose,
+  handleSubmit,
   children,
   labelSubmit = "Submit",
   labelClose = "Close",
@@ -39,7 +41,7 @@ export const ModalBase: React.FunctionComponent<
       <Modal {...props} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{title}</ModalHeader>
+          <ModalHeader sx={{ fontFamily: "Poppins" }}>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{children}</ModalBody>
 
@@ -55,6 +57,7 @@ export const ModalBase: React.FunctionComponent<
             <Button
               isLoading={isLoading}
               isDisabled={isDisabled}
+              onClick={handleSubmit}
               variant="solid"
             >
               {labelSubmit}

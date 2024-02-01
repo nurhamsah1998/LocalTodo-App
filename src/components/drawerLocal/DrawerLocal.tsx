@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex, Stack } from "@chakra-ui/react";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import {
   NavigateFunction,
@@ -8,8 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 import { IconType } from "react-icons";
-import { SIDE_BAR_MENU } from "../interface";
-import { Typography } from "./Typography";
+import { SIDE_BAR_MENU } from "../../interface";
+import { Typography } from "../Typography";
+import Header from "./Header";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -57,35 +58,74 @@ function DrawerLocal() {
     <Box
       sx={{
         height: "100dvh",
+        overflow: "auto",
+      }}
+      css={{
+        "::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "::-webkit-scrollbar-thumb": {
+          background: "#c7c7c7",
+        },
+        "::-webkit-scrollbar-track": {
+          background: "#f3f3f3",
+        },
       }}
     >
-      <HStack sx={{ alignItems: "flex-start", width: "100dvw" }}>
+      <Flex sx={{ alignItems: "flex-start" }}>
         <Box
           sx={{
             bgColor: "#fff",
             height: "100dvh",
+            position: "sticky",
+            top: 0,
             borderRightColor: "gray.200",
             borderRightStyle: "solid",
             borderRightWidth: "1px",
+            overflow: "auto",
             width: DESKTOP_SIDEBAR_WIDTH,
           }}
+          css={{
+            "::-webkit-scrollbar": {
+              width: "2px",
+            },
+            "::-webkit-scrollbar-thumb": {
+              background: "#c7c7c7",
+            },
+            "::-webkit-scrollbar-track": {
+              background: "#f3f3f3",
+            },
+          }}
         >
-          <Box sx={{ m: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+          <Stack
+            sx={{
+              m: 2,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
             {sideBarLocalMenu.map((item, index) => {
               return <NavItem key={index} item={item} />;
             })}
-          </Box>
+          </Stack>
         </Box>
-        <Container
+        <Box
           sx={{
             width: "100%",
-            p: 2,
-            pl: 0,
           }}
         >
-          <Outlet />
-        </Container>
-      </HStack>
+          <Header />
+          <Box
+            sx={{
+              py: 4,
+              px: 5,
+            }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </Flex>
     </Box>
   );
 }

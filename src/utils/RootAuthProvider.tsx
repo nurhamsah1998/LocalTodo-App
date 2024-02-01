@@ -18,7 +18,7 @@ function RootAuthProvider({ children }: { children: React.ReactNode }) {
   const initialAuthValue: AUTH = React.useMemo(() => {
     return {
       keyToken,
-      isAuth: Boolean(keyToken),
+      isAuth: Boolean(keyToken) || false,
       userData,
       mode,
     };

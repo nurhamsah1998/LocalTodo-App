@@ -9,7 +9,7 @@ import OverView from "@/pages/Task/overview/OverView";
 // import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
 import Auth from "@/pages/auth/Auth";
 import CreateDB from "@/pages/Local/createDB/CreateDB";
-import DrawerLocal from "@/components/DrawerLocal";
+import DrawerLocal from "@/components/drawerLocal/DrawerLocal";
 import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
 import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
 

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable prefer-const */
 import CryptoJS from "crypto-js";
+import React from "react";
 
 export const useEncript = (arg: any, type?: string) => {
-  const readDataEncrypted = () => {
+  const readDataEncrypted = React.useMemo(() => {
     const listOfStorage = Object.keys(window.localStorage || {});
     let result: any = null;
     for (let index = 0; index < listOfStorage.length; index++) {
@@ -12,9 +12,10 @@ export const useEncript = (arg: any, type?: string) => {
         import.meta.env.VITE_ENCRYPT_KEY
       );
       const readBytes = bytes.toString(CryptoJS.enc.Utf8);
+      const windowStore: any = window;
       if (readBytes === arg) {
         const keyLocalStorage = CryptoJS.AES.decrypt(
-          window.localStorage.getItem(listOfStorage[index]),
+          windowStore.localStorage.getItem(listOfStorage[index]),
           import.meta.env.VITE_ENCRYPT_KEY
         );
         const readBytes =
@@ -25,8 +26,8 @@ export const useEncript = (arg: any, type?: string) => {
       }
     }
     return result;
-  };
-  const data = readDataEncrypted();
+  }, [arg]);
+  const data = readDataEncrypted;
   const setDataEncrypted = (newItem: any) => {
     const listOfStorage = Object.keys(window.localStorage || {});
     const newEncrypKey = CryptoJS.AES.encrypt(

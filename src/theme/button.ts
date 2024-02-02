@@ -32,7 +32,7 @@ export const Button = {
       /// JUST TRYING OOP
       const color = new PickThemeColor(props.colorScheme);
       return {
-        borderWidth: "2px",
+        borderWidth: "1px",
         borderStyle: "solid",
         borderColor: color.getColor(),
         color: color.getColor(),

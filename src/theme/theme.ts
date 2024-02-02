@@ -3,7 +3,7 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { colors } from "@/const/themeColors";
 
-const { Modal, CloseButton } = chakraTheme.components;
+const { Modal, CloseButton, Alert, Checkbox } = chakraTheme.components;
 
 const theme = extendBaseTheme({
   components: {
@@ -11,6 +11,8 @@ const theme = extendBaseTheme({
     Input,
     Modal,
     CloseButton,
+    Alert,
+    Checkbox,
   },
   colors,
 });

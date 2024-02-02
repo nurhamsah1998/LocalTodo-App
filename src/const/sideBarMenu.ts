@@ -41,12 +41,12 @@ export const sideBarLocalMenu: SIDE_BAR_MENU[] = [
 export const sideBarLocalTaskMenu: SIDE_BAR_MENU[] = [
   {
     icon: IoStatsChartSharp,
-    path: "/task/overview",
+    path: "/local-task/overview",
     label: "Overview",
   },
   {
     icon: IoNewspaper,
-    path: "/task/todo", /// PENAMAAN PENGGANTI TAS TASK
+    path: "/local-task/todo", /// PENAMAAN PENGGANTI TAS TASK
     label: "To Do",
   },
 ];

@@ -56,3 +56,14 @@ export interface AUTH {
   _signOut?: () => void;
   mode?: string;
 }
+
+export interface LIST_CARD_COLOR {
+  bg: string;
+  color: string;
+  label: string;
+}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface FORM_INPUT_CREATE_REPO_LOCAL {
+  repo: string;
+  colorTheme: LIST_CARD_COLOR;
+}

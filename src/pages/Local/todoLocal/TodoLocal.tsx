@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-function OverViewLocal() {
+function TodoLocal() {
   const { id } = useParams();
-  return <div>OverViewLocal LOCAL {id}</div>;
+  return <div>TodoLocal LOCAL {id}</div>;
 }
 
-export default OverViewLocal;
+export default TodoLocal;

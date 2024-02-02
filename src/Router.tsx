@@ -12,6 +12,9 @@ import CreateDB from "@/pages/Local/createDB/CreateDB";
 import DrawerLocal from "@/components/drawerLocal/DrawerLocal";
 import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
 import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
+import DrawerLocalTask from "@/components/drawerLocal/DrawerLocalTask";
+import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
+import TodoLocal from "@/pages/Local/todoLocal/TodoLocal";
 
 function Router() {
   return useRoutes([
@@ -54,6 +57,20 @@ function Router() {
         {
           path: "repo",
           element: <RepoLocal />,
+        },
+      ],
+    },
+    {
+      path: "/local-task",
+      element: <DrawerLocalTask />,
+      children: [
+        {
+          path: "overview/:id",
+          element: <OverViewLocal />,
+        },
+        {
+          path: "todo/:id",
+          element: <TodoLocal />,
         },
       ],
     },

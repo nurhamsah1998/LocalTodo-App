@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import NotFound from "@/pages/notFound/NotFound";
 import DrawerApp from "@/components/DrawerApp";
@@ -12,7 +12,7 @@ import CreateDB from "@/pages/Local/createDB/CreateDB";
 import DrawerLocal from "@/components/drawerLocal/DrawerLocal";
 import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
 import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
-import DrawerLocalTask from "@/components/drawerLocal/DrawerLocalTask";
+import DrawerLocalTask from "@/components/drawerLocalTask/DrawerLocalTask";
 import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
 import TodoLocal from "@/pages/Local/todoLocal/TodoLocal";
 
@@ -75,8 +75,12 @@ function Router() {
       ],
     },
     {
-      path: "*",
+      path: "/404",
       element: <NotFound />,
+    },
+    {
+      path: "*",
+      element: <Navigate to="/404" replace />,
     },
     {
       path: "/auth",

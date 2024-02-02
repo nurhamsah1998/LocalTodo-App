@@ -44,7 +44,11 @@ function CreateLocalRepo({
       {
         id: `${repoName}_${id}`,
         repo: repoName,
-        colorTheme,
+        colorTheme: {
+          bg: colorTheme?.bg || "gray.200",
+          color: colorTheme?.color || "gray.700",
+          label: colorTheme?.label || "Default",
+        },
         todo: [],
       },
     ];
@@ -56,7 +60,11 @@ function CreateLocalRepo({
       clone.push({
         repo: repoName,
         todo: [],
-        colorTheme,
+        colorTheme: {
+          bg: colorTheme?.bg || "gray.200",
+          color: colorTheme?.color || "gray.700",
+          label: colorTheme?.label || "Default",
+        },
         id: `${repoName}_${id}`,
       });
       setDataEncrypted(clone);

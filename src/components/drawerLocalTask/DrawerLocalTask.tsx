@@ -1,3 +1,6 @@
+/* eslint-disable no-extra-boolean-cast */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Box, Flex, Stack } from "@chakra-ui/react";
 import { sideBarLocalTaskMenu } from "@/const/sideBarMenu";
 import {
@@ -10,18 +13,23 @@ import {
 import { IconType } from "react-icons";
 import { SIDE_BAR_MENU } from "../../interface";
 import { Typography } from "../Typography";
-import Header from "./Header";
+import Header from "../drawerLocalTask/Header";
+import { useEncript } from "src/hooks/useEncript";
+import React from "react";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
-const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
+const NavItem = React.memo(function Item({
+  item,
+  id,
+}: {
+  item: SIDE_BAR_MENU;
+  id: any;
+}) {
   const { pathname } = useLocation();
   const nav: NavigateFunction = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id } = useParams();
   const Icon: IconType = item.icon;
   const ActiveNavigation = pathname.includes(item.path);
-  console.log(item.path);
   const handleClickNavigation = () => {
     nav(`${item.path}/${id}`);
   };
@@ -53,8 +61,17 @@ const NavItem = ({ item }: { item: SIDE_BAR_MENU }) => {
       </Flex>
     </Box>
   );
-};
+});
 function DrawerLocalTask() {
+  const { data } = useEncript("repo", "array");
+  const { id } = useParams();
+  const nav = useNavigate();
+  const validId = data.find((item: any) => item?.id === id);
+  React.useEffect(() => {
+    if (!Boolean(validId)) {
+      nav("/not-exist-route", { replace: true, state: null });
+    }
+  }, [id]);
   return (
     <Box
       sx={{
@@ -107,7 +124,7 @@ function DrawerLocalTask() {
             }}
           >
             {sideBarLocalTaskMenu.map((item, index) => {
-              return <NavItem key={index} item={item} />;
+              return <NavItem id={id} key={index} item={item} />;
             })}
           </Stack>
         </Box>
@@ -116,7 +133,7 @@ function DrawerLocalTask() {
             width: "100%",
           }}
         >
-          <Header />
+          <Header item={validId} />
           <Box
             sx={{
               py: 4,

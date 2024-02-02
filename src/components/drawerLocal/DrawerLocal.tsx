@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-extra-boolean-cast */
 import { Box, Flex, Stack } from "@chakra-ui/react";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import {

@@ -36,7 +36,7 @@ function RepoLocal() {
             <Box
               role="button"
               sx={{
-                bg: item?.colorTheme?.bg || "gray.200",
+                bg: item?.colorTheme?.bg,
                 height: "60px",
                 width: "100%",
                 py: 1,
@@ -47,7 +47,7 @@ function RepoLocal() {
             >
               <Typography
                 sx={{
-                  color: item?.colorTheme?.color || "gray.700",
+                  color: item?.colorTheme?.color,
                   textTransform: "capitalize",
                 }}
               >

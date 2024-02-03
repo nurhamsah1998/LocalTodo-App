@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BoxProps, TextProps } from "@chakra-ui/react";
 
 export interface SIDE_BAR_MENU {
@@ -44,14 +45,12 @@ export interface CANVAS extends BoxProps {
 }
 export interface SIGNIN {
   keyToken?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   userData?: any;
   mode?: string;
 }
 export interface AUTH {
   keyToken?: string | null;
   isAuth?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   userData?: any;
   _signIn?: (props: SIGNIN) => void;
   _signOut?: () => void;
@@ -67,4 +66,8 @@ export interface LIST_CARD_COLOR {
 export interface FORM_INPUT_CREATE_REPO_LOCAL {
   repo: string;
   colorTheme: LIST_CARD_COLOR;
+  id?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  todo?: any[];
 }

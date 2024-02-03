@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Show, useDisclosure } from "@chakra-ui/react";
 import { IoMenu } from "react-icons/io5";
 import { Typography } from "../../components/Typography";
-import { FORM_INPUT_CREATE_REPO_LOCAL, SIDE_BAR_MENU } from "@/interface/index";
+import { SIDE_BAR_MENU } from "@/interface/index";
 import ModalDrawer from "@/components/ModalDrawer";
 import { sideBarLocalTaskMenu } from "@/const/sideBarMenu";
 import {
@@ -11,16 +11,16 @@ import {
   useParams,
 } from "react-router-dom";
 import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
+import { useAtom } from "jotai";
+import { localSelectedRepo } from "src/store/store";
 
-function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
+function Header() {
   const { pathname } = useLocation();
+  const [selectedRepo] = useAtom(localSelectedRepo);
   const currentNav = sideBarLocalTaskMenu.find((item) =>
     pathname.includes(item.path)
   );
 
-  const { repo, colorTheme } = item || {
-    colorTheme: { bg: "", color: "", label: "" },
-  };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const nav: NavigateFunction = useNavigate();
   const { id } = useParams();
@@ -31,7 +31,7 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
   return (
     <>
       <ModalDrawer
-        colorTheme={colorTheme}
+        colorTheme={selectedRepo?.colorTheme}
         navList={sideBarLocalTaskMenu}
         handleClickNavigation={handleClickNavigation}
         isOpen={isOpen}
@@ -40,7 +40,7 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
 
       <Box
         sx={{
-          bg: colorTheme?.bg,
+          bg: selectedRepo?.colorTheme?.bg,
           minHeight: HEADER_HEIGHT,
           position: "sticky",
           top: 0,
@@ -75,7 +75,7 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
           <Box>
             <Typography
               sx={{
-                color: colorTheme?.color,
+                color: selectedRepo?.colorTheme?.color,
                 fontWeight: 700,
                 textTransform: "capitalize",
               }}
@@ -85,12 +85,12 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
             <Typography
               variantText="xs"
               sx={{
-                color: colorTheme?.color,
+                color: selectedRepo?.colorTheme?.color,
                 textTransform: "capitalize",
                 mt: -1.5,
               }}
             >
-              {repo}
+              {selectedRepo?.repo}
             </Typography>
           </Box>
         </Flex>

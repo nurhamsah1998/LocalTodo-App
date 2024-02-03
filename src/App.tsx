@@ -1,10 +1,13 @@
+import { Provider as JotaiProvider } from "jotai";
 import Router from "./Router";
 import RootAuthProvider from "@/utils/RootAuthProvider";
 
 function App() {
   return (
     <RootAuthProvider>
-      <Router />
+      <JotaiProvider>
+        <Router />
+      </JotaiProvider>
     </RootAuthProvider>
   );
 }

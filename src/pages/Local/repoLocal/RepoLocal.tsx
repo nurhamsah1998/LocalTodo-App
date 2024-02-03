@@ -8,6 +8,7 @@ import CreateLocalRepo from "./CreateLocalRepo";
 import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
 import { useNavigate } from "react-router-dom";
 import { styledPropTheme } from "src/helper/styledPropTheme";
+import moment from "moment";
 
 function RepoLocal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -66,6 +67,18 @@ function RepoLocal() {
               >
                 {item?.repo}
               </Typography>
+              <Typography
+                variantText="xs"
+                sx={{
+                  color: item?.colorTheme?.color,
+                  textTransform: "capitalize",
+                  position: "absolute",
+                  right: 3,
+                  bottom: 2,
+                }}
+              >
+                {moment(item?.createdAt).format("LLLL")}
+              </Typography>
               <Box
                 sx={{
                   bg: item?.colorTheme?.color,
@@ -75,7 +88,7 @@ function RepoLocal() {
                   position: "absolute",
                   top: -400,
                   left: -200,
-                  opacity: "0.07",
+                  opacity: "0.1",
                 }}
               />
               <Box
@@ -87,7 +100,7 @@ function RepoLocal() {
                   position: "absolute",
                   bottom: -400,
                   right: -200,
-                  opacity: "0.07",
+                  opacity: "0.1",
                 }}
               />
             </Box>

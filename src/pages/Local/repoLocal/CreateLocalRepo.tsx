@@ -51,6 +51,7 @@ function CreateLocalRepo({
           label: colorTheme?.label || "Default",
         },
         createdAt: moment(new Date()).toISOString(),
+        updatedAt: moment(new Date()).toISOString(),
         todo: [],
       },
     ];
@@ -68,6 +69,7 @@ function CreateLocalRepo({
           label: colorTheme?.label || "Default",
         },
         createdAt: moment(new Date()).toISOString(),
+        updatedAt: moment(new Date()).toISOString(),
         id: `${repoName}_${id}`,
       });
       setDataEncrypted(clone);

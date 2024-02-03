@@ -19,6 +19,8 @@ import { useEncript } from "src/hooks/useEncript";
 import React from "react";
 import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
 import { styledPropTheme } from "src/helper/styledPropTheme";
+import { localSelectedRepo } from "src/store/store";
+import { useAtom } from "jotai";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -74,14 +76,18 @@ function DrawerLocalTask() {
   const { data } = useEncript("repo", "array");
   const { id } = useParams();
   const nav = useNavigate();
-  const validId: FORM_INPUT_CREATE_REPO_LOCAL = data.find(
-    (item: any) => item?.id === id
-  );
+  const [, setSelectedRepo] = useAtom(localSelectedRepo);
+  const validId: FORM_INPUT_CREATE_REPO_LOCAL = React.useMemo(() => {
+    return data.find((item: any) => item?.id === id);
+  }, []);
   React.useEffect(() => {
     if (!Boolean(validId)) {
       nav("/not-exist-route", { replace: true, state: null });
     }
   }, [id]);
+  React.useEffect(() => {
+    setSelectedRepo(validId);
+  }, []);
   return (
     <Box
       sx={{
@@ -129,7 +135,7 @@ function DrawerLocalTask() {
             <Container
               sx={{
                 minHeight: HEADER_HEIGHT,
-                bg: validId.colorTheme.bg,
+                bg: validId?.colorTheme?.bg,
                 position: "sticky",
                 top: 0,
                 display: "flex",
@@ -139,11 +145,11 @@ function DrawerLocalTask() {
               }}
             >
               <Box>
-                <Typography color={validId.colorTheme.color} variantText="lg">
+                <Typography color={validId?.colorTheme?.color} variantText="lg">
                   Todo App
                 </Typography>
                 <Typography
-                  color={validId.colorTheme.color}
+                  color={validId?.colorTheme?.color}
                   mt={-1}
                   variantText="xs"
                 >
@@ -175,7 +181,7 @@ function DrawerLocalTask() {
                 onClick={() => nav("/local/repo")}
                 sx={{
                   mt: 10,
-                  bg: validId.colorTheme.color,
+                  bg: validId?.colorTheme?.color,
                   p: 3,
                   display: "flex",
                   alignItems: "center",
@@ -198,7 +204,7 @@ function DrawerLocalTask() {
             width: "100%",
           }}
         >
-          <Header item={validId} />
+          <Header />
           <Box
             sx={{
               py: 4,

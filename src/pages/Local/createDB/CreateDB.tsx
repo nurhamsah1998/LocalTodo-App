@@ -22,7 +22,7 @@ function CreateDB() {
   };
   React.useEffect(() => {
     if (isAuth) {
-      if (mode === "offline") return nav("/local/dashboard");
+      if (mode === "local") return nav("/local/dashboard");
       nav("/");
     }
   }, [isAuth]);

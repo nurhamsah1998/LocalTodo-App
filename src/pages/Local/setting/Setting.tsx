@@ -1,19 +1,47 @@
 import { ModalBase } from "@/components/ModalBase";
 import { Typography } from "@/components/Typography";
-import { Box, Button, Flex, Input, useDisclosure } from "@chakra-ui/react";
+import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Input,
+  useDisclosure,
+  createStandaloneToast,
+} from "@chakra-ui/react";
+import { useAtom } from "jotai";
 import React from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useEncript } from "src/hooks/useEncript";
+import { localSelectedRepo } from "src/store/store";
 
 function Setting() {
+  const { toast } = createStandaloneToast();
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const nav: NavigateFunction = useNavigate();
+  const [selectedRepo] = useAtom(localSelectedRepo);
+  const { data, setDataEncrypted } = useEncript("repo", "array");
+  const [repoName, setRepoName] = React.useState<string>("");
   const handleDelete = () => {
-    console.log("asd");
+    const newRepo = data?.filter(
+      (item: FORM_INPUT_CREATE_REPO_LOCAL) => item.id !== selectedRepo.id
+    );
+    setDataEncrypted(newRepo);
+    nav("/local/repo");
+    toast({
+      title: "Success deleting repo",
+      description: "repo has been deleting in your browser local storage",
+      status: "success",
+      isClosable: true,
+    });
   };
   return (
     <Box>
       <ModalBase
         handleSubmit={handleDelete}
         size="3xl"
-        disabledSubmit
+        disabledSubmit={selectedRepo.repo !== repoName}
         title="Delete Repo"
         isOpen={isOpen}
         onClose={onClose}
@@ -26,7 +54,23 @@ function Setting() {
           Are you sure you want to delete this repo? A repo that has been
           deleted cannot be restored again!
         </Typography>
+        <Center>
+          <Typography
+            sx={{
+              textAlign: "center",
+              mt: 3,
+              bg: "error.main",
+              color: "#fff",
+              width: "fit-content",
+              px: 3,
+              py: 1,
+            }}
+          >
+            {selectedRepo.repo}
+          </Typography>
+        </Center>
         <Input
+          onChange={(i) => setRepoName(i.target.value)}
           size="sm"
           sx={{
             my: 3,
@@ -34,7 +78,6 @@ function Setting() {
             textAlign: "center",
             _placeholder: {
               textAlign: "center",
-              color: "red.300",
             },
             _focus: {
               borderColor: "red.500",

@@ -1,5 +1,6 @@
+import { atom } from "jotai";
 import { createContext } from "react";
-import { AUTH } from "src/interface";
+import { AUTH, FORM_INPUT_CREATE_REPO_LOCAL } from "src/interface";
 
 const AuthContext = createContext<AUTH>({
   keyToken: null,
@@ -8,5 +9,9 @@ const AuthContext = createContext<AUTH>({
   userData: {},
   mode: "",
 });
-
-export { AuthContext };
+/// JOTAI
+const localSelectedRepo = atom<FORM_INPUT_CREATE_REPO_LOCAL>({
+  repo: "",
+  colorTheme: { bg: "", color: "", label: "" },
+});
+export { AuthContext, localSelectedRepo };

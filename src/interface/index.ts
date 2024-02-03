@@ -35,7 +35,8 @@ export interface TEXT_VARIANT {
 }
 
 export interface TYPOGRAPHY extends TextProps {
-  children?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: string | any;
   variantText?: string;
 }
 export interface CANVAS extends BoxProps {

@@ -2,16 +2,20 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
-import { SIDE_BAR_MENU } from "@/interface/index";
+import { LIST_CARD_COLOR, SIDE_BAR_MENU } from "@/interface/index";
 import { Typography } from "./Typography";
+import { BORDER_RADIUS } from "@/theme/button";
 
 export const NavItem = ({
   item,
   handleClickNavigation,
+  colorTheme,
 }: {
   item: SIDE_BAR_MENU;
+  colorTheme: LIST_CARD_COLOR;
   handleClickNavigation: (props?: any) => void;
 }) => {
+  const { bg, color } = colorTheme || {};
   const { pathname } = useLocation();
   const Icon: IconType = item.icon;
   const ActiveNavigation = pathname.includes(item.path);
@@ -21,7 +25,8 @@ export const NavItem = ({
       onClick={handleClickNavigation}
       sx={{
         cursor: "pointer",
-        bgColor: ActiveNavigation ? "primary.light" : "",
+        borderRadius: BORDER_RADIUS,
+        bgColor: ActiveNavigation ? bg : "",
         _active: {
           bgColor: "primary.light",
           transition: "0.3s",
@@ -30,13 +35,13 @@ export const NavItem = ({
       }}
     >
       <Flex alignItems="center" gap={2}>
-        <Box sx={{ color: ActiveNavigation ? "primary.main" : "gray.400" }}>
+        <Box sx={{ color: ActiveNavigation ? color : "gray.400" }}>
           <Icon size={16} />
         </Box>
         <Typography
           sx={{
             fontWeight: 600,
-            color: ActiveNavigation ? "primary.main" : "gray.400",
+            color: ActiveNavigation ? color : "gray.400",
           }}
         >
           {item.label}

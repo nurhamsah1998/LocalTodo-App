@@ -1,24 +1,15 @@
 import { Canvas } from "@/components/Canvas";
 import { Typography } from "@/components/Typography";
-import { Box, Container, Flex } from "@chakra-ui/react";
+import { BORDER_RADIUS } from "@/theme/button";
+import { Box, Button, Container, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { AuthContext } from "src/store/store";
-import Cookies from "universal-cookie";
 
 function Auth() {
-  const cookie = new Cookies();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { isAuth, _signIn, mode } = React.useContext(AuthContext);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars,
-  const nav = useNavigate();
+  const { isAuth, mode } = React.useContext(AuthContext);
+  const nav: NavigateFunction = useNavigate();
   const handleClickOfflineMode = () => {
-    cookie.set("@token", "offline-mode-mamamia", { path: "/" });
-    cookie.set("@mode", "local", { path: "/" });
-    _signIn({
-      mode: "local",
-      keyToken: "offline-mode-mamamia",
-    });
     nav("/create-db");
   };
   React.useEffect(() => {
@@ -35,50 +26,56 @@ function Auth() {
         justifyContent: "center",
       }}
     >
-      <Container width="100%">
-        <Flex sx={{ width: "100%", justifyContent: "center" }}>
-          <Flex
-            sx={{
-              width: "40%",
-              bg: "#fff",
-              gap: 3,
-            }}
+      <Container
+        width={[
+          "80%", // 0-30em
+          "80%", // 30em-48em
+          "45%", // 48em-62em
+          "45%", // 62em+
+        ]}
+        sx={{ px: 6, py: 5, bg: "#fff", borderRadius: BORDER_RADIUS }}
+      >
+        <Box sx={{ width: "fit-content", mb: 10 }}>
+          <Typography
+            variantText="3xl"
+            sx={{ fontWeight: 700, color: "gray.600" }}
           >
-            <Box
-              sx={{
-                width: "100%",
-                bg: "red.300",
-                p: 3,
-                cursor: "pointer",
-              }}
-            >
-              <Typography variantText="2xl">Login</Typography>
-            </Box>
-            <Box
-              sx={{
-                width: "100%",
-                bg: "green.300",
-                p: 3,
-                cursor: "pointer",
-              }}
-            >
-              <Typography variantText="2xl">Register</Typography>
-            </Box>
-          </Flex>
+            TODO APPS
+          </Typography>
+          <Typography variantText="sm" sx={{ mt: -3, color: "gray.600" }}>
+            by nurhamsah
+          </Typography>
+        </Box>
+        <VStack>
+          <Button sx={{ width: "100%" }}>Login</Button>
+          <Button sx={{ width: "100%" }} variant="outline">
+            Register
+          </Button>
+        </VStack>
+        <Flex
+          sx={{
+            alignItems: "center",
+            gap: 3,
+            mt: 3,
+          }}
+        >
+          <Box sx={{ width: "100%", bg: "gray.200", height: 0.5 }} />
+          <Typography>or</Typography>
+          <Box sx={{ width: "100%", bg: "gray.200", height: 0.5 }} />
         </Flex>
         <Flex sx={{ width: "100%", justifyContent: "center", mt: 3 }}>
-          <Flex
+          <Button
             onClick={handleClickOfflineMode}
             sx={{
-              width: "40%",
-              bg: "#fff",
+              width: "100%",
+              bg: "orange.500",
               p: 3,
               justifyContent: "center",
               cursor: "pointer",
             }}
           >
-            <Typography variantText="2xl">Offline Mode</Typography>
-          </Flex>
+            <Typography variantText="md">Local Mode</Typography>
+          </Button>
         </Flex>
       </Container>
     </Canvas>

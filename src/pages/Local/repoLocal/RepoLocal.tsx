@@ -7,6 +7,7 @@ import { useEncript } from "src/hooks/useEncript";
 import CreateLocalRepo from "./CreateLocalRepo";
 import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
 import { useNavigate } from "react-router-dom";
+import { BORDER_RADIUS } from "@/theme/button";
 
 function RepoLocal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -41,6 +42,7 @@ function RepoLocal() {
                 width: "100%",
                 py: 1,
                 px: 2,
+                borderRadius: BORDER_RADIUS,
               }}
               onClick={() => handleClickRepoItem(item)}
               key={index}

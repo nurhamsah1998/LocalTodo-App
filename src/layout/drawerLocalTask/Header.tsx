@@ -18,7 +18,9 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
     pathname.includes(item.path)
   );
 
-  const { repo, colorTheme } = item || {};
+  const { repo, colorTheme } = item || {
+    colorTheme: { bg: "", color: "", label: "" },
+  };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const nav: NavigateFunction = useNavigate();
   const { id } = useParams();
@@ -29,6 +31,7 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
   return (
     <>
       <ModalDrawer
+        colorTheme={colorTheme}
         navList={sideBarLocalTaskMenu}
         handleClickNavigation={handleClickNavigation}
         isOpen={isOpen}

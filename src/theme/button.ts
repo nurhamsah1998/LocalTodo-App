@@ -2,11 +2,12 @@ import { StyleFunctionProps, theme as chakraTheme } from "@chakra-ui/react";
 import { PickThemeColor } from "src/helper/themeColor";
 
 const { Button: ButtonProps } = chakraTheme.components;
+export const BORDER_RADIUS = "5px";
 export const Button = {
   ...ButtonProps,
   baseStyle: {
     textTransform: "capitalize",
-    borderRadius: "5px",
+    borderRadius: BORDER_RADIUS,
     fontFamily: "Poppins",
     _focus: {
       outline: "none",

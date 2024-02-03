@@ -9,12 +9,13 @@ import OverView from "@/pages/Task/overview/OverView";
 // import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
 import Auth from "@/pages/auth/Auth";
 import CreateDB from "@/pages/Local/createDB/CreateDB";
-import DrawerLocal from "@/components/drawerLocal/DrawerLocal";
+import DrawerLocal from "src/layout/drawerLocal/DrawerLocal";
 import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
 import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
-import DrawerLocalTask from "@/components/drawerLocalTask/DrawerLocalTask";
+import DrawerLocalTask from "src/layout/drawerLocalTask/DrawerLocalTask";
 import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
 import TodoLocal from "@/pages/Local/todoLocal/TodoLocal";
+import Setting from "@/pages/Local/setting/Setting";
 
 function Router() {
   return useRoutes([
@@ -71,6 +72,10 @@ function Router() {
         {
           path: "todo/:id",
           element: <TodoLocal />,
+        },
+        {
+          path: "setting/:id",
+          element: <Setting />,
         },
       ],
     },

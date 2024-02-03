@@ -5,7 +5,7 @@ import { Box, Flex, Stack, Show } from "@chakra-ui/react";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import { NavigateFunction, Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
-import { NavItem } from "../NavItem";
+import { NavItem } from "../../components/NavItem";
 import { SIDE_BAR_MENU } from "@/interface/index";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;

@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Show, useDisclosure } from "@chakra-ui/react";
 import { IoMenu } from "react-icons/io5";
-import { Typography } from "../Typography";
+import { Typography } from "../../components/Typography";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
-import ModalDrawer from "../MOdalDrawer";
+import ModalDrawer from "@/components/ModalDrawer";
 import { SIDE_BAR_MENU } from "@/interface/index";
 
 function Header() {

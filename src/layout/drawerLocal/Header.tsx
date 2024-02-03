@@ -5,6 +5,7 @@ import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 import ModalDrawer from "@/components/ModalDrawer";
 import { SIDE_BAR_MENU } from "@/interface/index";
+import { HEADER_HEIGHT } from "./DrawerLocal";
 
 function Header() {
   const { pathname } = useLocation();
@@ -28,7 +29,7 @@ function Header() {
       <Box
         sx={{
           bg: "primary.main",
-          minHeight: "50px",
+          minHeight: HEADER_HEIGHT,
           position: "sticky",
           top: 0,
           zIndex: 99,

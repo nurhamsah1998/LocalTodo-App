@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-extra-boolean-cast */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Box, Flex, Stack, Show } from "@chakra-ui/react";
+import { Box, Flex, Stack, Show, Container } from "@chakra-ui/react";
 import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import { NavigateFunction, Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { NavItem } from "../../components/NavItem";
 import { SIDE_BAR_MENU } from "@/interface/index";
+import { Typography } from "@/components/Typography";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
-
+export const HEADER_HEIGHT = "70px";
 function DrawerLocal() {
   const nav: NavigateFunction = useNavigate();
   const handleClickNavigation = (item: SIDE_BAR_MENU) => {
@@ -40,7 +41,7 @@ function DrawerLocal() {
               bgColor: "#fff",
               height: "100dvh",
               position: "sticky",
-              top: 0,
+              top: 50,
               borderRightColor: "gray.200",
               borderRightStyle: "solid",
               borderRightWidth: "1px",
@@ -60,6 +61,27 @@ function DrawerLocal() {
               },
             }}
           >
+            <Container
+              sx={{
+                minHeight: HEADER_HEIGHT,
+                bg: "primary.main",
+                position: "sticky",
+                top: 0,
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                px: 3,
+              }}
+            >
+              <Box>
+                <Typography color="#fff" variantText="lg">
+                  Todo App
+                </Typography>
+                <Typography color="#fff" mt={-1} variantText="xs">
+                  by nurhamsah
+                </Typography>
+              </Box>
+            </Container>
             <Stack
               sx={{
                 m: 2,

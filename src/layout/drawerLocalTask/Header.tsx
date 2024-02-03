@@ -10,6 +10,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
+import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
 
 function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
   const { pathname } = useLocation();
@@ -37,7 +38,7 @@ function Header({ item }: { item?: FORM_INPUT_CREATE_REPO_LOCAL }) {
       <Box
         sx={{
           bg: colorTheme?.bg,
-          minHeight: "50px",
+          minHeight: HEADER_HEIGHT,
           position: "sticky",
           top: 0,
           zIndex: 99,

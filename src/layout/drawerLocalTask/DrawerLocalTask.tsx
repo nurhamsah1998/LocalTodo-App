@@ -1,7 +1,7 @@
 /* eslint-disable no-extra-boolean-cast */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Box, Flex, Show, Stack } from "@chakra-ui/react";
+import { Box, Container, Flex, Show, Stack } from "@chakra-ui/react";
 import { sideBarLocalTaskMenu } from "@/const/sideBarMenu";
 import { IoChevronBack } from "react-icons/io5";
 import {
@@ -12,11 +12,12 @@ import {
   useParams,
 } from "react-router-dom";
 import { IconType } from "react-icons";
-import { SIDE_BAR_MENU } from "../../interface";
+import { FORM_INPUT_CREATE_REPO_LOCAL, SIDE_BAR_MENU } from "../../interface";
 import { Typography } from "../../components/Typography";
 import Header from "./Header";
 import { useEncript } from "src/hooks/useEncript";
 import React from "react";
+import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -71,7 +72,9 @@ function DrawerLocalTask() {
   const { data } = useEncript("repo", "array");
   const { id } = useParams();
   const nav = useNavigate();
-  const validId = data.find((item: any) => item?.id === id);
+  const validId: FORM_INPUT_CREATE_REPO_LOCAL = data.find(
+    (item: any) => item?.id === id
+  );
   React.useEffect(() => {
     if (!Boolean(validId)) {
       nav("/not-exist-route", { replace: true, state: null });
@@ -121,6 +124,31 @@ function DrawerLocalTask() {
               },
             }}
           >
+            <Container
+              sx={{
+                minHeight: HEADER_HEIGHT,
+                bg: validId.colorTheme.bg,
+                position: "sticky",
+                top: 0,
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                px: 3,
+              }}
+            >
+              <Box>
+                <Typography color={validId.colorTheme.color} variantText="lg">
+                  Todo App
+                </Typography>
+                <Typography
+                  color={validId.colorTheme.color}
+                  mt={-1}
+                  variantText="xs"
+                >
+                  by nurhamsah
+                </Typography>
+              </Box>
+            </Container>
             <Stack
               sx={{
                 m: 2,
@@ -145,7 +173,7 @@ function DrawerLocalTask() {
                 onClick={() => nav("/local/repo")}
                 sx={{
                   mt: 10,
-                  bg: "primary.main",
+                  bg: validId.colorTheme.color,
                   p: 3,
                   display: "flex",
                   alignItems: "center",

@@ -18,7 +18,7 @@ import Header from "./Header";
 import { useEncript } from "src/hooks/useEncript";
 import React from "react";
 import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
-import { BORDER_RADIUS } from "@/theme/button";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -45,7 +45,7 @@ const NavItem = React.memo(function Item({
       onClick={handleClickNavigation}
       sx={{
         cursor: "pointer",
-        borderRadius: BORDER_RADIUS,
+        borderRadius: styledPropTheme.borderRadius,
         bgColor: ActiveNavigation ? bg : "",
         _active: {
           bgColor: "primary.light",
@@ -180,7 +180,7 @@ function DrawerLocalTask() {
                   display: "flex",
                   alignItems: "center",
                   gap: 2,
-                  borderRadius: BORDER_RADIUS,
+                  borderRadius: styledPropTheme.borderRadius,
                 }}
               >
                 <Box color="#fff">

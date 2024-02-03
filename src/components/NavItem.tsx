@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
 import { LIST_CARD_COLOR, SIDE_BAR_MENU } from "@/interface/index";
 import { Typography } from "./Typography";
-import { BORDER_RADIUS } from "@/theme/button";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 
 export const NavItem = ({
   item,
@@ -25,7 +25,7 @@ export const NavItem = ({
       onClick={handleClickNavigation}
       sx={{
         cursor: "pointer",
-        borderRadius: BORDER_RADIUS,
+        borderRadius: styledPropTheme.borderRadius,
         bgColor: ActiveNavigation ? bg : "",
         _active: {
           bgColor: "primary.light",

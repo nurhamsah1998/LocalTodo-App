@@ -15,24 +15,30 @@ import React from "react";
 export const ModalBase: React.FunctionComponent<
   ModalProps & {
     isOpen: boolean;
-    isDisabled?: boolean;
+    disabledSubmit?: boolean;
+    disabledCancel?: boolean;
     isLoading?: boolean;
     onClose: () => void;
     handleSubmit?: () => void;
     children?: any;
     labelSubmit?: string;
     labelClose?: string;
+    colorSubmitScheme?: string;
+    colorCloseScheme?: string;
     title?: string;
   }
 > = ({
   isOpen,
-  isDisabled,
+  disabledSubmit,
+  disabledCancel,
   isLoading,
   onClose,
   handleSubmit,
   children,
   labelSubmit = "Submit",
   labelClose = "Close",
+  colorSubmitScheme = "primary.main",
+  colorCloseScheme = "error.main",
   title,
   ...props
 }) => {
@@ -47,16 +53,18 @@ export const ModalBase: React.FunctionComponent<
 
           <ModalFooter>
             <Button
+              disabled={disabledCancel}
+              colorScheme={colorCloseScheme}
               variant="outline"
-              colorScheme="error.main"
               mr={3}
               onClick={onClose}
             >
               {labelClose}
             </Button>
             <Button
+              colorScheme={colorSubmitScheme}
               isLoading={isLoading}
-              isDisabled={isDisabled}
+              disabled={disabledSubmit}
               onClick={handleSubmit}
               variant="solid"
             >

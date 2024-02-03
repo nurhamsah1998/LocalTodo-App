@@ -1,9 +1,9 @@
 import { Canvas } from "@/components/Canvas";
 import { Typography } from "@/components/Typography";
-import { BORDER_RADIUS } from "@/theme/button";
 import { Box, Button, Container, Flex } from "@chakra-ui/react";
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 import { AuthContext } from "src/store/store";
 import Cookies from "universal-cookie";
 
@@ -43,7 +43,7 @@ function CreateDB() {
         ]}
         sx={{
           bg: "#fff",
-          borderRadius: BORDER_RADIUS,
+          borderRadius: styledPropTheme.borderRadius,
         }}
       >
         <Box

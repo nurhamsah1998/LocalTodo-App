@@ -1,13 +1,13 @@
 import { StyleFunctionProps, theme as chakraTheme } from "@chakra-ui/react";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 import { PickThemeColor } from "src/helper/themeColor";
 
 const { Button: ButtonProps } = chakraTheme.components;
-export const BORDER_RADIUS = "5px";
 export const Button = {
   ...ButtonProps,
   baseStyle: {
     textTransform: "capitalize",
-    borderRadius: BORDER_RADIUS,
+    borderRadius: styledPropTheme.borderRadius,
     fontFamily: "Poppins",
     _focus: {
       outline: "none",
@@ -25,8 +25,9 @@ export const Button = {
         if (arg) return !arg.includes("light") ? "#fff" : undefined;
       };
       return {
-        bg: color.getColor() || "primary.main",
+        bg: props?.disabled ? "gray.300" : color.getColor() || "primary.main",
         color: textColor(color.getColor()),
+        cursor: props?.disabled ? "no-drop" : "pointer",
       };
     },
     outline: (props: StyleFunctionProps) => {
@@ -35,8 +36,9 @@ export const Button = {
       return {
         borderWidth: "1px",
         borderStyle: "solid",
-        borderColor: color.getColor(),
-        color: color.getColor(),
+        borderColor: props?.disabled ? "gray.400" : color.getColor(),
+        color: props?.disabled ? "gray.400" : color.getColor(),
+        cursor: props?.disabled ? "no-drop" : "pointer",
       };
     },
   },

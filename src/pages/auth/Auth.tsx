@@ -1,9 +1,9 @@
 import { Canvas } from "@/components/Canvas";
 import { Typography } from "@/components/Typography";
-import { BORDER_RADIUS } from "@/theme/button";
 import { Box, Button, Container, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 import { AuthContext } from "src/store/store";
 
 function Auth() {
@@ -33,7 +33,12 @@ function Auth() {
           "45%", // 48em-62em
           "45%", // 62em+
         ]}
-        sx={{ px: 6, py: 5, bg: "#fff", borderRadius: BORDER_RADIUS }}
+        sx={{
+          px: 6,
+          py: 5,
+          bg: "#fff",
+          borderRadius: styledPropTheme.borderRadius,
+        }}
       >
         <Box sx={{ width: "fit-content", mb: 10 }}>
           <Typography

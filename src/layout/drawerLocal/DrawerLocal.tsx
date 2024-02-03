@@ -94,6 +94,11 @@ function DrawerLocal() {
               {sideBarLocalMenu.map((item, index) => {
                 return (
                   <NavItem
+                    colorTheme={{
+                      bg: "primary.light",
+                      color: "primary.main",
+                      label: "",
+                    }}
                     handleClickNavigation={() => handleClickNavigation(item)}
                     key={index}
                     item={item}

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -8,7 +9,11 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { NavItem } from "./NavItem";
+import { IoChevronBack } from "react-icons/io5";
 import { LIST_CARD_COLOR } from "../interface";
+import { styledPropTheme } from "src/helper/styledPropTheme";
+import { Typography } from "./Typography";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function ModalDrawer({
   onClose,
@@ -24,6 +29,7 @@ export default function ModalDrawer({
   colorTheme: LIST_CARD_COLOR;
 }) {
   const { color } = colorTheme || { color: "" };
+  const nav: NavigateFunction = useNavigate();
   return (
     <>
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -54,6 +60,26 @@ export default function ModalDrawer({
                   />
                 );
               })}
+              <Box
+                role="button"
+                onClick={() => nav("/local/repo")}
+                sx={{
+                  mt: 10,
+                  bg: color,
+                  p: 3,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  borderRadius: styledPropTheme.borderRadius,
+                }}
+              >
+                <Box color="#fff">
+                  <IoChevronBack />
+                </Box>
+                <Typography color="#fff" variantText="sm">
+                  Main menu
+                </Typography>
+              </Box>
             </Stack>
           </DrawerBody>
         </DrawerContent>

@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { cardColor } from "@/const/cardColor";
 import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
+import moment from "moment";
 
 function CreateLocalRepo({
   isOpen,
@@ -49,6 +50,7 @@ function CreateLocalRepo({
           color: colorTheme?.color || "gray.700",
           label: colorTheme?.label || "Default",
         },
+        createdAt: moment(new Date()).toISOString(),
         todo: [],
       },
     ];
@@ -65,6 +67,7 @@ function CreateLocalRepo({
           color: colorTheme?.color || "gray.700",
           label: colorTheme?.label || "Default",
         },
+        createdAt: moment(new Date()).toISOString(),
         id: `${repoName}_${id}`,
       });
       setDataEncrypted(clone);

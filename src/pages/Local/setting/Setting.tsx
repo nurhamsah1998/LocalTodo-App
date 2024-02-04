@@ -13,6 +13,7 @@ import {
 import { useAtom } from "jotai";
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 import { useEncript } from "src/hooks/useEncript";
 import { localSelectedRepo } from "src/store/store";
 
@@ -64,6 +65,7 @@ function Setting() {
               width: "fit-content",
               px: 3,
               py: 1,
+              borderRadius: styledPropTheme.borderRadius,
             }}
           >
             {selectedRepo.repo}

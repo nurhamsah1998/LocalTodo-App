@@ -6,7 +6,10 @@ import { createStandaloneToast } from "@chakra-ui/react";
 export const useEncript = (arg: any, type?: string) => {
   const { toast } = createStandaloneToast();
   const readDataEncrypted = React.useMemo(() => {
-    const listOfStorage = Object.keys(window.localStorage || {});
+    const listOfStorage = Object.keys(window.localStorage || {}).filter(
+      (item) => item !== "chakra-ui-color-mode"
+    );
+
     let result: any = null;
     for (let index = 0; index < listOfStorage.length; index++) {
       const bytes = CryptoJS.AES.decrypt(

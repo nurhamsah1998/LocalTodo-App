@@ -39,6 +39,11 @@ export const Button = {
         borderColor: props?.disabled ? "gray.400" : color.getColor(),
         color: props?.disabled ? "gray.400" : color.getColor(),
         cursor: props?.disabled ? "no-drop" : "pointer",
+        transition: "0.3s",
+        _hover: {
+          bg: color.getColor(),
+          color: "#fff",
+        },
       };
     },
   },

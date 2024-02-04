@@ -8,6 +8,7 @@ import Header from "./Header";
 import { NavItem } from "../../components/NavItem";
 import { SIDE_BAR_MENU } from "@/interface/index";
 import { Typography } from "@/components/Typography";
+import { Canvas } from "@/components/Canvas";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 export const HEADER_HEIGHT = "70px";
@@ -18,9 +19,8 @@ function DrawerLocal() {
   };
 
   return (
-    <Box
+    <Canvas
       sx={{
-        height: "100dvh",
         overflow: "auto",
       }}
       css={{
@@ -37,12 +37,13 @@ function DrawerLocal() {
     >
       <Flex sx={{ alignItems: "flex-start" }}>
         <Show above="md">
+          {/* SIDE BAR MENU */}
           <Box
             sx={{
               bgColor: "#fff",
               height: "100dvh",
               position: "sticky",
-              top: 50,
+              top: 0,
               borderRightColor: "gray.200",
               borderRightStyle: "solid",
               borderRightWidth: "1px",
@@ -118,13 +119,15 @@ function DrawerLocal() {
             sx={{
               py: 4,
               px: 5,
+              minHeight: `calc(100dvh - ${HEADER_HEIGHT})`,
+              overflow: "hidden",
             }}
           >
             <Outlet />
           </Box>
         </Box>
       </Flex>
-    </Box>
+    </Canvas>
   );
 }
 

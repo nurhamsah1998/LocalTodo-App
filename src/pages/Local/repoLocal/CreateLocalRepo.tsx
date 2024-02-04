@@ -46,7 +46,7 @@ function CreateLocalRepo({
         id: `${repoName}_${id}`,
         repo: repoName,
         colorTheme: {
-          bg: colorTheme?.bg || "gray.200",
+          bg: colorTheme?.bg || "#fff",
           color: colorTheme?.color || "gray.700",
           label: colorTheme?.label || "Default",
         },
@@ -64,7 +64,7 @@ function CreateLocalRepo({
         repo: repoName,
         todo: [],
         colorTheme: {
-          bg: colorTheme?.bg || "gray.200",
+          bg: colorTheme?.bg || "#fff",
           color: colorTheme?.color || "gray.700",
           label: colorTheme?.label || "Default",
         },

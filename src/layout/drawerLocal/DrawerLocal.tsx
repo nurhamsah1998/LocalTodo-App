@@ -1,59 +1,105 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-extra-boolean-cast */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Box, Flex, Stack, Show, Container } from "@chakra-ui/react";
-import { sideBarLocalMenu } from "@/const/sideBarMenu";
-import { NavigateFunction, Outlet, useNavigate } from "react-router-dom";
-import Header from "./Header";
-import { NavItem } from "../../components/NavItem";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Box, Container, Flex, Show, useMediaQuery } from "@chakra-ui/react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { SIDE_BAR_MENU } from "@/interface/index";
-import { Typography } from "@/components/Typography";
-import { Canvas } from "@/components/Canvas";
+import { sideBarLocalMenu } from "@/const/sideBarMenu";
+import Header from "./Header";
+import HeaderSideBar from "@/components/HeaderSIdeBar";
+import { NavItem } from "@/components/NavItem";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 export const HEADER_HEIGHT = 70;
-function DrawerLocal() {
-  const nav: NavigateFunction = useNavigate();
+function DrawerLocalTask({ children }: { children: React.ReactNode }) {
+  const nav = useNavigate();
   const handleClickNavigation = (item: SIDE_BAR_MENU) => {
     nav(`${item.path}`);
   };
 
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   return (
-    <Canvas
-      sx={{
-        overflow: "auto",
-      }}
-      css={{
-        "::-webkit-scrollbar": {
-          width: "8px",
-        },
-        "::-webkit-scrollbar-thumb": {
-          background: "#c7c7c7",
-        },
-        "::-webkit-scrollbar-track": {
-          background: "#f3f3f3",
-        },
-      }}
-    >
-      <Flex sx={{ alignItems: "flex-start" }}>
+    <Container sx={{ height: "100vh" }}>
+      <Flex
+        sx={{
+          height: "100%",
+          overflowX: "hidden",
+        }}
+      >
+        {/* ---------- LEFT SECTION START ---------- */}
         <Show above="md">
-          {/* SIDE BAR MENU */}
           <Box
             sx={{
-              bgColor: "#fff",
-              height: "100dvh",
+              bg: "#fff",
+              minW: `${DESKTOP_SIDEBAR_WIDTH}px`,
               position: "sticky",
+              left: 0,
               top: 0,
+              zIndex: 6,
               borderRightColor: "gray.200",
-              borderRightStyle: "solid",
               borderRightWidth: "1px",
-              overflow: "auto",
-              width: DESKTOP_SIDEBAR_WIDTH,
-              display: { xs: "none", lg: "block" },
+              borderRightStyle: "solid",
+            }}
+          >
+            <HeaderSideBar
+              colorTheme={{ bg: "primary.main", color: "primary.light" }}
+            />
+            <Flex
+              sx={{
+                flexDirection: "column",
+                p: 3,
+                gap: 2,
+                maxHeight: `calc(100% - ${HEADER_HEIGHT}px)`,
+                overflowY: "auto",
+              }}
+              css={{
+                "::-webkit-scrollbar": {
+                  width: "2px",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  background: "#c7c7c7",
+                },
+                "::-webkit-scrollbar-track": {
+                  background: "#f3f3f3",
+                },
+              }}
+            >
+              {sideBarLocalMenu.map((item, index) => {
+                return (
+                  <NavItem
+                    handleClickNavigation={() => handleClickNavigation(item)}
+                    bg="primary.main"
+                    cl="primary.light"
+                    key={index}
+                    item={item}
+                  />
+                );
+              })}
+            </Flex>
+          </Box>
+        </Show>
+        {/* ---------- LEFT SECTION END ---------- */}
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
+          <Header />
+          <Container
+            sx={{
+              height: `calc(100% - ${HEADER_HEIGHT}px)`,
+              overflowY: "auto",
+              maxWidth: isLargerThan768
+                ? `calc(100vw - ${DESKTOP_SIDEBAR_WIDTH}px)`
+                : `calc(100vw + ${DESKTOP_SIDEBAR_WIDTH}px)`,
+              overflowX: "auto",
+              py: 3,
+              px: 5,
             }}
             css={{
               "::-webkit-scrollbar": {
-                width: "2px",
+                height: "8px",
+                width: "8px",
               },
               "::-webkit-scrollbar-thumb": {
                 background: "#c7c7c7",
@@ -63,72 +109,12 @@ function DrawerLocal() {
               },
             }}
           >
-            <Container
-              sx={{
-                minHeight: HEADER_HEIGHT,
-                bg: "primary.main",
-                position: "sticky",
-                top: 0,
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                px: 3,
-              }}
-            >
-              <Box>
-                <Typography color="#fff" variantText="lg">
-                  Todo App
-                </Typography>
-                <Typography color="#fff" mt={-1} variantText="xs">
-                  by nurhamsah
-                </Typography>
-              </Box>
-            </Container>
-            <Stack
-              sx={{
-                m: 2,
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-              }}
-            >
-              {sideBarLocalMenu.map((item, index) => {
-                return (
-                  <NavItem
-                    colorTheme={{
-                      bg: "primary.light",
-                      color: "primary.main",
-                      label: "",
-                    }}
-                    handleClickNavigation={() => handleClickNavigation(item)}
-                    key={index}
-                    item={item}
-                  />
-                );
-              })}
-            </Stack>
-          </Box>
-        </Show>
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Header />
-          <Box
-            sx={{
-              py: 4,
-              px: 5,
-              minHeight: `calc(100dvh - ${HEADER_HEIGHT})`,
-              overflow: "hidden",
-            }}
-          >
-            <Outlet />
-          </Box>
+            {children}
+          </Container>
         </Box>
       </Flex>
-    </Canvas>
+    </Container>
   );
 }
 
-export default DrawerLocal;
+export default DrawerLocalTask;

@@ -1,4 +1,6 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { Suspense, lazy } from "react";
+
+import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import NotFound from "@/pages/notFound/NotFound";
 import DrawerApp from "@/components/DrawerApp";
@@ -10,12 +12,20 @@ import OverView from "@/pages/Task/overview/OverView";
 import Auth from "@/pages/auth/Auth";
 import CreateDB from "@/pages/Local/createDB/CreateDB";
 import DrawerLocal from "src/layout/drawerLocal/DrawerLocal";
-import DashboardLocal from "@/pages/Local/dashboardLocal/DashboardLocal";
-import RepoLocal from "@/pages/Local/repoLocal/RepoLocal";
+export const DashboardLocal = lazy(
+  () => import("@/pages/Local/dashboardLocal/DashboardLocal")
+);
+export const RepoLocal = lazy(
+  () => import("@/pages/Local/repoLocal/RepoLocal")
+);
 import DrawerLocalTask from "src/layout/drawerLocalTask/DrawerLocalTask";
-import OverViewLocal from "@/pages/Local/overviewLocal/OverViewLocal";
-import TodoLocal from "@/pages/Local/todoLocal/TodoLocal";
-import Setting from "@/pages/Local/setting/Setting";
+export const OverViewLocal = lazy(
+  () => import("@/pages/Local/overviewLocal/OverViewLocal")
+);
+export const TodoLocal = lazy(
+  () => import("@/pages/Local/todoLocal/TodoLocal")
+);
+export const Setting = lazy(() => import("@/pages/Local/setting/Setting"));
 
 function Router() {
   return useRoutes([
@@ -49,7 +59,13 @@ function Router() {
     },
     {
       path: "/local",
-      element: <DrawerLocal />,
+      element: (
+        <DrawerLocal>
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </DrawerLocal>
+      ),
       children: [
         {
           path: "dashboard",
@@ -63,7 +79,13 @@ function Router() {
     },
     {
       path: "/local-task",
-      element: <DrawerLocalTask />,
+      element: (
+        <DrawerLocalTask>
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </DrawerLocalTask>
+      ),
       children: [
         {
           path: "overview/:id",

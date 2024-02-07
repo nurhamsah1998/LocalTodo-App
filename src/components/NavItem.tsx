@@ -2,24 +2,25 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
-import { LIST_CARD_COLOR, SIDE_BAR_MENU } from "@/interface/index";
+import { SIDE_BAR_MENU } from "@/interface/index";
 import { Typography } from "./Typography";
 import { styledPropTheme } from "src/helper/styledPropTheme";
+import React from "react";
 
-export const NavItem = ({
+export const NavItem = React.memo(function Item({
   item,
+  bg,
+  cl,
   handleClickNavigation,
-  colorTheme,
 }: {
   item: SIDE_BAR_MENU;
-  colorTheme: LIST_CARD_COLOR;
-  handleClickNavigation: (props?: any) => void;
-}) => {
-  const { bg, color } = colorTheme || {};
+  bg: string;
+  cl: string;
+  handleClickNavigation?: () => void;
+}) {
   const { pathname } = useLocation();
   const Icon: IconType = item.icon;
   const ActiveNavigation = pathname.includes(item.path);
-
   return (
     <Box
       onClick={handleClickNavigation}
@@ -35,13 +36,13 @@ export const NavItem = ({
       }}
     >
       <Flex alignItems="center" gap={2}>
-        <Box sx={{ color: ActiveNavigation ? color : "gray.400" }}>
+        <Box sx={{ color: ActiveNavigation ? cl : "gray.400" }}>
           <Icon size={16} />
         </Box>
         <Typography
           sx={{
             fontWeight: 600,
-            color: ActiveNavigation ? color : "gray.400",
+            color: ActiveNavigation ? cl : "gray.400",
           }}
         >
           {item.label}
@@ -49,4 +50,4 @@ export const NavItem = ({
       </Flex>
     </Box>
   );
-};
+});

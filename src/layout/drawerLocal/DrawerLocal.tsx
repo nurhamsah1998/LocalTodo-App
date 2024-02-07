@@ -11,7 +11,7 @@ import { Typography } from "@/components/Typography";
 import { Canvas } from "@/components/Canvas";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
-export const HEADER_HEIGHT = "70px";
+export const HEADER_HEIGHT = 70;
 function DrawerLocal() {
   const nav: NavigateFunction = useNavigate();
   const handleClickNavigation = (item: SIDE_BAR_MENU) => {

@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack,  } from "@chakra-ui/react";
+import { Box, Container, Flex, HStack } from "@chakra-ui/react";
 import { sideBarMenu } from "../const/sideBarMenu";
 import React from "react";
 import {

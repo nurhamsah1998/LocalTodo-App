@@ -44,7 +44,7 @@ function Header() {
           minHeight: HEADER_HEIGHT,
           position: "sticky",
           top: 0,
-          zIndex: 99,
+          zIndex: 5,
           display: "flex",
           alignItems: "center",
         }}

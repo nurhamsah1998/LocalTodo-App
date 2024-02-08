@@ -14,6 +14,7 @@ import {
 import { cardColor } from "@/const/cardColor";
 import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
 import moment from "moment";
+import { initialValueLocalTodo } from "@/const/index";
 
 function CreateLocalRepo({
   isOpen,
@@ -52,7 +53,7 @@ function CreateLocalRepo({
         },
         createdAt: moment(new Date()).toISOString(),
         updatedAt: moment(new Date()).toISOString(),
-        todo: [],
+        todo: initialValueLocalTodo,
       },
     ];
     if (!repoList) {
@@ -62,7 +63,7 @@ function CreateLocalRepo({
       let clone = [...repoList];
       clone.push({
         repo: repoName,
-        todo: [],
+        todo: initialValueLocalTodo,
         colorTheme: {
           bg: colorTheme?.bg || "#fff",
           color: colorTheme?.color || "gray.700",

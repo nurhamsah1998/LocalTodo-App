@@ -1,5 +1,7 @@
+import moment from "moment";
+
 export const WIDTH_BUTTON_DRAG_CARD = 30;
-export const MIN_WIDTH_CONTAINER_CARD = 320;
+export const MIN_WIDTH_CONTAINER_CARD = 250;
 export const difficultyStatusKanban = [
   {
     name: "complex",
@@ -26,3 +28,20 @@ export const difficultyStatusKanban = [
     color: "green.200",
   },
 ];
+
+export const initialValueLocalTodo = {
+  ["To Do"]: [
+    JSON.stringify({
+      label: "Be the Best",
+      desc: "Horray! this is first todo example, now you can create more todo. Hope you can enjoy this services Thank You and good luck !",
+      createdAt: moment().format("DD MMM YYYY"),
+      difficulty: "easy",
+      emotion: "normal",
+      priority: "",
+    }),
+  ],
+  ["On Progress"]: [],
+  ["Done"]: [],
+  ["Pending"]: [],
+  ["Cancel"]: [],
+};

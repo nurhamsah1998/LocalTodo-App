@@ -22,7 +22,7 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
   const nav = useNavigate();
   const [, setSelectedRepo] = useAtom(localSelectedRepo);
   const validId: FORM_INPUT_CREATE_REPO_LOCAL = React.useMemo(() => {
-    return data.find((item: any) => item?.id === id);
+    return data?.find((item: any) => item?.id === id);
   }, []);
   const handleClickNavigation = (item: SIDE_BAR_MENU) => {
     nav(`${item.path}/${id}`);
@@ -60,7 +60,7 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
               borderRightStyle: "solid",
             }}
           >
-            <HeaderSideBar colorTheme={validId.colorTheme} />
+            <HeaderSideBar colorTheme={validId?.colorTheme} />
             <Flex
               sx={{
                 flexDirection: "column",

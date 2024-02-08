@@ -39,6 +39,7 @@ import { coordinateGetter as multipleContainersCoordinateGetter } from "./multip
 import { Item, Container, ContainerProps } from "../Kanban/components";
 
 import { createRange } from "../Kanban/utilities";
+import { useMediaQuery } from "@chakra-ui/react";
 
 export default {
   title: "Presets/Sortable/Multiple Containers",
@@ -144,6 +145,7 @@ interface Props {
   trashable?: boolean;
   scrollable?: boolean;
   vertical?: boolean;
+  afterMoveCard?: (item: any) => void;
   grapHandleColor?: string;
 }
 
@@ -171,6 +173,9 @@ export function MultipleContainers({
   vertical = false,
   scrollable,
   grapHandleColor,
+  afterMoveCard = () => {
+    return null;
+  },
 }: Props) {
   const [items, setItems] = useState<Items>(
     () =>
@@ -184,6 +189,7 @@ export function MultipleContainers({
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );
+
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);
@@ -303,7 +309,7 @@ export function MultipleContainers({
       recentlyMovedToNewContainer.current = false;
     });
   }, [items]);
-
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   return (
     <DndContext
       sensors={sensors}
@@ -445,6 +451,7 @@ export function MultipleContainers({
         }
 
         setActiveId(null);
+        afterMoveCard(items);
       }}
       cancelDrop={cancelDrop}
       onDragCancel={onDragCancel}
@@ -452,7 +459,7 @@ export function MultipleContainers({
     >
       <div
         style={{
-          display: "inline-grid",
+          display: isLargerThan768 ? "inline-grid" : "inline",
           boxSizing: "border-box",
           gridAutoFlow: vertical ? "row" : "column",
         }}

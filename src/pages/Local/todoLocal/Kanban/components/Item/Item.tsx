@@ -169,25 +169,29 @@ export const Item = React.memo(
                 }px`,
               }}
             >
-              <Typography variantText="sm">{kanbanTitle}</Typography>
+              <Typography variantText="sm" sx={{ fontWeight: 600 }}>
+                {kanbanTitle}
+              </Typography>
               <Typography
                 variantText="xs"
                 sx={{
                   textWrap: "wrap",
                   lineHeight: "15px",
+                  color: "gray.600",
+                  mt: 1,
                 }}
               >
                 {description}
               </Typography>
               <Flex
                 sx={{
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  flexDirection: "column-reverse",
                   mt: 2,
                   pt: 2,
                   borderTopColor: "gray.300",
                   borderTopWidth: "1px",
                   borderTopStyle: "solid",
+                  gap: 1,
                 }}
               >
                 <Typography

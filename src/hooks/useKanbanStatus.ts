@@ -5,7 +5,6 @@ export const useKanbanStatus = (difficulty: string) => {
   const result = difficultyStatusKanban.find(
     (item) => item.name === difficulty.toLocaleLowerCase()
   );
-  console.log(difficulty);
   return {
     ...result,
     difficultyColorVariant: result?.color,

@@ -71,3 +71,11 @@ export interface FORM_INPUT_CREATE_REPO_LOCAL {
   updatedAt?: string;
   todo?: any[];
 }
+
+export interface FORM_CREATE_NEW_TODO {
+  label: string;
+  desc?: string;
+  difficulty?: string;
+  emotion?: string;
+  priority?: string;
+}

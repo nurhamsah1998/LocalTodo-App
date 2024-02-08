@@ -10,6 +10,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const { Select: SelectProps } = chakraTheme.components;
 const baseStyle = definePartsStyle({
   field: {
+    ...SelectProps.baseStyle?.field,
     fontFamily: "poppins",
     borderColor: "gray.200",
     borderWidth: "2px",
@@ -24,8 +25,8 @@ const baseStyle = definePartsStyle({
       borderStyle: "solid",
       transition: "0.3s",
     },
-    icon: { ...SelectProps.baseStyle?.icon },
   },
+  icon: { ...SelectProps.baseStyle?.icon },
 });
 const xl = defineStyle({
   fontSize: "xl",

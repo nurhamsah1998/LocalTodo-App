@@ -1,6 +1,8 @@
 import { ModalBase } from "@/components/ModalBase";
+import SelectOption from "@/components/Select";
+import { difficultyStatusKanban } from "@/const/index";
 import { FORM_CREATE_NEW_TODO } from "@/interface/index";
-import { Box, Input, Select, VStack, chakra } from "@chakra-ui/react";
+import { Box, Flex, Input, VStack } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 
 function CreateNewTodo({
@@ -64,11 +66,10 @@ function CreateNewTodo({
               />
               {errors.desc && <p>{errors.desc.message}</p>}
             </Box>
-            <Box>
-              <Select placeholder="Select option">
-                <chakra.option value="option1">Option 1</chakra.option>
-              </Select>
-            </Box>
+            <Flex gap={2}>
+              <SelectOption options={difficultyStatusKanban} />
+              <SelectOption options={difficultyStatusKanban} />
+            </Flex>
           </VStack>
         </form>
       </ModalBase>

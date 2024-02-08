@@ -3,6 +3,7 @@ import { MultipleContainers } from "./Kanban/MultipleContainer";
 import { Box } from "@chakra-ui/react";
 import { localSelectedRepo } from "src/store/store";
 import { useAtom } from "jotai";
+import moment from "moment";
 
 function TodoLocal() {
   const { id } = useParams();
@@ -11,10 +12,39 @@ function TodoLocal() {
     <Box>
       <MultipleContainers
         itemCount={2}
+        hideAddColumn
         columns={0}
         items={{
-          N: ["Nurhamsah", "asd"],
-          M: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+          ["To Do"]: [
+            JSON.stringify({
+              label: "Material Config",
+              desc: "Fixing main table and fixing bug create items Fixing main table and fixing bug create items Fixing main table and fixing bug create items cut here Fixing main table and fixing bug create items",
+              createdAt: moment().format("DD MMM YYYY"),
+              difficulty: "complex",
+              emotion: "normal",
+            }),
+            JSON.stringify({
+              label: "SUpplier Stock",
+              desc: "Fixing main table and fixing bug create items",
+              createdAt: moment().format("DD MMM YYYY"),
+              difficulty: "medium",
+              emotion: "normal",
+            }),
+            JSON.stringify({
+              label: "SUpplier Stock",
+              desc: "Fixing main table and fixing bug create items",
+              createdAt: moment().format("DD MMM YYYY"),
+              difficulty: "easy",
+              emotion: "normal",
+            }),
+            JSON.stringify({
+              label: "SUpplier Stock",
+              desc: "Fixing main table and fixing bug create items",
+              createdAt: moment().format("DD MMM YYYY"),
+              difficulty: "much_easy",
+              emotion: "normal",
+            }),
+          ],
         }}
         getItemStyles={() => ({
           backgroundColor: "#fff",

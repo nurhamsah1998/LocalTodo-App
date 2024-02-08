@@ -8,11 +8,15 @@ import type { Transform } from "@dnd-kit/utilities";
 import { Handle, Remove } from "./components";
 
 import styles from "./Item.module.css";
-import { Box, chakra } from "@chakra-ui/react";
+import { Box, Flex, chakra } from "@chakra-ui/react";
 import { Typography } from "@/components/Typography";
-import { MIN_WIDTH_CONTAINER_CARD } from "../Container/Container";
+import {
+  MIN_WIDTH_CONTAINER_CARD,
+  WIDTH_BUTTON_DRAG_CARD,
+} from "@/const/index";
+import { useConciseText, useKanbanStatus } from "src/hooks/useKanbanStatus";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 
-export const WIDTH_BUTTON_DRAG_CARD = 30;
 export interface Props {
   dragOverlay?: boolean;
   color?: string;
@@ -29,7 +33,7 @@ export interface Props {
   style?: React.CSSProperties;
   transition?: string | null;
   wrapperStyle?: React.CSSProperties;
-  value: React.ReactNode;
+  value: React.ReactNode | any;
   grapHandleColor?: string;
   onRemove?(): void;
   renderItem?(args: {
@@ -85,7 +89,18 @@ export const Item = React.memo(
           document.body.style.cursor = "";
         };
       }, [dragOverlay]);
-
+      const {
+        label: kanbanTitle,
+        desc,
+        createdAt,
+        difficulty,
+      } = JSON.parse(value);
+      const {
+        label: labelDifficulty,
+        difficultyBgVariant,
+        difficultyColorVariant,
+      } = useKanbanStatus(difficulty);
+      const { text: description } = useConciseText({ text: desc, limit: 136 });
       return renderItem ? (
         renderItem({
           dragOverlay: Boolean(dragOverlay),
@@ -150,18 +165,46 @@ export const Item = React.memo(
             <Box
               sx={{
                 width: `${
-                  MIN_WIDTH_CONTAINER_CARD - WIDTH_BUTTON_DRAG_CARD * 3.3
+                  MIN_WIDTH_CONTAINER_CARD - WIDTH_BUTTON_DRAG_CARD * 3.6
                 }px`,
               }}
             >
-              <Typography variantText="sm">{value}</Typography>
+              <Typography variantText="sm">{kanbanTitle}</Typography>
               <Typography
                 variantText="xs"
-                sx={{ textWrap: "wrap", lineHeight: "15px" }}
+                sx={{
+                  textWrap: "wrap",
+                  lineHeight: "15px",
+                }}
               >
-                Lorem deskription example by sistem NUrhamsah asjsij nj as
-                jasdjasd asd asd asdasd asdaasdasd
+                {description}
               </Typography>
+              <Flex
+                sx={{
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mt: 2,
+                  pt: 2,
+                  borderTopColor: "gray.300",
+                  borderTopWidth: "1px",
+                  borderTopStyle: "solid",
+                }}
+              >
+                <Typography
+                  variantText="xs"
+                  sx={{
+                    bg: difficultyBgVariant,
+                    color: difficultyColorVariant,
+                    px: 3,
+                    py: 1,
+                    borderRadius: styledPropTheme.borderRadius,
+                    fontWeight: 700,
+                  }}
+                >
+                  {labelDifficulty}
+                </Typography>
+                <Typography variantText="xs">{createdAt}</Typography>
+              </Flex>
             </Box>
 
             <Box

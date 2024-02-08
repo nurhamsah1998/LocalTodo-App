@@ -136,6 +136,7 @@ interface Props {
   itemCount?: number;
   items?: Items;
   handle?: boolean;
+  hideAddColumn?: boolean;
   renderItem?: any;
   strategy?: SortingStrategy;
   modifiers?: Modifiers;
@@ -162,6 +163,7 @@ export function MultipleContainers({
   getItemStyles = () => ({}),
   wrapperStyle = () => ({}),
   minimal = false,
+  hideAddColumn = false,
   modifiers,
   renderItem,
   strategy = verticalListSortingStrategy,
@@ -467,7 +469,7 @@ export function MultipleContainers({
             <DroppableContainer
               key={containerId}
               id={containerId}
-              label={minimal ? undefined : `Column ${containerId}`}
+              label={minimal ? undefined : `${containerId}`}
               columns={columns}
               items={items[containerId]}
               scrollable={scrollable}
@@ -496,7 +498,7 @@ export function MultipleContainers({
               </SortableContext>
             </DroppableContainer>
           ))}
-          {minimal ? undefined : (
+          {minimal || hideAddColumn ? undefined : (
             <DroppableContainer
               id={PLACEHOLDER_ID}
               disabled={isSortingContainer}
@@ -690,7 +692,6 @@ function SortableItem({
   });
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
-
   return (
     <Item
       ref={disabled ? undefined : setNodeRef}

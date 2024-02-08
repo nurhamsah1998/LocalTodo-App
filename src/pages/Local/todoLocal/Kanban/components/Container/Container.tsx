@@ -5,7 +5,8 @@ import classNames from "classnames";
 import { Handle, Remove } from "../Item";
 
 import styles from "./Container.module.css";
-export const MIN_WIDTH_CONTAINER_CARD = 290;
+import { MIN_WIDTH_CONTAINER_CARD } from "@/const/index";
+
 export interface Props {
   children: React.ReactNode;
   columns?: number;

@@ -1,24 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
-import { difficultyStatusKanban } from "../const";
 
-export const useKanbanStatus = (difficulty: string) => {
-  const result = difficultyStatusKanban.find(
-    (item) => item.name === difficulty.toLocaleLowerCase()
-  );
-  return {
-    ...result,
-    difficultyColorVariant: result?.color,
-    difficultyBgVariant: result?.bg,
-  };
-};
-export const useConciseText = ({
-  text,
-  limit,
+export const useFinding = ({
+  value,
+  option,
 }: {
-  text: string;
-  limit: number;
+  value: string;
+  option: any[];
 }) => {
-  let dots: string = "";
-  if (String(text).length >= limit) dots = "...";
-  return { text: `${text.slice(0, limit || 10)}${dots}` };
+  const result = option?.find(
+    (item) => item?.name === value?.toLocaleLowerCase()
+  );
+
+  return { ...result };
 };

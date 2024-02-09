@@ -8,6 +8,7 @@ import {
   DIFFICULTY_STATUS_KANBAN,
   FORM_CREATE_NEW_TODO,
 } from "@/interface/index";
+import { v4 as uuidv4 } from "uuid";
 import { Box, Input, VStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import moment from "moment";
@@ -34,8 +35,10 @@ function CreateNewTodo({
     defaultValues: {
       emotion: "",
       createdAt: moment().format("DD MMM YYYY"),
+      updatedAt: moment().format("DD MMM YYYY"),
       difficulty: "",
       priority: "",
+      card_id: uuidv4(),
     },
   });
   const { difficulty, priority } = watch();

@@ -79,6 +79,8 @@ export interface FORM_CREATE_NEW_TODO {
   emotion?: string;
   priority?: string;
   createdAt?: string;
+  card_id: string;
+  updatedAt?: string;
 }
 
 export interface DIFFICULTY_STATUS_KANBAN {

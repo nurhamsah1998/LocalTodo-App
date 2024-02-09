@@ -40,7 +40,7 @@ import { coordinateGetter as multipleContainersCoordinateGetter } from "./multip
 import { Item, Container, ContainerProps } from "../Kanban/components";
 
 import { createRange } from "../Kanban/utilities";
-import { useMediaQuery } from "@chakra-ui/react";
+import { Button, useMediaQuery } from "@chakra-ui/react";
 
 export default {
   title: "Presets/Sortable/Multiple Containers",
@@ -147,6 +147,7 @@ interface Props {
   scrollable?: boolean;
   vertical?: boolean;
   afterMoveCard?: (item: any) => void;
+  onDropItemTrash?: (item: any) => void;
   grapHandleColor?: string;
 }
 
@@ -174,6 +175,9 @@ export function MultipleContainers({
   vertical = false,
   scrollable,
   grapHandleColor,
+  onDropItemTrash = () => {
+    return null;
+  },
   afterMoveCard = () => {
     return null;
   },
@@ -412,6 +416,8 @@ export function MultipleContainers({
             ),
           }));
           setActiveId(null);
+          ///
+          onDropItemTrash(activeId);
           return;
         }
 
@@ -637,7 +643,9 @@ function Trash({ id }: { id: UniqueIdentifier }) {
   });
 
   return (
-    <div
+    <Button
+      colorScheme="error.main"
+      variant={isOver ? "solid" : "outline"}
       ref={setNodeRef}
       style={{
         display: "flex",
@@ -651,11 +659,10 @@ function Trash({ id }: { id: UniqueIdentifier }) {
         height: 60,
         borderRadius: 5,
         border: "1px solid",
-        borderColor: isOver ? "red" : "#DDD",
       }}
     >
       Drop here to delete
-    </div>
+    </Button>
   );
 }
 

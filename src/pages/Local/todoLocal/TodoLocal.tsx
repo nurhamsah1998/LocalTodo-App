@@ -36,6 +36,8 @@ function TodoLocal() {
         </Flex>
         <Box sx={{ mt: 10 }}>
           <MultipleContainers
+            trashable
+            onDropItemTrash={(i) => console.log(JSON.parse(i))}
             itemCount={2}
             hideAddColumn
             items={selectedRepo.todo}

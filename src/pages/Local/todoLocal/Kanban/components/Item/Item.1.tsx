@@ -1,14 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import type { DraggableSyntheticListeners } from "@dnd-kit/core";
-import type { Transform } from "@dnd-kit/utilities";
-
 import { Handle, Remove } from "./components";
-
 import styles from "./Item.module.css";
-import { Box, Flex, chakra, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, chakra } from "@chakra-ui/react";
 import { Typography } from "@/components/Typography";
 import {
   MIN_WIDTH_CONTAINER_CARD,
@@ -20,41 +14,7 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import { useFinding } from "src/hooks/useKanbanStatus";
 import { useConciseText } from "src/hooks/useConciseText";
 import { DIFFICULTY_STATUS_KANBAN } from "@/interface/index";
-import { ModalBase } from "@/components/ModalBase";
-
-export interface Props {
-  dragOverlay?: boolean;
-  color?: string;
-  disabled?: boolean;
-  dragging?: boolean;
-  handle?: boolean;
-  handleProps?: any;
-  height?: number;
-  index?: number;
-  fadeIn?: boolean;
-  transform?: Transform | null;
-  listeners?: DraggableSyntheticListeners;
-  sorting?: boolean;
-  style?: React.CSSProperties;
-  transition?: string | null;
-  wrapperStyle?: React.CSSProperties;
-  value: React.ReactNode | any;
-  grapHandleColor?: string;
-  onRemove?(): void;
-  renderItem?(args: {
-    dragOverlay: boolean;
-    dragging: boolean;
-    sorting: boolean;
-    index: number | undefined;
-    fadeIn: boolean;
-    listeners: DraggableSyntheticListeners;
-    ref: React.Ref<HTMLElement>;
-    style: React.CSSProperties | undefined;
-    transform: Props["transform"];
-    transition: Props["transition"];
-    value: Props["value"];
-  }): React.ReactElement;
-}
+import { Props } from "./Item";
 
 export const Item = React.memo(
   React.forwardRef<HTMLLIElement, Props>(
@@ -94,7 +54,6 @@ export const Item = React.memo(
           document.body.style.cursor = "";
         };
       }, [dragOverlay]);
-      const { isOpen, onClose, onOpen } = useDisclosure();
       const {
         label: kanbanTitle,
         desc,
@@ -165,15 +124,6 @@ export const Item = React.memo(
           }
           ref={ref}
         >
-          <ModalBase
-            handleSubmit={() => console.log("asd")}
-            size="3xl"
-            title="Create New Todo"
-            isOpen={isOpen}
-            onClose={onClose}
-          >
-            s
-          </ModalBase>
           <chakra.div
             className={classNames(
               styles.Item,
@@ -196,22 +146,20 @@ export const Item = React.memo(
                 }px`,
               }}
             >
-              <Box onClick={onOpen} cursor="pointer">
-                <Typography variantText="sm" sx={{ fontWeight: 600 }}>
-                  {kanbanTitle}
-                </Typography>
-                <Typography
-                  variantText="xs"
-                  sx={{
-                    textWrap: "wrap",
-                    lineHeight: "15px",
-                    color: "gray.600",
-                    mt: 1,
-                  }}
-                >
-                  {description}
-                </Typography>
-              </Box>
+              <Typography variantText="sm" sx={{ fontWeight: 600 }}>
+                {kanbanTitle}
+              </Typography>
+              <Typography
+                variantText="xs"
+                sx={{
+                  textWrap: "wrap",
+                  lineHeight: "15px",
+                  color: "gray.600",
+                  mt: 1,
+                }}
+              >
+                {description}
+              </Typography>
               <Flex
                 sx={{
                   flexDirection: "column",

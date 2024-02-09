@@ -1,5 +1,6 @@
 import moment from "moment";
 import { DIFFICULTY_STATUS_KANBAN } from "../interface";
+import { v4 as uuidv4 } from "uuid";
 
 export const WIDTH_BUTTON_DRAG_CARD = 30;
 export const MIN_WIDTH_CONTAINER_CARD = 250;
@@ -43,8 +44,8 @@ export const priorityStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
     color: "#fff",
   },
   {
-    name: "asp",
-    label: "ASP",
+    name: "asap",
+    label: "ASAP",
     bg: "red.700",
     color: "#fff",
   },
@@ -59,9 +60,11 @@ export const priorityStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
 export const initialValueLocalTodo = {
   ["To Do"]: [
     JSON.stringify({
+      card_id: uuidv4(),
       label: "Be the Best",
       desc: "Horray! this is first todo example, now you can create more todo. Hope you can enjoy this services Thank You and good luck !",
       createdAt: moment().format("DD MMM YYYY"),
+      updatedAt: moment().format("DD MMM YYYY"),
       difficulty: "easy",
       emotion: "normal",
       priority: "",

@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal, unstable_batchedUpdates } from "react-dom";
@@ -189,7 +190,6 @@ export function MultipleContainers({
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );
-
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);

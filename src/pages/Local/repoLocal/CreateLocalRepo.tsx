@@ -4,17 +4,15 @@ import React from "react";
 import { ModalBase } from "@/components/ModalBase";
 import { useForm, Controller } from "react-hook-form";
 import { Typography } from "@/components/Typography";
-import {
-  Box,
-  Checkbox,
-  HStack,
-  Input,
-  createStandaloneToast,
-} from "@chakra-ui/react";
+import { Box, Input, createStandaloneToast } from "@chakra-ui/react";
 import { cardColor } from "@/const/cardColor";
-import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
+import {
+  FORM_INPUT_CREATE_REPO_LOCAL,
+  LIST_CARD_COLOR,
+} from "@/interface/index";
 import moment from "moment";
 import { initialValueLocalTodo } from "@/const/index";
+import CardOptions from "@/components/CardOptions";
 
 function CreateLocalRepo({
   isOpen,
@@ -118,31 +116,17 @@ function CreateLocalRepo({
               mt: 2,
             }}
           >
-            <Typography variantText="sm">Choose color theme</Typography>
             <Controller
               name="colorTheme"
               control={control}
               render={() => (
-                <HStack mt={1}>
-                  {cardColor.map((item, index) => (
-                    <Box
-                      onClick={() => setValue("colorTheme", item)}
-                      role="button"
-                      key={index}
-                      sx={{
-                        bg: item.bg,
-                        color: item.color,
-                        width: "100%",
-                        padding: "12px",
-                        pb: 0,
-                        textAlign: "right",
-                      }}
-                    >
-                      <Typography textAlign="center">{item.label}</Typography>
-                      <Checkbox isChecked={colorTheme?.label === item.label} />
-                    </Box>
-                  ))}
-                </HStack>
+                <CardOptions
+                  options={cardColor}
+                  label="Choose difficulty variant (optional)"
+                  handleClickCardOption={(item) => setValue("colorTheme", item)}
+                  keyEnableCheckbox="label"
+                  keyInitialValue={colorTheme?.label as keyof LIST_CARD_COLOR}
+                />
               )}
             />
           </Box>

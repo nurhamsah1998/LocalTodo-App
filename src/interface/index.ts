@@ -69,7 +69,7 @@ export interface FORM_INPUT_CREATE_REPO_LOCAL {
   id?: string;
   createdAt?: string;
   updatedAt?: string;
-  todo?: any[];
+  todo?: any;
 }
 
 export interface FORM_CREATE_NEW_TODO {
@@ -78,4 +78,12 @@ export interface FORM_CREATE_NEW_TODO {
   difficulty?: string;
   emotion?: string;
   priority?: string;
+  createdAt?: string;
+}
+
+export interface DIFFICULTY_STATUS_KANBAN {
+  name?: string;
+  label?: string;
+  bg?: string;
+  color?: string;
 }

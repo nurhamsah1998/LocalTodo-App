@@ -1,31 +1,58 @@
 import moment from "moment";
+import { DIFFICULTY_STATUS_KANBAN } from "../interface";
 
 export const WIDTH_BUTTON_DRAG_CARD = 30;
 export const MIN_WIDTH_CONTAINER_CARD = 250;
-export const difficultyStatusKanban = [
+export const difficultyStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
   {
-    name: "complex",
-    label: "Complex",
-    bg: "purple.700",
-    color: "purple.200",
-  },
-  {
-    name: "medium",
-    label: "Normal",
-    bg: "blue.700",
-    color: "blue.200",
+    name: "much_easy",
+    label: "Much Easy",
+    bg: "green.700",
+    color: "#fff",
   },
   {
     name: "easy",
     label: "Easy",
     bg: "cyan.700",
-    color: "cyan.200",
+    color: "#fff",
   },
   {
-    name: "much_easy",
-    label: "Much Easy",
+    name: "medium",
+    label: "Normal",
+    bg: "primary.main",
+    color: "#fff",
+  },
+  {
+    name: "hard",
+    label: "Hard",
+    bg: "error.main",
+    color: "#fff",
+  },
+  {
+    name: "complex",
+    label: "Complex",
+    bg: "purple.700",
+    color: "#fff",
+  },
+];
+export const priorityStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
+  {
+    name: "enjoy",
+    label: "Enjoy",
     bg: "green.700",
-    color: "green.200",
+    color: "#fff",
+  },
+  {
+    name: "asp",
+    label: "ASP",
+    bg: "red.700",
+    color: "#fff",
+  },
+  {
+    name: "urgent",
+    label: "Urgent",
+    bg: "error.main",
+    color: "#fff",
   },
 ];
 

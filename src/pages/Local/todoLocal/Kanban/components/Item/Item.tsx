@@ -203,6 +203,7 @@ export const Item = React.memo(
                     py: 1,
                     borderRadius: styledPropTheme.borderRadius,
                     fontWeight: 700,
+                    width: "fit-content",
                   }}
                 >
                   {labelDifficulty}

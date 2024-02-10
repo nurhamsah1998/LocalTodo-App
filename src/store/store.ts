@@ -1,6 +1,10 @@
 import { atom } from "jotai";
 import { createContext } from "react";
-import { AUTH, FORM_INPUT_CREATE_REPO_LOCAL } from "src/interface";
+import {
+  AUTH,
+  FORM_INPUT_CREATE_REPO_LOCAL,
+  MUTATION_LOCAL_REPO,
+} from "src/interface";
 
 const AuthContext = createContext<AUTH>({
   keyToken: null,
@@ -14,4 +18,10 @@ const localSelectedRepo = atom<FORM_INPUT_CREATE_REPO_LOCAL>({
   repo: "",
   colorTheme: { bg: "", color: "", label: "" },
 });
-export { AuthContext, localSelectedRepo };
+const mutationLocalRepo = atom<MUTATION_LOCAL_REPO>({
+  isOpenModal: false,
+  mutation: "",
+  data: {},
+  container: "",
+});
+export { AuthContext, localSelectedRepo, mutationLocalRepo };

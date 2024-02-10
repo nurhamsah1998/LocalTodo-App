@@ -35,7 +35,9 @@ export const useEncript = (arg: any, type?: string) => {
   const data = readDataEncrypted;
   const setDataEncrypted = async (newItem: any) => {
     try {
-      const listOfStorage = Object.keys(window.localStorage || {});
+      const listOfStorage = Object.keys(window.localStorage || {}).filter(
+        (item) => item !== "chakra-ui-color-mode"
+      );
       const newEncrypKey = CryptoJS.AES.encrypt(
         arg,
         import.meta.env.VITE_ENCRYPT_KEY
@@ -59,6 +61,7 @@ export const useEncript = (arg: any, type?: string) => {
       window.localStorage.setItem(localkeyStorage, newValueEncryp);
       localkeyStorage = "";
     } catch (error) {
+      console.log(error);
       toast({
         title: "Something Wrong",
         description: "error code: func:setDataEncrypted:useEncript",

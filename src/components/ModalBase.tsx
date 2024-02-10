@@ -64,7 +64,7 @@ export const ModalBase: React.FunctionComponent<
             <Button
               colorScheme={colorSubmitScheme}
               isLoading={isLoading}
-              disabled={disabledSubmit}
+              isDisabled={disabledSubmit}
               onClick={handleSubmit}
               variant="solid"
             >

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Canvas } from "@/components/Canvas";
 import { Typography } from "@/components/Typography";
 import { Box, Button, Container, Flex } from "@chakra-ui/react";
@@ -10,7 +11,7 @@ import Cookies from "universal-cookie";
 function CreateDB() {
   const cookie = new Cookies();
   const nav: NavigateFunction = useNavigate();
-  const { _signIn, isAuth, mode } = React.useContext(AuthContext);
+  const { _signIn, isAuth, mode } = React.useContext<any>(AuthContext);
   const handleConfirm = () => {
     cookie.set("@token", "offline-mode-mamamia", { path: "/" });
     cookie.set("@mode", "local", { path: "/" });

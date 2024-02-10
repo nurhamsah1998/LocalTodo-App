@@ -7,6 +7,7 @@ import { difficultyStatusKanban, priorityStatusKanban } from "@/const/index";
 import {
   DIFFICULTY_STATUS_KANBAN,
   FORM_CREATE_NEW_TODO,
+  MUTATION_LOCAL_REPO,
 } from "@/interface/index";
 import { v4 as uuidv4 } from "uuid";
 import { Box, Input, VStack } from "@chakra-ui/react";
@@ -15,13 +16,22 @@ import moment from "moment";
 import { useForm, Controller } from "react-hook-form";
 import { useEncript } from "src/hooks/useEncript";
 import { localSelectedRepo } from "src/store/store";
+import { useEffect } from "react";
 
-function CreateNewTodo({
+function MutationNewTodo({
   onClose,
   isOpen,
+  setListOfTodos,
+  listOfTodos,
+  setMutationLocalTodo,
+  mutatioLocalTodo,
 }: {
   onClose: () => void;
+  setMutationLocalTodo: (...props: MUTATION_LOCAL_REPO[]) => void;
+  setListOfTodos: (item: any) => void;
   isOpen: boolean;
+  listOfTodos: any;
+  mutatioLocalTodo: MUTATION_LOCAL_REPO;
 }) {
   const {
     control,
@@ -31,48 +41,103 @@ function CreateNewTodo({
     clearErrors,
     setValue,
     formState: { errors },
-  } = useForm<FORM_CREATE_NEW_TODO>({
-    defaultValues: {
-      emotion: "",
-      createdAt: moment().format("DD MMM YYYY"),
-      updatedAt: moment().format("DD MMM YYYY"),
-      difficulty: "",
-      priority: "",
-      card_id: uuidv4(),
-    },
-  });
+  } = useForm<FORM_CREATE_NEW_TODO>();
   const { difficulty, priority } = watch();
   const [selectedRepo] = useAtom(localSelectedRepo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const onSubmit = (item: FORM_CREATE_NEW_TODO) => {
-    try {
-      const newValue: any = { ...selectedRepo.todo };
-      newValue["To Do"].push(JSON.stringify(item));
-      let clone = [...data];
-      for (let index = 0; index < clone.length; index++) {
-        if (clone[index]?.id === selectedRepo.id) {
-          clone[index].todo = newValue;
+    const isMutationPost = mutatioLocalTodo.mutation === "post";
+    const body = {
+      ...item,
+      createdAt: isMutationPost
+        ? moment().format("DD MMM YYYY h:mm a")
+        : item.createdAt,
+      updatedAt: moment().format("DD MMM YYYY h:mm a"),
+      card_id: isMutationPost ? uuidv4() : item.card_id,
+    };
+    let newValue: any = { ...listOfTodos };
+    let cloneDataStorage = [...data];
+    if (isMutationPost) {
+      try {
+        newValue["To Do"].push(JSON.stringify(body));
+        for (let index = 0; index < cloneDataStorage.length; index++) {
+          if (cloneDataStorage[index]?.id === selectedRepo.id) {
+            cloneDataStorage[index].todo = newValue;
+          }
         }
+
+        setListOfTodos(newValue);
+        onClose();
+        setDataEncrypted(cloneDataStorage);
+      } catch (error) {
+        console.log(error);
       }
-      setDataEncrypted(clone);
-      onClose();
-      reset({ difficulty: "", desc: "", label: "", priority: "" });
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        let newUpdateValue = newValue[mutatioLocalTodo.container]?.map(
+          (item: any) => JSON.parse(item)
+        );
+        newUpdateValue?.map((newItem: FORM_CREATE_NEW_TODO) => {
+          if (newItem?.card_id === body?.card_id) {
+            newItem.label = body.label;
+            newItem.desc = body.desc;
+            newItem.difficulty = body.difficulty;
+            newItem.priority = body.priority;
+          }
+        });
+        newValue[mutatioLocalTodo.container] = newUpdateValue?.map(
+          (updateStringify: any) => JSON.stringify(updateStringify)
+        );
+        for (let index = 0; index < cloneDataStorage.length; index++) {
+          if (cloneDataStorage[index]?.id === selectedRepo.id) {
+            cloneDataStorage[index].todo = newValue;
+          }
+        }
+        setListOfTodos(newValue);
+        onClose();
+        setDataEncrypted(cloneDataStorage);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    reset({ label: "", desc: "", difficulty: "", priority: "" });
   };
   const handleCloseModal = () => {
+    setMutationLocalTodo({
+      isOpenModal: false,
+      mutation: "",
+      data: {},
+      container: "",
+    });
     clearErrors("label");
+    reset({ label: "", desc: "", difficulty: "", priority: "" });
     onClose();
   };
+  useEffect(() => {
+    if (mutatioLocalTodo.mutation === "patch") {
+      console.log("HAI");
+      for (const key in mutatioLocalTodo.data) {
+        setValue(key as keyof FORM_CREATE_NEW_TODO, mutatioLocalTodo.data[key]);
+      }
+    }
+  }, [mutatioLocalTodo.mutation]);
   return (
     <>
       <ModalBase
         handleSubmit={handleSubmit(onSubmit)}
         size="3xl"
-        title="Create New Todo"
+        title={
+          mutatioLocalTodo.mutation === "post"
+            ? "Create New Todo"
+            : "Update Todo"
+        }
         isOpen={isOpen}
+        colorSubmitScheme={
+          mutatioLocalTodo.mutation === "post" ? "primary.main" : "success.main"
+        }
         onClose={handleCloseModal}
+        labelSubmit={mutatioLocalTodo.mutation === "post" ? "Submit" : "Save"}
+        labelClose="Cancel"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <VStack align="stretch">
@@ -150,4 +215,4 @@ function CreateNewTodo({
   );
 }
 
-export default CreateNewTodo;
+export default MutationNewTodo;

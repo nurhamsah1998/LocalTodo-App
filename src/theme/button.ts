@@ -25,9 +25,9 @@ export const Button = {
         if (arg) return !arg.includes("light") ? "#fff" : undefined;
       };
       return {
-        bg: props?.disabled ? "gray.300" : color.getColor() || "primary.main",
+        bg: props?.isDisabled ? "gray.300" : color.getColor() || "primary.main",
         color: textColor(color.getColor()),
-        cursor: props?.disabled ? "no-drop" : "pointer",
+        cursor: props?.isDisabled ? "no-drop" : "pointer",
       };
     },
     outline: (props: StyleFunctionProps) => {
@@ -36,9 +36,9 @@ export const Button = {
       return {
         borderWidth: "1px",
         borderStyle: "solid",
-        borderColor: props?.disabled ? "gray.400" : color.getColor(),
-        color: props?.disabled ? "gray.400" : color.getColor(),
-        cursor: props?.disabled ? "no-drop" : "pointer",
+        borderColor: props?.isDisabled ? "gray.400" : color.getColor(),
+        color: props?.isDisabled ? "gray.400" : color.getColor(),
+        cursor: props?.isDisabled ? "no-drop" : "pointer",
         transition: "0.3s",
         _hover: {
           bg: color.getColor(),

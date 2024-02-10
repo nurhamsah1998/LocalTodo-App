@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
 import { Select, chakra } from "@chakra-ui/react";
 import { Typography } from "./Typography";
 

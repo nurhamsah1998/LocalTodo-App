@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef } from "react";
+import { chakra } from "@chakra-ui/react";
 import classNames from "classnames";
 
 import { Handle, Remove } from "../Item";
@@ -43,7 +44,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
     }: Props,
     ref
   ) => {
-    const Component = onClick ? "button" : "div";
+    const Component = onClick ? chakra.button : chakra.div;
 
     return (
       <Component

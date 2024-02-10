@@ -13,6 +13,7 @@ import { useAtom } from "jotai";
 import HeaderSideBar from "@/components/HeaderSIdeBar";
 import { NavItem } from "@/components/NavItem";
 import BackToMainMenu from "@/components/BackToMainMenu";
+import Footer from "@/components/Footer";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -38,40 +39,87 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
   }, []);
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   return (
-    <Container sx={{ height: "100vh" }}>
-      <Flex
-        sx={{
-          height: "100%",
-          overflowX: "hidden",
-        }}
-      >
-        {/* ---------- LEFT SECTION START ---------- */}
-        <Show above="md">
+    <>
+      <Container sx={{ height: "100vh" }}>
+        <Flex
+          sx={{
+            height: "100%",
+            overflowX: "hidden",
+          }}
+        >
+          {/* ---------- LEFT SECTION START ---------- */}
+          <Show above="md">
+            <Box
+              sx={{
+                bg: "#fff",
+                minW: `${DESKTOP_SIDEBAR_WIDTH}px`,
+                position: "sticky",
+                left: 0,
+                top: 0,
+                zIndex: 6,
+                borderRightColor: "gray.200",
+                borderRightWidth: "1px",
+                borderRightStyle: "solid",
+              }}
+            >
+              <HeaderSideBar colorTheme={validId?.colorTheme} />
+              <Flex
+                sx={{
+                  flexDirection: "column",
+                  p: 3,
+                  gap: 2,
+                  maxHeight: `calc(100% - ${HEADER_HEIGHT}px)`,
+                  overflowY: "auto",
+                }}
+                css={{
+                  "::-webkit-scrollbar": {
+                    width: "2px",
+                  },
+                  "::-webkit-scrollbar-thumb": {
+                    background: "#c7c7c7",
+                  },
+                  "::-webkit-scrollbar-track": {
+                    background: "#f3f3f3",
+                  },
+                }}
+              >
+                {sideBarLocalTaskMenu.map((item, index) => {
+                  return (
+                    <NavItem
+                      handleClickNavigation={() => handleClickNavigation(item)}
+                      bg={validId?.colorTheme?.bg}
+                      cl={validId?.colorTheme?.color}
+                      key={index}
+                      item={item}
+                    />
+                  );
+                })}
+                <BackToMainMenu validId={validId} nav={nav} />
+              </Flex>
+            </Box>
+          </Show>
+          {/* ---------- LEFT SECTION END ---------- */}
           <Box
             sx={{
-              bg: "#fff",
-              minW: `${DESKTOP_SIDEBAR_WIDTH}px`,
-              position: "sticky",
-              left: 0,
-              top: 0,
-              zIndex: 6,
-              borderRightColor: "gray.200",
-              borderRightWidth: "1px",
-              borderRightStyle: "solid",
+              width: "100%",
             }}
           >
-            <HeaderSideBar colorTheme={validId?.colorTheme} />
-            <Flex
+            <Header />
+            <Container
               sx={{
-                flexDirection: "column",
-                p: 3,
-                gap: 2,
-                maxHeight: `calc(100% - ${HEADER_HEIGHT}px)`,
+                height: `calc(100% - ${HEADER_HEIGHT}px)`,
                 overflowY: "auto",
+                maxWidth: isLargerThan768
+                  ? `calc(100vw - ${DESKTOP_SIDEBAR_WIDTH}px)`
+                  : `calc(100vw + ${DESKTOP_SIDEBAR_WIDTH}px)`,
+                overflowX: "auto",
+                py: 3,
+                px: 5,
               }}
               css={{
                 "::-webkit-scrollbar": {
-                  width: "2px",
+                  height: "8px",
+                  width: "8px",
                 },
                 "::-webkit-scrollbar-thumb": {
                   background: "#c7c7c7",
@@ -81,57 +129,13 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
                 },
               }}
             >
-              {sideBarLocalTaskMenu.map((item, index) => {
-                return (
-                  <NavItem
-                    handleClickNavigation={() => handleClickNavigation(item)}
-                    bg={validId?.colorTheme?.bg}
-                    cl={validId?.colorTheme?.color}
-                    key={index}
-                    item={item}
-                  />
-                );
-              })}
-              <BackToMainMenu validId={validId} nav={nav} />
-            </Flex>
+              {children}
+            </Container>
           </Box>
-        </Show>
-        {/* ---------- LEFT SECTION END ---------- */}
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Header />
-          <Container
-            sx={{
-              height: `calc(100% - ${HEADER_HEIGHT}px)`,
-              overflowY: "auto",
-              maxWidth: isLargerThan768
-                ? `calc(100vw - ${DESKTOP_SIDEBAR_WIDTH}px)`
-                : `calc(100vw + ${DESKTOP_SIDEBAR_WIDTH}px)`,
-              overflowX: "auto",
-              py: 3,
-              px: 5,
-            }}
-            css={{
-              "::-webkit-scrollbar": {
-                height: "8px",
-                width: "8px",
-              },
-              "::-webkit-scrollbar-thumb": {
-                background: "#c7c7c7",
-              },
-              "::-webkit-scrollbar-track": {
-                background: "#f3f3f3",
-              },
-            }}
-          >
-            {children}
-          </Container>
-        </Box>
-      </Flex>
-    </Container>
+        </Flex>
+      </Container>
+      <Footer />
+    </>
   );
 }
 

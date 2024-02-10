@@ -69,7 +69,14 @@ export interface FORM_INPUT_CREATE_REPO_LOCAL {
   id?: string;
   createdAt?: string;
   updatedAt?: string;
-  todo?: any;
+  todo?: FORM_CREATE_NEW_TODO[];
+}
+
+export interface MUTATION_LOCAL_REPO {
+  isOpenModal: boolean;
+  mutation: string;
+  container: string;
+  data: any;
 }
 
 export interface FORM_CREATE_NEW_TODO {
@@ -88,4 +95,10 @@ export interface DIFFICULTY_STATUS_KANBAN {
   label?: string;
   bg?: string;
   color?: string;
+}
+export interface MEDSOS_LIST {
+  icon: any;
+  link: string;
+  label: string;
+  colorTheme?: string;
 }

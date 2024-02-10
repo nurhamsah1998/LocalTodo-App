@@ -20,11 +20,14 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import { useFinding } from "src/hooks/useKanbanStatus";
 import { useConciseText } from "src/hooks/useConciseText";
 import { DIFFICULTY_STATUS_KANBAN } from "@/interface/index";
-import { ModalBase } from "@/components/ModalBase";
+import ModalItem from "./ModalItem";
+import { useAtom } from "jotai";
+import { mutationLocalRepo } from "src/store/store";
 
 export interface Props {
   dragOverlay?: boolean;
   color?: string;
+  activeId?: any;
   disabled?: boolean;
   dragging?: boolean;
   handle?: boolean;
@@ -61,6 +64,7 @@ export const Item = React.memo(
     (
       {
         color,
+        activeId,
         dragOverlay,
         dragging,
         disabled,
@@ -101,6 +105,7 @@ export const Item = React.memo(
         createdAt,
         difficulty,
         priority,
+        updatedAt,
       } = JSON.parse(value);
       const {
         label: labelDifficulty,
@@ -119,6 +124,7 @@ export const Item = React.memo(
         option: priorityStatusKanban,
       });
       const { text: description } = useConciseText({ text: desc, limit: 136 });
+      const [, setMutationLocalTodo] = useAtom(mutationLocalRepo);
       return renderItem ? (
         renderItem({
           dragOverlay: Boolean(dragOverlay),
@@ -165,15 +171,27 @@ export const Item = React.memo(
           }
           ref={ref}
         >
-          <ModalBase
-            handleSubmit={() => console.log("asd")}
-            size="3xl"
-            title="Create New Todo"
+          <ModalItem
+            handleClickUpdate={() =>
+              setMutationLocalTodo({
+                isOpenModal: true,
+                mutation: "patch",
+                data: JSON.parse(value),
+                container: activeId,
+              })
+            }
+            label={kanbanTitle}
+            desc={desc}
+            updatedAt={updatedAt}
+            difficultyBgVariant={difficultyBgVariant}
+            difficultyColorVariant={difficultyColorVariant}
+            labelDifficulty={labelDifficulty}
+            bgPriority={bgPriority}
+            labelPriority={labelPriority}
+            colorPriority={colorPriority}
             isOpen={isOpen}
             onClose={onClose}
-          >
-            s
-          </ModalBase>
+          />
           <chakra.div
             className={classNames(
               styles.Item,

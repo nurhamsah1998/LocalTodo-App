@@ -28,7 +28,7 @@ export default function ModalDrawer({
   navList: any[];
   colorTheme: LIST_CARD_COLOR;
 }) {
-  const { color } = colorTheme || { color: "" };
+  const { color, bg } = colorTheme || { color: "" };
   const nav: NavigateFunction = useNavigate();
   return (
     <>
@@ -53,7 +53,8 @@ export default function ModalDrawer({
               {navList.map((item: any, index) => {
                 return (
                   <NavItem
-                    colorTheme={colorTheme}
+                    bg={bg}
+                    cl={color}
                     handleClickNavigation={() => handleClickNavigation(item)}
                     key={index}
                     item={item}

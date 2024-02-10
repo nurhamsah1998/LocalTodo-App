@@ -1,6 +1,16 @@
 import moment from "moment";
-import { DIFFICULTY_STATUS_KANBAN } from "../interface";
+import { DIFFICULTY_STATUS_KANBAN, MEDSOS_LIST } from "../interface";
 import { v4 as uuidv4 } from "uuid";
+import {
+  IoLogoLinkedin,
+  IoLogoFacebook,
+  IoLogoWhatsapp,
+  IoLogoGithub,
+  IoLogoInstagram,
+  IoGlobeOutline,
+  IoLogoGitlab,
+  IoMailOutline,
+} from "react-icons/io5";
 
 export const WIDTH_BUTTON_DRAG_CARD = 30;
 export const MIN_WIDTH_CONTAINER_CARD = 250;
@@ -56,7 +66,56 @@ export const priorityStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
     color: "#fff",
   },
 ];
-
+export const footerMedSos: MEDSOS_LIST[] = [
+  {
+    icon: IoLogoLinkedin,
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/in/nur-hamsah-kd1998",
+    colorTheme: "blue.500",
+  },
+  {
+    icon: IoLogoFacebook,
+    label: "Facebook",
+    link: "https://web.facebook.com/nur.hamsah.948",
+    colorTheme: "cyan.500",
+  },
+  {
+    icon: IoLogoWhatsapp,
+    label: "Whatsapp",
+    link: "https://wa.me/081213221343",
+    colorTheme: "green.500",
+  },
+  {
+    icon: IoLogoGithub,
+    label: "Github",
+    link: "https://github.com/nurhamsah1998",
+    colorTheme: "gray.900",
+  },
+  {
+    icon: IoLogoInstagram,
+    label: "Instagram",
+    link: "https://www.instagram.com/nurhamsah_tech/",
+    colorTheme: "pink.500",
+  },
+  {
+    icon: IoGlobeOutline,
+    label: "Website",
+    link: "https://nurhamsah.vercel.app/",
+    colorTheme: "gray.500",
+  },
+  {
+    icon: IoLogoGitlab,
+    label: "Gitlab",
+    link: "https://gitlab.com/nurhamsah1998",
+    colorTheme: "orange.500",
+  },
+  {
+    icon: IoMailOutline,
+    label: "Email",
+    link: "mailto:nur.hamsah.cash@gmail.com",
+    colorTheme: "red.500",
+  },
+];
 export const initialValueLocalTodo = {
   ["To Do"]: [
     JSON.stringify({

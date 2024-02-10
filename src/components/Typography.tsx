@@ -13,7 +13,8 @@ export const Typography: React.FunctionComponent<TYPOGRAPHY> = ({
     /// profile answered Vikram Deshmukh : https://stackoverflow.com/users/1990505/vikram-deshmukh
     <Text
       fontSize={textVariant[variantText as keyof TEXT_VARIANT]}
-      sx={{ fontFamily: "Poppins", ...props.sx }}
+      // sx={{ ...props.sx }}
+      fontFamily="Poppins, sans-serif"
       {...props}
     >
       {children}

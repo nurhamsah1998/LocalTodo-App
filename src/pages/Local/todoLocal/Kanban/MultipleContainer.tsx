@@ -136,7 +136,7 @@ interface Props {
   }): React.CSSProperties;
   wrapperStyle?(args: { index: number }): React.CSSProperties;
   itemCount?: number;
-  items?: Items;
+  items?: Items | any;
   handle?: boolean;
   hideAddColumn?: boolean;
   renderItem?: any;
@@ -147,7 +147,7 @@ interface Props {
   scrollable?: boolean;
   vertical?: boolean;
   afterMoveCard?: (item: any) => void;
-  onDropItemTrash?: (item: any) => void;
+  onDropItemTrash?: (item: any, container: any) => void;
   grapHandleColor?: string;
 }
 
@@ -194,6 +194,11 @@ export function MultipleContainers({
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );
+  useEffect(() => {
+    if (Boolean(Object.keys(initialItems || {})?.toString())) {
+      setItems(initialItems);
+    }
+  }, [initialItems]);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);
@@ -409,15 +414,15 @@ export function MultipleContainers({
         }
 
         if (overId === TRASH_ID) {
-          setItems((items) => ({
-            ...items,
-            [activeContainer]: items[activeContainer].filter(
-              (id) => id !== activeId
-            ),
-          }));
-          setActiveId(null);
+          // setItems((items) => ({
+          //   ...items,
+          //   [activeContainer]: items[activeContainer].filter(
+          //     (id) => id !== activeId
+          //   ),
+          // }));
           ///
-          onDropItemTrash(activeId);
+          onDropItemTrash(activeId, activeContainer);
+          setActiveId(null);
           return;
         }
 
@@ -710,6 +715,7 @@ function SortableItem({
     <Item
       ref={disabled ? undefined : setNodeRef}
       value={id}
+      activeId={containerId}
       grapHandleColor={grapHandleColor}
       dragging={isDragging}
       sorting={isSorting}

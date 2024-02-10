@@ -4,8 +4,16 @@ import { Input } from "./input";
 import { Select } from "./select";
 import { colors } from "@/const/themeColors";
 
-const { Modal, CloseButton, Alert, Checkbox, Drawer, Divider, Textarea } =
-  chakraTheme.components;
+const {
+  Modal,
+  CloseButton,
+  Alert,
+  Checkbox,
+  Drawer,
+  Divider,
+  Textarea,
+  Tooltip,
+} = chakraTheme.components;
 
 const theme = extendBaseTheme({
   components: {
@@ -19,6 +27,7 @@ const theme = extendBaseTheme({
     Divider,
     Textarea,
     Select,
+    Tooltip,
   },
   colors,
 });

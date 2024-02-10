@@ -27,6 +27,15 @@
     ul {
       overflow-y: auto;
     }
+    ul::-webkit-scrollbar {
+      width: 2px;
+    }
+    ul::-webkit-scrollbar-thumb {
+      background: #c7c7c7;
+    }
+    ul::-webkit-scrollbar-track {
+      background: #f3f3f3;
+    }
   }
 
   &.placeholder {

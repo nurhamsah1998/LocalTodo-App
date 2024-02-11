@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -9,11 +8,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { NavItem } from "./NavItem";
-import { IoChevronBack } from "react-icons/io5";
 import { LIST_CARD_COLOR } from "../interface";
-import { styledPropTheme } from "src/helper/styledPropTheme";
-import { Typography } from "./Typography";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import BackToMainMenu from "./BackToMainMenu";
+import SignOut from "./SignOut";
+import { AuthContext } from "src/store/store";
+import React from "react";
 
 export default function ModalDrawer({
   onClose,
@@ -21,15 +21,18 @@ export default function ModalDrawer({
   handleClickNavigation,
   navList,
   colorTheme,
+  disabledBackToMain = false,
 }: {
   onClose: () => void;
   handleClickNavigation?: any;
   isOpen: boolean;
+  disabledBackToMain?: boolean;
   navList: any[];
   colorTheme: LIST_CARD_COLOR;
 }) {
   const { color, bg } = colorTheme || { color: "" };
   const nav: NavigateFunction = useNavigate();
+  const { _signOut } = React.useContext<any>(AuthContext);
   return (
     <>
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -61,26 +64,11 @@ export default function ModalDrawer({
                   />
                 );
               })}
-              <Box
-                role="button"
-                onClick={() => nav("/local/repo")}
-                sx={{
-                  mt: 10,
-                  bg: color,
-                  p: 3,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  borderRadius: styledPropTheme.borderRadius,
-                }}
-              >
-                <Box color="#fff">
-                  <IoChevronBack />
-                </Box>
-                <Typography color="#fff" variantText="sm">
-                  Main menu
-                </Typography>
-              </Box>
+              {disabledBackToMain ? (
+                <SignOut handleSignOut={_signOut} bg="error.main" />
+              ) : (
+                <BackToMainMenu nav={nav} bg={colorTheme.color} />
+              )}
             </Stack>
           </DrawerBody>
         </DrawerContent>

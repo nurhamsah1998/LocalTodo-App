@@ -16,6 +16,8 @@ export default function HeaderSideBar({
         justifyContent: "flex-start",
         alignItems: "center",
         px: 3,
+        position: "sticky",
+        top: 0,
       }}
     >
       <Box>

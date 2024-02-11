@@ -32,6 +32,8 @@ function RootAuthProvider({ children }: { children: React.ReactNode }) {
     setKeyToken(null);
     setUserData({});
     setMode("");
+    cookie.remove("@token", { path: "/" });
+    cookie.remove("@mode", { path: "/" });
   }, []);
 
   React.useEffect(() => {

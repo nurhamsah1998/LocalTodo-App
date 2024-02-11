@@ -70,6 +70,5 @@ export const useEncript = (arg: any, type?: string) => {
       });
     }
   };
-  console.log(import.meta.env.TODO_APP_KEY);
   return { data, setDataEncrypted };
 };

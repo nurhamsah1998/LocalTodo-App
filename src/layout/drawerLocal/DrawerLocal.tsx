@@ -8,11 +8,14 @@ import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import Header from "./Header";
 import HeaderSideBar from "@/components/HeaderSIdeBar";
 import { NavItem } from "@/components/NavItem";
+import SignOut from "@/components/SignOut";
+import { AuthContext } from "src/store/store";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 export const HEADER_HEIGHT = 70;
 function DrawerLocalTask({ children }: { children: React.ReactNode }) {
   const nav = useNavigate();
+  const { _signOut } = React.useContext<any>(AuthContext);
   const handleClickNavigation = (item: SIDE_BAR_MENU) => {
     nav(`${item.path}`);
   };
@@ -39,43 +42,55 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
               borderRightColor: "gray.200",
               borderRightWidth: "1px",
               borderRightStyle: "solid",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              maxHeight: `100%`,
+              overflowY: "auto",
+            }}
+            css={{
+              "::-webkit-scrollbar": {
+                width: "2px",
+              },
+              "::-webkit-scrollbar-thumb": {
+                background: "#c7c7c7",
+              },
+              "::-webkit-scrollbar-track": {
+                background: "#f3f3f3",
+              },
             }}
           >
-            <HeaderSideBar
-              colorTheme={{ bg: "primary.main", color: "primary.light" }}
-            />
-            <Flex
+            <Box>
+              <HeaderSideBar
+                colorTheme={{ bg: "primary.main", color: "primary.light" }}
+              />
+              <Flex
+                sx={{
+                  flexDirection: "column",
+                  p: 3,
+                  gap: 2,
+                }}
+              >
+                {sideBarLocalMenu.map((item, index) => {
+                  return (
+                    <NavItem
+                      handleClickNavigation={() => handleClickNavigation(item)}
+                      bg="primary.main"
+                      cl="primary.light"
+                      key={index}
+                      item={item}
+                    />
+                  );
+                })}
+              </Flex>
+            </Box>
+            <Box
               sx={{
-                flexDirection: "column",
                 p: 3,
-                gap: 2,
-                maxHeight: `calc(100% - ${HEADER_HEIGHT}px)`,
-                overflowY: "auto",
-              }}
-              css={{
-                "::-webkit-scrollbar": {
-                  width: "2px",
-                },
-                "::-webkit-scrollbar-thumb": {
-                  background: "#c7c7c7",
-                },
-                "::-webkit-scrollbar-track": {
-                  background: "#f3f3f3",
-                },
               }}
             >
-              {sideBarLocalMenu.map((item, index) => {
-                return (
-                  <NavItem
-                    handleClickNavigation={() => handleClickNavigation(item)}
-                    bg="primary.main"
-                    cl="primary.light"
-                    key={index}
-                    item={item}
-                  />
-                );
-              })}
-            </Flex>
+              <SignOut handleSignOut={_signOut} bg="error.main" />
+            </Box>
           </Box>
         </Show>
         {/* ---------- LEFT SECTION END ---------- */}

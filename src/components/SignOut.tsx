@@ -1,14 +1,19 @@
 import { Box } from "@chakra-ui/react";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 import { IoChevronBack } from "react-icons/io5";
-import { NavigateFunction } from "react-router-dom";
 import { Typography } from "./Typography";
 
-function BackToMainMenu({ bg, nav }: { bg: string; nav: NavigateFunction }) {
+function SignOut({
+  bg,
+  handleSignOut,
+}: {
+  bg: string;
+  handleSignOut: () => void;
+}) {
   return (
     <Box
       role="button"
-      onClick={() => nav("/local/repo")}
+      onClick={handleSignOut}
       sx={{
         mt: 10,
         bg: bg,
@@ -23,10 +28,10 @@ function BackToMainMenu({ bg, nav }: { bg: string; nav: NavigateFunction }) {
         <IoChevronBack />
       </Box>
       <Typography color="#fff" variantText="sm">
-        Main menu
+        Sign Out
       </Typography>
     </Box>
   );
 }
 
-export default BackToMainMenu;
+export default SignOut;

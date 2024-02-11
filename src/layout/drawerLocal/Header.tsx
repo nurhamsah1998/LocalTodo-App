@@ -21,6 +21,7 @@ function Header() {
   return (
     <>
       <ModalDrawer
+        disabledBackToMain
         colorTheme={{ bg: "primary.light", color: "primary.main", label: "" }}
         navList={sideBarLocalMenu}
         handleClickNavigation={handleClickNavigation}

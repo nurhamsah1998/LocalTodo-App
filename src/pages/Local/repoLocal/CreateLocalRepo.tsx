@@ -10,6 +10,7 @@ import {
   FORM_INPUT_CREATE_REPO_LOCAL,
   LIST_CARD_COLOR,
 } from "@/interface/index";
+import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { initialValueLocalTodo } from "@/const/index";
 import CardOptions from "@/components/CardOptions";
@@ -36,13 +37,13 @@ function CreateLocalRepo({
     setValue,
     formState: { errors },
   } = useForm<FORM_INPUT_CREATE_REPO_LOCAL>();
-  const id = Math.random() * 12;
+  const id = uuidv4();
   const { repo: repoName, colorTheme } = watch();
   const { toast } = createStandaloneToast();
   const onSubmit = () => {
     let initialDataStorage = [
       {
-        id: `${repoName}_${id}`,
+        id: `${repoName}_${id.toUpperCase()}`,
         repo: repoName,
         colorTheme: {
           bg: colorTheme?.bg || "#fff",

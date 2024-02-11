@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, HStack } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { Typography } from "./Typography";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { styledPropTheme } from "src/helper/styledPropTheme";
@@ -20,16 +20,20 @@ function CardOptions({
   return (
     <Box>
       <Typography variantText="sm">{label}</Typography>
-      <HStack mt={1}>
+      <Flex
+        mt={1}
+        sx={{ gap: 2, flexWrap: "wrap" }}
+        justifyContent={["center", "center", "flex-start", "flex-start"]}
+      >
         {options.map((item: any, index: number) => (
           <Box
             onClick={() => handleClickCardOption(item)}
             role="button"
             key={index}
+            w={["100%", "100%", 200, 200]}
             sx={{
               bg: item.bg,
               color: item.color,
-              width: "100%",
               padding: "12px",
               pb: 0,
               textAlign: "right",
@@ -40,7 +44,7 @@ function CardOptions({
             <Checkbox isChecked={keyInitialValue === item[keyEnableCheckbox]} />
           </Box>
         ))}
-      </HStack>
+      </Flex>
     </Box>
   );
 }

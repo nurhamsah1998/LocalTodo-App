@@ -48,7 +48,7 @@ export const ModalBase: React.FunctionComponent<
     <>
       <Modal {...props} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxWidth={["90%", "80%", "70%"]}>
           <ModalHeader sx={{ fontFamily: "Poppins" }}>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{children}</ModalBody>

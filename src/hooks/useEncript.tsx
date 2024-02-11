@@ -14,14 +14,14 @@ export const useEncript = (arg: any, type?: string) => {
     for (let index = 0; index < listOfStorage.length; index++) {
       const bytes = CryptoJS.AES.decrypt(
         listOfStorage[index],
-        import.meta.env.VITE_ENCRYPT_KEY
+        import.meta.env.TODO_APP_KEY
       );
       const readBytes = bytes.toString(CryptoJS.enc.Utf8);
       const windowStore: any = window;
       if (readBytes === arg) {
         const keyLocalStorage = CryptoJS.AES.decrypt(
           windowStore.localStorage.getItem(listOfStorage[index]),
-          import.meta.env.VITE_ENCRYPT_KEY
+          import.meta.env.TODO_APP_KEY
         );
         const readBytes =
           type === "array"
@@ -40,13 +40,13 @@ export const useEncript = (arg: any, type?: string) => {
       );
       const newEncrypKey = CryptoJS.AES.encrypt(
         arg,
-        import.meta.env.VITE_ENCRYPT_KEY
+        import.meta.env.TODO_APP_KEY
       ).toString();
       let localkeyStorage: string = newEncrypKey;
       for (let index = 0; index < listOfStorage.length; index++) {
         const bytes = CryptoJS.AES.decrypt(
           listOfStorage[index],
-          import.meta.env.VITE_ENCRYPT_KEY
+          import.meta.env.TODO_APP_KEY
         );
         const keyStorage = bytes.toString(CryptoJS.enc.Utf8);
         if (keyStorage === arg) {
@@ -56,7 +56,7 @@ export const useEncript = (arg: any, type?: string) => {
       }
       const newValueEncryp = CryptoJS.AES.encrypt(
         type === "array" ? JSON.stringify(newItem) : newItem,
-        import.meta.env.VITE_ENCRYPT_KEY
+        import.meta.env.TODO_APP_KEY
       ).toString();
       window.localStorage.setItem(localkeyStorage, newValueEncryp);
       localkeyStorage = "";

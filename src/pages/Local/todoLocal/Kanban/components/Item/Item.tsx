@@ -99,6 +99,14 @@ export const Item = React.memo(
         };
       }, [dragOverlay]);
       const { isOpen, onClose, onOpen } = useDisclosure();
+      const handleDelete = () => {
+        setMutationLocalTodo({
+          isOpenModal: false,
+          mutation: "delete",
+          data: JSON.parse(value),
+          container: activeId,
+        });
+      };
       const {
         label: kanbanTitle,
         desc,
@@ -172,6 +180,7 @@ export const Item = React.memo(
           ref={ref}
         >
           <ModalItem
+            onClose={onClose}
             handleClickUpdate={() =>
               setMutationLocalTodo({
                 isOpenModal: true,
@@ -190,7 +199,7 @@ export const Item = React.memo(
             labelPriority={labelPriority}
             colorPriority={colorPriority}
             isOpen={isOpen}
-            onClose={onClose}
+            handleDelete={handleDelete}
           />
           <chakra.div
             className={classNames(
@@ -276,6 +285,7 @@ export const Item = React.memo(
             </Box>
 
             <Box
+              onClick={() => alert("ad")}
               sx={{
                 bg: grapHandleColor,
               }}

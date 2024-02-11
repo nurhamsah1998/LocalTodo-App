@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from "react-router-dom";
 import { MultipleContainers } from "./Kanban/MultipleContainer";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, createStandaloneToast } from "@chakra-ui/react";
 import { localSelectedRepo, mutationLocalRepo } from "src/store/store";
 import { useAtom } from "jotai";
 import { useEncript } from "src/hooks/useEncript";
@@ -16,48 +16,71 @@ import { Typography } from "@/components/Typography";
 
 function TodoLocal() {
   const { id } = useParams();
-  const [selectedRepo] = useAtom(localSelectedRepo);
+  const { toast } = createStandaloneToast();
+  const [selectedRepo, setSelectedRepo] = useAtom(localSelectedRepo);
   const [listOfTodos, setListOfTodos] = useState<any>(selectedRepo.todo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const [mutatioLocalTodo, setMutationLocalTodo] = useAtom(mutationLocalRepo);
-  const [modalDelete, setModalDelete] = useState<{
-    isOpen: boolean;
-    data: { item: any; container: string };
-  }>({ isOpen: false, data: { item: {}, container: "" } });
   const handleAfterMoveCard = (item: any) => {
     let clone = [...data];
+    let cloneSelectedRepo = { ...selectedRepo };
     for (let index = 0; index < clone.length; index++) {
       if (clone[index]?.id === id) {
         clone[index].todo = item;
       }
     }
     setListOfTodos(item);
+    cloneSelectedRepo.todo = item;
+    setSelectedRepo(cloneSelectedRepo);
     setDataEncrypted(clone);
   };
   const handleSubmitDelete = () => {
-    const { item, container } = modalDelete.data;
-    const selectedItem: FORM_CREATE_NEW_TODO = JSON.parse(item);
-    let dataClone: any[] = [...data];
-    const selectedRepo_Y: any = [...listOfTodos?.[container]];
-    const newArray = selectedRepo_Y
-      ?.map((parseItem: any) => JSON.parse(parseItem))
-      ?.filter(
-        (newCard: FORM_CREATE_NEW_TODO) =>
-          newCard.card_id !== selectedItem.card_id
-      )
-      ?.map((stringItem: any) => JSON.stringify(stringItem));
-    for (let index = 0; index < dataClone.length; index++) {
-      if (dataClone[index].id === selectedRepo.id) {
-        dataClone[index].todo[container] = newArray;
+    try {
+      const { data: item, container } = mutatioLocalTodo;
+      const selectedItem: FORM_CREATE_NEW_TODO = { ...item };
+      let dataClone: any[] = [...data];
+      let cloneSelectedRepo: any = { ...selectedRepo };
+      const selectedRepo_Y: any = [...listOfTodos?.[container]];
+      const newArray = selectedRepo_Y
+        ?.map((parseItem: any) => JSON.parse(parseItem))
+        ?.filter(
+          (newCard: FORM_CREATE_NEW_TODO) =>
+            newCard.card_id !== selectedItem.card_id
+        )
+        ?.map((stringItem: any) => JSON.stringify(stringItem));
+      for (let index = 0; index < dataClone.length; index++) {
+        if (dataClone[index].id === selectedRepo.id) {
+          dataClone[index].todo[container] = newArray;
+        }
       }
+      setListOfTodos((prev: any) => {
+        let clone = { ...prev };
+        clone[container] = newArray;
+        return clone;
+      });
+      setMutationLocalTodo({
+        isOpenModal: false,
+        mutation: "",
+        data: {},
+        container: "",
+      });
+      toast({
+        title: "Kanban deleted",
+        description: "successfully deleted kanban on your local storage",
+        status: "success",
+        isClosable: true,
+      });
+      setDataEncrypted(dataClone);
+      cloneSelectedRepo.todo[container] = newArray;
+      setSelectedRepo(cloneSelectedRepo);
+    } catch (error) {
+      toast({
+        title: "Something Wrong",
+        description: "cannot delete",
+        status: "error",
+        isClosable: true,
+      });
     }
-    setListOfTodos((prev: any) => {
-      let clone = { ...prev };
-      clone[container] = newArray;
-      return clone;
-    });
-    setDataEncrypted(dataClone);
-    setModalDelete({ isOpen: false, data: { item: {}, container: "" } });
   };
   return (
     <>
@@ -84,9 +107,14 @@ function TodoLocal() {
         colorSubmitScheme="error.main"
         handleSubmit={handleSubmitDelete}
         onClose={() =>
-          setModalDelete({ isOpen: false, data: { item: {}, container: "" } })
+          setMutationLocalTodo({
+            isOpenModal: false,
+            mutation: "",
+            data: {},
+            container: "",
+          })
         }
-        isOpen={modalDelete.isOpen}
+        isOpen={mutatioLocalTodo.mutation === "delete"}
       >
         <Typography>Are you sure wanna delete this card ?</Typography>
       </ModalBase>
@@ -112,11 +140,8 @@ function TodoLocal() {
         </Flex>
         <Box sx={{ mt: 10 }}>
           <MultipleContainers
-            trashable
+            // trashable
             scrollable
-            onDropItemTrash={(item, container) =>
-              setModalDelete({ isOpen: true, data: { item, container } })
-            }
             itemCount={3}
             hideAddColumn
             items={listOfTodos}

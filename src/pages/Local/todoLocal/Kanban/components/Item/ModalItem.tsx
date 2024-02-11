@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ModalBase } from "@/components/ModalBase";
 import { Typography } from "@/components/Typography";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { isEmptyString } from "src/helper/isEmptyString";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 
 function ModalItem({
   isOpen,
+  handleDelete,
   onClose,
   label,
   desc,
@@ -20,6 +21,7 @@ function ModalItem({
   handleClickUpdate,
 }: {
   isOpen: boolean;
+  handleDelete: () => void;
   onClose: () => void;
   handleClickUpdate: () => void;
   label: string;
@@ -36,10 +38,10 @@ function ModalItem({
     <>
       <ModalBase
         colorSubmitScheme="success.main"
-        handleSubmit={handleClickUpdate}
         size="3xl"
         title=""
-        labelSubmit="Update"
+        hideSubmitButton
+        labelClose="Close"
         isOpen={isOpen}
         onClose={onClose}
       >
@@ -124,6 +126,14 @@ function ModalItem({
             ) : null}
           </Flex>
         </Box>
+        <Flex sx={{ gap: 3, mt: 5 }}>
+          <Button onClick={handleDelete} colorScheme="error.main">
+            Delete this kanban
+          </Button>
+          <Button onClick={handleClickUpdate} colorScheme="success.main">
+            Update this kanban
+          </Button>
+        </Flex>
       </ModalBase>
     </>
   );

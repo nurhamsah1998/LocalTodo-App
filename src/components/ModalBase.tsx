@@ -17,6 +17,7 @@ export const ModalBase: React.FunctionComponent<
     isOpen: boolean;
     disabledSubmit?: boolean;
     disabledCancel?: boolean;
+    hideSubmitButton?: boolean;
     isLoading?: boolean;
     onClose: () => void;
     handleSubmit?: () => void;
@@ -35,6 +36,7 @@ export const ModalBase: React.FunctionComponent<
   onClose,
   handleSubmit,
   children,
+  hideSubmitButton = false,
   labelSubmit = "Submit",
   labelClose = "Close",
   colorSubmitScheme = "primary.main",
@@ -61,15 +63,17 @@ export const ModalBase: React.FunctionComponent<
             >
               {labelClose}
             </Button>
-            <Button
-              colorScheme={colorSubmitScheme}
-              isLoading={isLoading}
-              isDisabled={disabledSubmit}
-              onClick={handleSubmit}
-              variant="solid"
-            >
-              {labelSubmit}
-            </Button>
+            {hideSubmitButton ? null : (
+              <Button
+                colorScheme={colorSubmitScheme}
+                isLoading={isLoading}
+                isDisabled={disabledSubmit}
+                onClick={handleSubmit}
+                variant="solid"
+              >
+                {labelSubmit}
+              </Button>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

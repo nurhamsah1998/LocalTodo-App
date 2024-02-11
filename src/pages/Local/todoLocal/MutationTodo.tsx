@@ -43,10 +43,11 @@ function MutationNewTodo({
     formState: { errors },
   } = useForm<FORM_CREATE_NEW_TODO>();
   const { difficulty, priority } = watch();
-  const [selectedRepo] = useAtom(localSelectedRepo);
+  const [selectedRepo, setSelectedRepo] = useAtom(localSelectedRepo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const onSubmit = (item: FORM_CREATE_NEW_TODO) => {
     const isMutationPost = mutatioLocalTodo.mutation === "post";
+    const isMutationPatch = mutatioLocalTodo.mutation === "patch";
     const body = {
       ...item,
       createdAt: isMutationPost
@@ -57,6 +58,7 @@ function MutationNewTodo({
     };
     let newValue: any = { ...listOfTodos };
     let cloneDataStorage = [...data];
+    let cloneSelectedRepo = { ...selectedRepo };
     if (isMutationPost) {
       try {
         newValue["To Do"].push(JSON.stringify(body));
@@ -72,7 +74,8 @@ function MutationNewTodo({
       } catch (error) {
         console.log(error);
       }
-    } else {
+    }
+    if (isMutationPatch) {
       try {
         let newUpdateValue = newValue[mutatioLocalTodo.container]?.map(
           (item: any) => JSON.parse(item)
@@ -93,8 +96,10 @@ function MutationNewTodo({
             cloneDataStorage[index].todo = newValue;
           }
         }
+        cloneSelectedRepo.todo = newValue;
         setListOfTodos(newValue);
         onClose();
+        setSelectedRepo(cloneSelectedRepo);
         setDataEncrypted(cloneDataStorage);
       } catch (error) {
         console.log(error);
@@ -115,7 +120,6 @@ function MutationNewTodo({
   };
   useEffect(() => {
     if (mutatioLocalTodo.mutation === "patch") {
-      console.log("HAI");
       for (const key in mutatioLocalTodo.data) {
         setValue(key as keyof FORM_CREATE_NEW_TODO, mutatioLocalTodo.data[key]);
       }

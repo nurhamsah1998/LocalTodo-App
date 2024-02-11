@@ -10,8 +10,8 @@ export const Canvas: React.FunctionComponent<CANVAS> & {
       {...props}
       sx={{
         bg: "gray.200",
-        width: "100dvw",
-        height: "100dvh",
+        width: "100vw",
+        height: "100vh",
         ...props.sx,
       }}
     >

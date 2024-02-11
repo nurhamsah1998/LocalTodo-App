@@ -93,7 +93,10 @@ function Setting() {
       <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
         <Box>
           <Typography>Delete This Repo</Typography>
-          <Typography variantText="xs" sx={{ color: "gray.600", mt: -1 }}>
+          <Typography
+            variantText="xs"
+            sx={{ color: "gray.600", maxWidth: 350 }}
+          >
             This repo will be deleted in your local browser storage and your
             data no longer can be restore!
           </Typography>

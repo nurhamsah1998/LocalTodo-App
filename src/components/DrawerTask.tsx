@@ -54,14 +54,14 @@ function DrawerTask() {
   return (
     <Box
       sx={{
-        height: "100dvh",
+        height: "100vh",
       }}
     >
-      <HStack sx={{ alignItems: "flex-start", width: "100dvw" }}>
+      <HStack sx={{ alignItems: "flex-start", width: "100vw" }}>
         <Box
           sx={{
             bgColor: "#fff",
-            height: "100dvh",
+            height: "100vh",
             borderRightColor: "gray.200",
             borderRightStyle: "solid",
             borderRightWidth: "1px",

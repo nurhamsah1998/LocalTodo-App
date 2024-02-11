@@ -414,13 +414,13 @@ export function MultipleContainers({
         }
 
         if (overId === TRASH_ID) {
-          // setItems((items) => ({
-          //   ...items,
-          //   [activeContainer]: items[activeContainer].filter(
-          //     (id) => id !== activeId
-          //   ),
-          // }));
-          ///
+          setItems((items) => ({
+            ...items,
+            [activeContainer]: items[activeContainer].filter(
+              (id) => id !== activeId
+            ),
+          }));
+
           onDropItemTrash(activeId, activeContainer);
           setActiveId(null);
           return;

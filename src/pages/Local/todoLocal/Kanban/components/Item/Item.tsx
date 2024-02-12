@@ -181,14 +181,15 @@ export const Item = React.memo(
         >
           <ModalItem
             onClose={onClose}
-            handleClickUpdate={() =>
+            handleClickUpdate={() => {
               setMutationLocalTodo({
                 isOpenModal: true,
                 mutation: "patch",
                 data: JSON.parse(value),
                 container: activeId,
-              })
-            }
+              });
+              onClose();
+            }}
             label={kanbanTitle}
             desc={desc}
             updatedAt={updatedAt}
@@ -218,9 +219,7 @@ export const Item = React.memo(
           >
             <Box
               sx={{
-                width: `${
-                  MIN_WIDTH_CONTAINER_CARD - WIDTH_BUTTON_DRAG_CARD * 3.6
-                }px`,
+                width: "calc(100% - 33px)",
               }}
             >
               <Box onClick={onOpen} cursor="pointer">

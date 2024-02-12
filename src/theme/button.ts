@@ -41,8 +41,8 @@ export const Button = {
         cursor: props?.isDisabled ? "no-drop" : "pointer",
         transition: "0.3s",
         _hover: {
-          bg: color.getColor(),
-          color: "#fff",
+          bg: props?.isDisabled ? "gray.100" : color.getColor(),
+          color: props?.isDisabled ? "gray.300" : "#fff",
         },
       };
     },

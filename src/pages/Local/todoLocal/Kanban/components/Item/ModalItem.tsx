@@ -39,7 +39,7 @@ function ModalItem({
       <ModalBase
         colorSubmitScheme="success.main"
         size="3xl"
-        title=""
+        title="Detail"
         hideSubmitButton
         labelClose="Close"
         isOpen={isOpen}
@@ -127,10 +127,14 @@ function ModalItem({
           </Flex>
         </Box>
         <Flex sx={{ gap: 3, mt: 5 }}>
-          <Button onClick={handleDelete} colorScheme="error.main">
+          <Button size="sm" onClick={handleDelete} colorScheme="error.main">
             Delete this kanban
           </Button>
-          <Button onClick={handleClickUpdate} colorScheme="success.main">
+          <Button
+            size="sm"
+            onClick={handleClickUpdate}
+            colorScheme="success.main"
+          >
             Update this kanban
           </Button>
         </Flex>

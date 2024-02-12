@@ -46,14 +46,53 @@ export const ModalBase: React.FunctionComponent<
 }) => {
   return (
     <>
-      <Modal {...props} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
+      <Modal
+        {...props}
+        motionPreset="slideInTop"
+        isCentered
+        scrollBehavior="inside"
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay backdropFilter="blur(10px) hue-rotate(0deg)" />
         <ModalContent maxWidth={["90%", "80%", "70%"]}>
-          <ModalHeader sx={{ fontFamily: "Poppins" }}>{title}</ModalHeader>
+          <ModalHeader
+            sx={{
+              fontFamily: "Poppins",
+              borderBottomColor: "gray.200",
+              borderBottomWidth: "2px",
+              borderStyle: "solid",
+            }}
+          >
+            {title}
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{children}</ModalBody>
+          <ModalBody
+            sx={{
+              bg: "gray.50",
+            }}
+            css={{
+              "::-webkit-scrollbar": {
+                width: "5px",
+              },
+              "::-webkit-scrollbar-thumb": {
+                background: "#c7c7c7",
+              },
+              "::-webkit-scrollbar-track": {
+                background: "#f3f3f3",
+              },
+            }}
+          >
+            {children}
+          </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter
+            sx={{
+              borderTopColor: "gray.200",
+              borderTopWidth: "2px",
+              borderStyle: "solid",
+            }}
+          >
             <Button
               disabled={disabledCancel}
               colorScheme={colorCloseScheme}

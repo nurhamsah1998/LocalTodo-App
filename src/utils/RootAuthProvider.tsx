@@ -4,6 +4,7 @@ import { AuthContext } from "src/store/store";
 import { AUTH, SIGNIN } from "src/interface";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import Footer from "@/components/Footer";
 
 function RootAuthProvider({ children }: { children: React.ReactNode }) {
   const cookie = new Cookies();
@@ -43,6 +44,7 @@ function RootAuthProvider({ children }: { children: React.ReactNode }) {
   return (
     <AuthContext.Provider value={{ ...initialAuthValue, _signIn, _signOut }}>
       {children}
+      <Footer />
     </AuthContext.Provider>
   );
 }

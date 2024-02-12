@@ -57,6 +57,9 @@ function RepoLocal() {
                 role="button"
                 sx={{
                   bg: item?.colorTheme?.bg,
+                  borderColor: "gray.200",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
                   height: "60px",
                   width: "100%",
                   py: 1,

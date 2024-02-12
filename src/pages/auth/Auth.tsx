@@ -52,8 +52,10 @@ function Auth() {
           </Typography>
         </Box>
         <VStack>
-          <Button sx={{ width: "100%" }}>Login</Button>
-          <Button sx={{ width: "100%" }} variant="outline">
+          <Button isDisabled sx={{ width: "100%" }}>
+            Login
+          </Button>
+          <Button isDisabled sx={{ width: "100%" }} variant="outline">
             Register
           </Button>
         </VStack>

@@ -10,7 +10,7 @@ import {
   MUTATION_LOCAL_REPO,
 } from "@/interface/index";
 import { v4 as uuidv4 } from "uuid";
-import { Box, Input, VStack } from "@chakra-ui/react";
+import { Box, Input, Textarea, VStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import moment from "moment";
 import { useForm, Controller } from "react-hook-form";
@@ -67,7 +67,6 @@ function MutationNewTodo({
             cloneDataStorage[index].todo = newValue;
           }
         }
-
         setListOfTodos(newValue);
         onClose();
         setDataEncrypted(cloneDataStorage);
@@ -152,9 +151,19 @@ function MutationNewTodo({
                 rules={{ required: "*Required" }}
                 name="label"
                 control={control}
-                render={({ field }) => <Input autoFocus {...field} />}
+                render={({ field }) => (
+                  <Input
+                    variant={errors.label && "error"}
+                    autoFocus
+                    {...field}
+                  />
+                )}
               />
-              {errors.label && <p>{errors.label.message}</p>}
+              {errors.label && (
+                <Typography variantText="xs" sx={{ color: "error.main" }}>
+                  {errors.label.message}
+                </Typography>
+              )}
             </Box>
             <Box>
               <Typography variantText="sm">Description (optional)</Typography>
@@ -162,16 +171,21 @@ function MutationNewTodo({
                 defaultValue=""
                 name="desc"
                 control={control}
-                render={({ field }) => <Input {...field} />}
+                render={({ field }) => (
+                  <Textarea
+                    variant="outline"
+                    sx={{
+                      resize: "none",
+                    }}
+                    rows={5}
+                    {...field}
+                  />
+                )}
               />
               {errors.desc && <p>{errors.desc.message}</p>}
             </Box>
             <Box>
-              <Box
-                sx={{
-                  mt: 2,
-                }}
-              >
+              <Box>
                 <Controller
                   name="difficulty"
                   control={control}
@@ -192,7 +206,7 @@ function MutationNewTodo({
               </Box>
               <Box
                 sx={{
-                  mt: 4,
+                  mt: 2,
                 }}
               >
                 <Controller

@@ -5,7 +5,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(inputAnatomy.keys);
 const baseStyle = definePartsStyle({
   field: {
-    fontFamily: "poppins",
+    fontFamily: "Poppins, sans-serif",
     borderColor: "gray.200",
     borderWidth: "2px",
     borderStyle: "solid",
@@ -15,8 +15,8 @@ const baseStyle = definePartsStyle({
     _focus: {
       borderColor: "primary.main",
       borderWidth: "2px",
-      outline: "none",
       borderStyle: "solid",
+      outline: "none",
       transition: "0.3s",
     },
   },
@@ -58,4 +58,27 @@ const sizes = {
   sm: definePartsStyle({ field: sm, addon: sm }),
   xs: definePartsStyle({ field: xs, addon: xs }),
 };
-export const Input = defineMultiStyleConfig({ baseStyle, sizes });
+const error = definePartsStyle({
+  field: {
+    fontFamily: "Poppins, sans-serif",
+    borderColor: "red.200",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    padding: "5px 10px",
+    borderRadius: "5px",
+    width: "100%",
+    _focus: {
+      borderColor: "error.main",
+      borderWidth: "2px",
+      borderStyle: "solid",
+      outline: "none",
+      transition: "0.3s",
+    },
+  },
+});
+
+export const Input = defineMultiStyleConfig({
+  baseStyle,
+  sizes,
+  variants: { error },
+});

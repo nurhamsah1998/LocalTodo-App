@@ -13,7 +13,6 @@ import { useAtom } from "jotai";
 import HeaderSideBar from "@/components/HeaderSIdeBar";
 import { NavItem } from "@/components/NavItem";
 import BackToMainMenu from "@/components/BackToMainMenu";
-import Footer from "@/components/Footer";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;
 
@@ -115,6 +114,7 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
                 overflowX: "auto",
                 py: 3,
                 px: 5,
+                bg: "gray.50",
               }}
               css={{
                 "::-webkit-scrollbar": {
@@ -134,7 +134,6 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
           </Box>
         </Flex>
       </Container>
-      <Footer />
     </>
   );
 }

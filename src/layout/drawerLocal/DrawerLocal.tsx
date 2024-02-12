@@ -110,6 +110,7 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
               overflowX: "auto",
               py: 3,
               px: 5,
+              bg: "gray.50",
             }}
             css={{
               "::-webkit-scrollbar": {

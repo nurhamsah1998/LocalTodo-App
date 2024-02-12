@@ -71,18 +71,18 @@ function CreateDB() {
           }}
         >
           <Typography variantText="sm">
-            We will use your browser's local storage to store the database. We
-            will encrypt the data that you have created using crypto-js
-            technology{" "}
+            Local mode is a mode where all data will be stored in your browser's
+            local storage. We will encrypt the stored data using the crypto-js
+            technology package (you can learn more about it here :{" "}
             <a
               style={{ color: "blue", cursor: "pointer" }}
               href="https://github.com/brix/crypto-js"
             >
-              (https://github.com/brix/crypto-js)
+              https://github.com/brix/crypto-js
             </a>
-            . We hereby hope that even though your data is on a local computer,
-            we will still protect your data. We hereby provide some important
-            information that you should know :
+            ). Why we encrypt your data ? <span>YA TERSERAH SAYA</span>. There
+            are several things you need to know regarding this application as
+            follows:
           </Typography>
           <ul
             style={{
@@ -93,20 +93,20 @@ function CreateDB() {
           >
             <li>
               <Typography sx={{ fontWeight: 700 }} variantText="sm">
-                We are not responsible for any loss, inaccuracy, error and any
-                form of data corruption arising from/by your or this
-                application's error
+                We are not responsible for any type of damage, loss of data or
+                inaccuracies in the data in this application
               </Typography>
             </li>
             <li>
               <Typography sx={{ fontWeight: 700 }} variantText="sm">
-                Your data will be deleted if you clear your browser data
+                Please remember that all data will be lost if you delete browser
+                data
               </Typography>
             </li>
             <li>
               <Typography sx={{ fontWeight: 700 }} variantText="sm">
                 You still need an internet connection to be able to use this
-                application even if you are using the local feature
+                application even in local mode
               </Typography>
             </li>
             <li>

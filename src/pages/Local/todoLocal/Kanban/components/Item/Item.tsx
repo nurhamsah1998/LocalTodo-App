@@ -11,7 +11,6 @@ import styles from "./Item.module.css";
 import { Box, Flex, chakra, useDisclosure } from "@chakra-ui/react";
 import { Typography } from "@/components/Typography";
 import {
-  MIN_WIDTH_CONTAINER_CARD,
   WIDTH_BUTTON_DRAG_CARD,
   difficultyStatusKanban,
   priorityStatusKanban,

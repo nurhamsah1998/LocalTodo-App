@@ -56,6 +56,7 @@ function RepoLocal() {
         sx={{
           mt: 5,
           gap: 3,
+          pb: 3,
         }}
       >
         {!Boolean(repo?.length) ? (
@@ -137,6 +138,9 @@ function RepoLocal() {
                           sx={{
                             color: item?.colorTheme?.color,
                             fontWeight: 600,
+                            bg: "#fff",
+                            p: 2,
+                            borderRadius: styledPropTheme.borderRadius,
                           }}
                           variantText="xs"
                         >
@@ -146,6 +150,9 @@ function RepoLocal() {
                           sx={{
                             color: item?.colorTheme?.color,
                             fontWeight: 600,
+                            p: 2,
+                            borderRadius: styledPropTheme.borderRadius,
+                            bg: "#fff",
                           }}
                           variantText="xs"
                         >
@@ -155,6 +162,9 @@ function RepoLocal() {
                           sx={{
                             color: item?.colorTheme?.color,
                             fontWeight: 600,
+                            p: 2,
+                            borderRadius: styledPropTheme.borderRadius,
+                            bg: "#fff",
                           }}
                           variantText="xs"
                         >
@@ -166,6 +176,9 @@ function RepoLocal() {
                           sx={{
                             color: item?.colorTheme?.color,
                             fontWeight: 600,
+                            p: 2,
+                            borderRadius: styledPropTheme.borderRadius,
+                            bg: "#fff",
                           }}
                           variantText="xs"
                         >
@@ -175,6 +188,9 @@ function RepoLocal() {
                           sx={{
                             color: item?.colorTheme?.color,
                             fontWeight: 600,
+                            p: 2,
+                            borderRadius: styledPropTheme.borderRadius,
+                            bg: "#fff",
                           }}
                           variantText="xs"
                         >

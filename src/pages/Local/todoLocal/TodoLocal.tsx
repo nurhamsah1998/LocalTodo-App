@@ -4,7 +4,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from "react-router-dom";
 import { MultipleContainers } from "./Kanban/MultipleContainer";
-import { Box, Button, Flex, createStandaloneToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  createStandaloneToast,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { localSelectedRepo, mutationLocalRepo } from "src/store/store";
 import { useAtom } from "jotai";
 import { useEncript } from "src/hooks/useEncript";
@@ -14,10 +20,15 @@ import { useState } from "react";
 import { ModalBase } from "@/components/ModalBase";
 import { Typography } from "@/components/Typography";
 import moment from "moment";
+import { HEADER_HEIGHT } from "src/layout/drawerLocal/DrawerLocal";
+import { styledPropTheme } from "src/helper/styledPropTheme";
+import { IoAddSharp } from "react-icons/io5";
 
 function TodoLocal() {
   const { id } = useParams();
   const { toast } = createStandaloneToast();
+  const [isLargerThan768Height] = useMediaQuery("(min-height: 768px)");
+  const [isLargerThan768Width] = useMediaQuery("(min-width: 768px)");
   const [selectedRepo, setSelectedRepo] = useAtom(localSelectedRepo);
   const [listOfTodos, setListOfTodos] = useState<any>(selectedRepo.todo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
@@ -122,12 +133,7 @@ function TodoLocal() {
         <Typography>Are you sure wanna delete this card ?</Typography>
       </ModalBase>
       <Box>
-        <Flex
-          sx={{
-            justifyContent: "flex-end",
-            width: "100%",
-          }}
-        >
+        {!isLargerThan768Width ? (
           <Button
             onClick={() =>
               setMutationLocalTodo({
@@ -137,14 +143,66 @@ function TodoLocal() {
                 container: "",
               })
             }
+            sx={{
+              borderRadius: "100%",
+              width: "70px",
+              height: "70px",
+              position: "fixed",
+              bottom: 7,
+              right: 7,
+              p: 0,
+              boxShadow: styledPropTheme.boxShadow,
+              zIndex: 99,
+              bg: selectedRepo.colorTheme.color,
+            }}
           >
-            Create New Todo
+            <Flex
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <IoAddSharp size={40} />
+            </Flex>
           </Button>
-        </Flex>
-        <Box sx={{ mt: 10 }}>
+        ) : (
+          <Flex
+            sx={{
+              justifyContent: "flex-end",
+              width: "100%",
+              position: "absolute",
+              right: 2,
+              top: `${HEADER_HEIGHT + 10}px`,
+            }}
+          >
+            <Button
+              onClick={() =>
+                setMutationLocalTodo({
+                  isOpenModal: true,
+                  mutation: "post",
+                  data: {},
+                  container: "",
+                })
+              }
+              sx={{
+                bg: selectedRepo.colorTheme.color,
+              }}
+            >
+              Create New Todo
+            </Button>
+          </Flex>
+        )}
+
+        <Box sx={{ mt: 10, pb: isLargerThan768Width ? 0 : 20 }}>
           <MultipleContainers
             // trashable
             scrollable
+            headerContainerProps={{
+              sx: {
+                color: selectedRepo.colorTheme.color,
+                bg: selectedRepo.colorTheme.bg,
+              },
+            }}
             itemCount={3}
             hideAddColumn
             items={listOfTodos}
@@ -155,7 +213,10 @@ function TodoLocal() {
               borderLeftWidth: "3px",
               borderLeftStyle: "solid",
             })}
-            containerStyle={{ backgroundColor: "#f1f1f1", maxHeight: "700px" }}
+            containerStyle={{
+              backgroundColor: "#f1f1f1",
+              maxHeight: isLargerThan768Height ? "700px" : "450px",
+            }}
             handle
             grapHandleColor={selectedRepo.colorTheme.bg}
           />

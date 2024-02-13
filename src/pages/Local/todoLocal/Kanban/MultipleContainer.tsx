@@ -40,7 +40,7 @@ import { coordinateGetter as multipleContainersCoordinateGetter } from "./multip
 import { Item, Container, ContainerProps } from "../Kanban/components";
 
 import { createRange } from "../Kanban/utilities";
-import { Button, useMediaQuery } from "@chakra-ui/react";
+import { Button, ChakraProps, useMediaQuery } from "@chakra-ui/react";
 
 export default {
   title: "Presets/Sortable/Multiple Containers",
@@ -56,12 +56,14 @@ function DroppableContainer({
   id,
   items,
   style,
+  headerContainerProps,
   ...props
 }: ContainerProps & {
   disabled?: boolean;
   id: UniqueIdentifier;
   items: UniqueIdentifier[];
   style?: React.CSSProperties;
+  headerContainerProps?: ChakraProps;
 }) {
   const {
     active,
@@ -99,6 +101,7 @@ function DroppableContainer({
         ...attributes,
         ...listeners,
       }}
+      headerContainerProps={headerContainerProps}
       columns={columns}
       {...props}
     >
@@ -149,6 +152,7 @@ interface Props {
   afterMoveCard?: (item: any) => void;
   onDropItemTrash?: (item: any, container: any) => void;
   grapHandleColor?: string;
+  headerContainerProps: ChakraProps;
 }
 
 export const TRASH_ID = "void";
@@ -175,6 +179,7 @@ export function MultipleContainers({
   vertical = false,
   scrollable,
   grapHandleColor,
+  headerContainerProps,
   onDropItemTrash = () => {
     return null;
   },
@@ -493,6 +498,7 @@ export function MultipleContainers({
               scrollable={scrollable}
               style={containerStyle}
               unstyled={minimal}
+              headerContainerProps={headerContainerProps}
               onRemove={() => handleRemove(containerId)}
             >
               <SortableContext items={items[containerId]} strategy={strategy}>
@@ -518,6 +524,7 @@ export function MultipleContainers({
           ))}
           {minimal || hideAddColumn ? undefined : (
             <DroppableContainer
+              headerContainerProps={headerContainerProps}
               id={PLACEHOLDER_ID}
               disabled={isSortingContainer}
               items={empty}
@@ -570,6 +577,7 @@ export function MultipleContainers({
   function renderContainerDragOverlay(containerId: UniqueIdentifier) {
     return (
       <Container
+        headerContainerProps={headerContainerProps}
         label={`Column ${containerId}`}
         columns={columns}
         style={{

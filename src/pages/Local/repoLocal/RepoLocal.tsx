@@ -19,7 +19,7 @@ function RepoLocal() {
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const [repo, setRepo] = React.useState(data);
   const handleClickRepoItem = (i: any) => {
-    nav(`/local-task/overview/${i?.id}`);
+    nav(`/local-task/todo/${i?.id}`);
   };
   const totalTask = React.useMemo(() => {
     return repo?.map((item: any) => {

@@ -1,0 +1,51 @@
+.Container {
+  animation: showUp1 1s infinite;
+  animation-timing-function: ease-in-out;
+  position: relative;
+}
+@keyframes showUp1 {
+  0% {
+    padding-top: 0px;
+    background-color: red;
+  }
+  10% {
+    padding-top: 10px;
+    background-color: aqua;
+  }
+  20% {
+    padding-top: 20px;
+    background-color: blue;
+  }
+  30% {
+    padding-top: 30px;
+    background-color: green;
+  }
+  40% {
+    padding-top: 40px;
+    background-color: yellow;
+  }
+  50% {
+    padding-top: 50px;
+    background-color: orange;
+  }
+  60% {
+    padding-top: 40px;
+    background-color: gold;
+  }
+  70% {
+    padding-top: 30px;
+    background-color: greenyellow;
+  }
+  80% {
+    padding-top: 20px;
+    background-color: pink;
+  }
+  90% {
+    padding-top: 10px;
+    background-color: burlywood;
+  }
+  100% {
+    padding-top: 0px;
+    background-color: olivedrab;
+  }
+}

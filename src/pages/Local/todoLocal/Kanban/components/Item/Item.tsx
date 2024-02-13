@@ -5,7 +5,10 @@ import classNames from "classnames";
 import type { DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
 
-import { Handle, Remove } from "./components";
+import {
+  Handle,
+  // Remove
+} from "./components";
 
 import styles from "./Item.module.css";
 import { Box, Flex, chakra, useDisclosure } from "@chakra-ui/react";
@@ -30,7 +33,7 @@ export interface Props {
   disabled?: boolean;
   dragging?: boolean;
   handle?: boolean;
-  handleProps?: any;
+  handleprops?: any;
   height?: number;
   index?: number;
   fadeIn?: boolean;
@@ -42,7 +45,7 @@ export interface Props {
   wrapperStyle?: React.CSSProperties;
   value: React.ReactNode | any;
   grapHandleColor?: string;
-  onRemove?(): void;
+  // onRemove?(): void;
   renderItem?(args: {
     dragOverlay: boolean;
     dragging: boolean;
@@ -69,12 +72,12 @@ export const Item = React.memo(
         disabled,
         fadeIn,
         handle,
-        handleProps,
+        handleprops,
         height,
         grapHandleColor,
         index,
         listeners,
-        onRemove,
+        // onRemove,
         renderItem,
         sorting,
         style,
@@ -289,12 +292,12 @@ export const Item = React.memo(
               }}
               className={styles.Actions}
             >
-              {onRemove ? (
+              {/* {onRemove ? (
                 <Remove className={styles.Remove} onClick={onRemove} />
-              ) : null}
+              ) : null} */}
               {handle ? (
                 <Handle
-                  {...handleProps}
+                  {...handleprops}
                   style={{
                     width: `${WIDTH_BUTTON_DRAG_CARD}px`,
                     display: "flex",

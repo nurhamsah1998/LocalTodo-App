@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { Handle, Remove } from "./components";
+import {
+  Handle,
+  // Remove
+} from "./components";
 import styles from "./Item.module.css";
 import { Box, Flex, chakra } from "@chakra-ui/react";
 import { Typography } from "@/components/Typography";
@@ -26,12 +29,12 @@ export const Item = React.memo(
         disabled,
         fadeIn,
         handle,
-        handleProps,
-        height,
+        handleprops,
+        // height,
         grapHandleColor,
         index,
         listeners,
-        onRemove,
+        // onRemove,
         renderItem,
         sorting,
         style,
@@ -211,12 +214,12 @@ export const Item = React.memo(
               }}
               className={styles.Actions}
             >
-              {onRemove ? (
+              {/* {onRemove ? (
                 <Remove className={styles.Remove} onClick={onRemove} />
-              ) : null}
+              ) : null} */}
               {handle ? (
                 <Handle
-                  {...handleProps}
+                  {...handleprops}
                   style={{
                     width: `${WIDTH_BUTTON_DRAG_CARD}px`,
                     display: "flex",

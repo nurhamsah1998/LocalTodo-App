@@ -93,7 +93,7 @@ function DrawerLocalTask({ children }: { children: React.ReactNode }) {
                     />
                   );
                 })}
-                <BackToMainMenu bg={validId.colorTheme.color} nav={nav} />
+                <BackToMainMenu bg={validId?.colorTheme?.color} nav={nav} />
               </Flex>
             </Box>
           </Show>

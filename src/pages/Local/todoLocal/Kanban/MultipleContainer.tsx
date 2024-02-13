@@ -97,7 +97,7 @@ function DroppableContainer({
         opacity: isDragging ? 0.5 : undefined,
       }}
       hover={isOverContainer}
-      handleProps={{
+      handleprops={{
         ...attributes,
         ...listeners,
       }}
@@ -499,7 +499,7 @@ export function MultipleContainers({
               style={containerStyle}
               unstyled={minimal}
               headerContainerProps={headerContainerProps}
-              onRemove={() => handleRemove(containerId)}
+              // onRemove={() => handleRemove(containerId)}
             >
               <SortableContext items={items[containerId]} strategy={strategy}>
                 {items[containerId].map((value, index) => {
@@ -609,11 +609,11 @@ export function MultipleContainers({
     );
   }
 
-  function handleRemove(containerID: UniqueIdentifier) {
-    setContainers((containers) =>
-      containers.filter((id) => id !== containerID)
-    );
-  }
+  // function handleRemove(containerID: UniqueIdentifier) {
+  //   setContainers((containers) =>
+  //     containers.filter((id) => id !== containerID)
+  //   );
+  // }
 
   function handleAddColumn() {
     const newContainerId = getNextContainerId();
@@ -728,7 +728,7 @@ function SortableItem({
       dragging={isDragging}
       sorting={isSorting}
       handle={handle}
-      handleProps={handle ? { ref: setActivatorNodeRef } : undefined}
+      handleprops={handle ? { ref: setActivatorNodeRef } : undefined}
       index={index}
       wrapperStyle={wrapperStyle({ index })}
       style={style({

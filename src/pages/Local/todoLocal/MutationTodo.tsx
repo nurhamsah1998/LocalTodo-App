@@ -10,7 +10,13 @@ import {
   MUTATION_LOCAL_REPO,
 } from "@/interface/index";
 import { v4 as uuidv4 } from "uuid";
-import { Box, Input, Textarea, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Input,
+  Textarea,
+  VStack,
+  createStandaloneToast,
+} from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import moment from "moment";
 import { useForm, Controller } from "react-hook-form";
@@ -43,6 +49,7 @@ function MutationNewTodo({
     formState: { errors },
   } = useForm<FORM_CREATE_NEW_TODO>();
   const { difficulty, priority } = watch();
+  const { toast } = createStandaloneToast();
   const [selectedRepo, setSelectedRepo] = useAtom(localSelectedRepo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const onSubmit = (item: FORM_CREATE_NEW_TODO) => {
@@ -65,11 +72,20 @@ function MutationNewTodo({
         for (let index = 0; index < cloneDataStorage.length; index++) {
           if (cloneDataStorage[index]?.id === selectedRepo.id) {
             cloneDataStorage[index].todo = newValue;
+            cloneDataStorage[index].updatedAt = moment(
+              new Date()
+            ).toISOString();
           }
         }
         setListOfTodos(newValue);
         onClose();
         setDataEncrypted(cloneDataStorage);
+        toast({
+          title: "Todo created",
+          description: "successfully create new Todo",
+          status: "success",
+          isClosable: true,
+        });
       } catch (error) {
         console.log(error);
       }
@@ -93,6 +109,9 @@ function MutationNewTodo({
         for (let index = 0; index < cloneDataStorage.length; index++) {
           if (cloneDataStorage[index]?.id === selectedRepo.id) {
             cloneDataStorage[index].todo = newValue;
+            cloneDataStorage[index].updatedAt = moment(
+              new Date()
+            ).toISOString();
           }
         }
         cloneSelectedRepo.todo = newValue;
@@ -100,6 +119,12 @@ function MutationNewTodo({
         onClose();
         setSelectedRepo(cloneSelectedRepo);
         setDataEncrypted(cloneDataStorage);
+        toast({
+          title: "Todo updated",
+          description: "successfully update Todo",
+          status: "success",
+          isClosable: true,
+        });
       } catch (error) {
         console.log(error);
       }

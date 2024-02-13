@@ -13,6 +13,7 @@ import { FORM_CREATE_NEW_TODO } from "@/interface/index";
 import { useState } from "react";
 import { ModalBase } from "@/components/ModalBase";
 import { Typography } from "@/components/Typography";
+import moment from "moment";
 
 function TodoLocal() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function TodoLocal() {
     for (let index = 0; index < clone.length; index++) {
       if (clone[index]?.id === id) {
         clone[index].todo = item;
+        clone[index].updatedAt = moment(new Date()).toISOString();
       }
     }
     setListOfTodos(item);
@@ -51,6 +53,7 @@ function TodoLocal() {
       for (let index = 0; index < dataClone.length; index++) {
         if (dataClone[index].id === selectedRepo.id) {
           dataClone[index].todo[container] = newArray;
+          dataClone[index].updatedAt = moment(new Date()).toISOString();
         }
       }
       setListOfTodos((prev: any) => {

@@ -28,7 +28,6 @@ function RepoLocal() {
         for (const key in item?.todo) {
           result += item.todo[key].length;
         }
-        console.log(result, "<result");
         return result;
       };
       const totalTask = getTotalTask();
@@ -125,45 +124,64 @@ function RepoLocal() {
                         {item?.totalTask} Total task
                       </Typography>
                     </Flex>
-                    <Flex
-                      sx={{
-                        flexWrap: "wrap",
-                        lineHeight: "6px",
-                        gap: 2,
-                        mt: 2,
-                      }}
-                    >
-                      <Typography
-                        sx={{ color: item?.colorTheme?.color, fontWeight: 600 }}
-                        variantText="xs"
+                    <Box>
+                      <Flex
+                        sx={{
+                          flexWrap: "wrap",
+                          lineHeight: "6px",
+                          gap: 1,
+                          mt: 2,
+                        }}
                       >
-                        Todo : {item?.todo?.["To Do"]?.length}
-                      </Typography>
-                      <Typography
-                        sx={{ color: item?.colorTheme?.color, fontWeight: 600 }}
-                        variantText="xs"
-                      >
-                        Progress : {item?.todo?.["On Progress"]?.length}
-                      </Typography>
-                      <Typography
-                        sx={{ color: item?.colorTheme?.color, fontWeight: 600 }}
-                        variantText="xs"
-                      >
-                        Done : {item?.todo?.["Done"]?.length}
-                      </Typography>
-                      <Typography
-                        sx={{ color: item?.colorTheme?.color, fontWeight: 600 }}
-                        variantText="xs"
-                      >
-                        Pending : {item?.todo?.["Pending"]?.length}
-                      </Typography>
-                      <Typography
-                        sx={{ color: item?.colorTheme?.color, fontWeight: 600 }}
-                        variantText="xs"
-                      >
-                        Cancel : {item?.todo?.["Cancel"]?.length}
-                      </Typography>
-                    </Flex>
+                        <Typography
+                          sx={{
+                            color: item?.colorTheme?.color,
+                            fontWeight: 600,
+                          }}
+                          variantText="xs"
+                        >
+                          Todo : {item?.todo?.["To Do"]?.length}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: item?.colorTheme?.color,
+                            fontWeight: 600,
+                          }}
+                          variantText="xs"
+                        >
+                          Progress : {item?.todo?.["On Progress"]?.length}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: item?.colorTheme?.color,
+                            fontWeight: 600,
+                          }}
+                          variantText="xs"
+                        >
+                          Done : {item?.todo?.["Done"]?.length}
+                        </Typography>
+                      </Flex>
+                      <Flex sx={{ gap: 1, mt: 1 }}>
+                        <Typography
+                          sx={{
+                            color: item?.colorTheme?.color,
+                            fontWeight: 600,
+                          }}
+                          variantText="xs"
+                        >
+                          Pending : {item?.todo?.["Pending"]?.length}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: item?.colorTheme?.color,
+                            fontWeight: 600,
+                          }}
+                          variantText="xs"
+                        >
+                          Cancel : {item?.todo?.["Cancel"]?.length}
+                        </Typography>
+                      </Flex>
+                    </Box>
                   </Box>
                   <Flex
                     sx={{

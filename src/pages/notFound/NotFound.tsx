@@ -14,10 +14,9 @@ function NotFound() {
         justifyContent: "center",
         alignItems: "center",
       }}
-      className={styles.Container}
     >
       <Box sx={{ textAlign: "center", px: 3 }}>
-        <Flex sx={{ justifyContent: "center" }}>
+        <Flex className={styles.Container} sx={{ justifyContent: "center" }}>
           <ServerDown size={250} />
         </Flex>
         <Typography

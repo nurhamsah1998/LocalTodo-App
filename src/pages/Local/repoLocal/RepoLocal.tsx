@@ -2,7 +2,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import { Typography } from "@/components/Typography";
-import { Box, Button, Flex, VStack, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  VStack,
+  useDisclosure,
+  keyframes,
+  usePrefersReducedMotion,
+} from "@chakra-ui/react";
 import React from "react";
 import { useEncript } from "src/hooks/useEncript";
 import CreateLocalRepo from "./CreateLocalRepo";
@@ -12,13 +20,28 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import moment from "moment";
 import EmptyItemMessage from "@/components/EmptyItemMessage";
 import { IoClipboardSharp } from "react-icons/io5";
+import { useAtom } from "jotai";
+import { localSelectedRepo } from "src/store/store";
+
+const spin = keyframes`
+0% {
+  bottom: -200px;
+  right: 0px;
+}
+100% {
+  bottom: 0px;
+  right: 0px;
+}
+`;
 
 function RepoLocal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [, setSelectedRepo] = useAtom(localSelectedRepo);
   const nav = useNavigate();
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const [repo, setRepo] = React.useState(data);
   const handleClickRepoItem = (i: any) => {
+    setSelectedRepo(i);
     nav(`/local-task/todo/${i?.id}`);
   };
   const totalTask = React.useMemo(() => {
@@ -34,6 +57,7 @@ function RepoLocal() {
       return { ...item, totalTask };
     });
   }, [repo]);
+  const prefersReducedMotion = usePrefersReducedMotion();
   return (
     <Box
       sx={{
@@ -74,8 +98,12 @@ function RepoLocal() {
               },
               index: number
             ) => {
+              const animation = prefersReducedMotion
+                ? undefined
+                : `${spin} 1.${index}s  ease-in-out`;
               return (
                 <Box
+                  animation={animation}
                   role="button"
                   sx={{
                     bg: item?.colorTheme?.bg,
@@ -89,14 +117,14 @@ function RepoLocal() {
                     borderRadius: styledPropTheme.borderRadius,
                     position: "relative",
                     overflow: "hidden",
-                    transition: "0.3s",
-                    _hover: {
-                      transform: styledPropTheme.scaletoBigger,
-                      boxShadow: styledPropTheme.boxShadow,
-                    },
-                    _active: {
-                      transform: "scale(1.0)",
-                    },
+                    transition: "0.3",
+                    // _hover: {
+                    //   transform: styledPropTheme.scaletoBigger,
+                    //   boxShadow: styledPropTheme.boxShadow,
+                    // },
+                    // _active: {
+                    //   transform: "scale(1.0)",
+                    // },
                   }}
                   onClick={() => handleClickRepoItem(item)}
                   key={index}

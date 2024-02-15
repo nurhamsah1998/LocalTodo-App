@@ -1,0 +1,162 @@
+.FooterMedsos0 {
+  animation-name: medsos0;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos0 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos1 {
+  animation-name: medsos1;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos1 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos2 {
+  animation-name: medsos2;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos2 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos3 {
+  animation-name: medsos3;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos3 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos4 {
+  animation-name: medsos4;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos4 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos5 {
+  animation-name: medsos5;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos5 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos6 {
+  animation-name: medsos6;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 1.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos6 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterMedsos7 {
+  animation-name: medsos7;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 1.6s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes medsos7 {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+.FooterTitle {
+  animation-name: footer_title;
+  animation-timing-function: ease-in-out;
+  position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes footer_title {
+  0% {
+    bottom: -200px;
+    right: 0px;
+  }
+  100% {
+    bottom: 0px;
+    right: 0px;
+  }
+}

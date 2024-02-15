@@ -9,6 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { Typography } from "./Typography";
 import { footerMedSos } from "../const";
+import styles from "./components.module.css";
+import { styledPropTheme } from "src/helper/styledPropTheme";
 
 function Footer() {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
@@ -18,6 +20,8 @@ function Footer() {
         py: 10,
         px: 5,
         bg: "gray.900",
+        borderRadius: styledPropTheme.borderRadius,
+        overflow: "hidden",
       }}
     >
       <Flex
@@ -30,6 +34,7 @@ function Footer() {
       >
         <Box>
           <Box
+            className={styles.FooterTitle}
             sx={{
               color: "#fff",
               textAlign: isLargerThan768 ? "left" : "center",
@@ -47,11 +52,12 @@ function Footer() {
             </Typography>
           </Box>
           <HStack sx={{ mt: 2 }}>
-            {footerMedSos.map((item) => {
+            {footerMedSos.map((item, index) => {
               const Icon = item.icon;
               return (
                 <Tooltip label={item.label} key={item.link}>
                   <Button
+                    className={styles[`FooterMedsos${index}`]}
                     size="xs"
                     sx={{
                       bg: item.colorTheme,
@@ -70,7 +76,7 @@ function Footer() {
           </HStack>
         </Box>
         <Box sx={{ color: "#fff" }}>
-          <Typography>FREE PALESTINE</Typography>
+          <Typography className={styles.FooterTitle}>FREE PALESTINE</Typography>
         </Box>
       </Flex>
     </chakra.footer>

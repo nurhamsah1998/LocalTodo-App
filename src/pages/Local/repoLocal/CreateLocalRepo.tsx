@@ -43,7 +43,7 @@ function CreateLocalRepo({
   const onSubmit = () => {
     let initialDataStorage = [
       {
-        id: `${repoName}_${id.toUpperCase()}`,
+        id: `${repoName?.toString()}_${id.toUpperCase()}`,
         repo: repoName,
         colorTheme: {
           bg: colorTheme?.bg || "#fff",

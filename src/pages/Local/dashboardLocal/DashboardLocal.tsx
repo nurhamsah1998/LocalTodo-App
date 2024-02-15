@@ -4,6 +4,7 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import styles from "./dashboardLocal.module.css";
 import AddTask from "src/assets/svg/AddTask";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 function DashboardLocal() {
   const nav: NavigateFunction = useNavigate();
@@ -74,6 +75,9 @@ function DashboardLocal() {
             className={styles.box_animation3}
           />
         </Box>
+      </Box>
+      <Box sx={{ mt: 3 }}>
+        <Footer />
       </Box>
     </Box>
   );

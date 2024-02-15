@@ -134,6 +134,10 @@ export const Item = React.memo(
         option: priorityStatusKanban,
       });
       const { text: description } = useConciseText({ text: desc, limit: 136 });
+      const { text: titleKanban } = useConciseText({
+        text: kanbanTitle,
+        limit: 60,
+      });
       const [, setMutationLocalTodo] = useAtom(mutationLocalRepo);
       return renderItem ? (
         renderItem({
@@ -225,8 +229,11 @@ export const Item = React.memo(
               }}
             >
               <Box onClick={onOpen} cursor="pointer">
-                <Typography variantText="sm" sx={{ fontWeight: 600 }}>
-                  {kanbanTitle}
+                <Typography
+                  variantText="sm"
+                  sx={{ fontWeight: 600, textWrap: "wrap", lineHeight: "18px" }}
+                >
+                  {titleKanban}
                 </Typography>
                 <Typography
                   variantText="xs"
@@ -234,7 +241,7 @@ export const Item = React.memo(
                     textWrap: "wrap",
                     lineHeight: "15px",
                     color: "gray.600",
-                    mt: 1,
+                    mt: 1.5,
                   }}
                 >
                   {description}
@@ -289,6 +296,7 @@ export const Item = React.memo(
               onClick={() => alert("ad")}
               sx={{
                 bg: grapHandleColor,
+                height: "29px",
               }}
               className={styles.Actions}
             >

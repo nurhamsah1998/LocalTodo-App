@@ -8,7 +8,7 @@ import styles from "./Item.module.css";
 import { Box, Flex, chakra } from "@chakra-ui/react";
 import { Typography } from "@/components/Typography";
 import {
-  MIN_WIDTH_CONTAINER_CARD,
+  MIN_WIDTH_CONTAINER_CARD_LG,
   WIDTH_BUTTON_DRAG_CARD,
   difficultyStatusKanban,
   priorityStatusKanban,
@@ -145,7 +145,7 @@ export const Item = React.memo(
             <Box
               sx={{
                 width: `${
-                  MIN_WIDTH_CONTAINER_CARD - WIDTH_BUTTON_DRAG_CARD * 3.6
+                  MIN_WIDTH_CONTAINER_CARD_LG - WIDTH_BUTTON_DRAG_CARD * 3.6
                 }px`,
               }}
             >

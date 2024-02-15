@@ -12,13 +12,14 @@ import OverView from "@/pages/Task/overview/OverView";
 import Auth from "@/pages/auth/Auth";
 import CreateDB from "@/pages/Local/createDB/CreateDB";
 import DrawerLocal from "src/layout/drawerLocal/DrawerLocal";
+import DrawerLocalTask from "src/layout/drawerLocalTask/DrawerLocalTask";
+import LoadingScreen from "@/components/LoadingScreen";
 export const DashboardLocal = lazy(
   () => import("@/pages/Local/dashboardLocal/DashboardLocal")
 );
 export const RepoLocal = lazy(
   () => import("@/pages/Local/repoLocal/RepoLocal")
 );
-import DrawerLocalTask from "src/layout/drawerLocalTask/DrawerLocalTask";
 export const OverViewLocal = lazy(
   () => import("@/pages/Local/overviewLocal/OverViewLocal")
 );
@@ -61,7 +62,7 @@ function Router() {
       path: "/local",
       element: (
         <DrawerLocal>
-          <Suspense>
+          <Suspense fallback={<LoadingScreen />}>
             <Outlet />
           </Suspense>
         </DrawerLocal>
@@ -81,7 +82,7 @@ function Router() {
       path: "/local-task",
       element: (
         <DrawerLocalTask>
-          <Suspense>
+          <Suspense fallback={<LoadingScreen />}>
             <Outlet />
           </Suspense>
         </DrawerLocalTask>

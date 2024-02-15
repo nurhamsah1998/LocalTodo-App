@@ -13,7 +13,8 @@ import {
 } from "react-icons/io5";
 
 export const WIDTH_BUTTON_DRAG_CARD = 30;
-export const MIN_WIDTH_CONTAINER_CARD = 250;
+export const MIN_WIDTH_CONTAINER_CARD_LG = 360;
+export const MIN_WIDTH_CONTAINER_CARD_MD = 260;
 export const difficultyStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
   {
     name: "much_easy",

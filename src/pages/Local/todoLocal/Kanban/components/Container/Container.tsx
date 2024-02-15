@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef } from "react";
-import { ChakraProps, chakra } from "@chakra-ui/react";
+import { ChakraProps, chakra, useMediaQuery } from "@chakra-ui/react";
 import classNames from "classnames";
 
 // import { Handle, Remove } from "../Item";
 
 import styles from "./Container.module.css";
-import { MIN_WIDTH_CONTAINER_CARD } from "@/const/index";
+import {
+  MIN_WIDTH_CONTAINER_CARD_LG,
+  MIN_WIDTH_CONTAINER_CARD_MD,
+} from "@/const/index";
 import { Typography } from "@/components/Typography";
 
 export interface Props {
@@ -48,7 +51,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
     ref
   ) => {
     const Component = onClick ? chakra.button : chakra.div;
-
+    const [isLargerThan768] = useMediaQuery("(min-width: 1080px)");
     return (
       <Component
         {...props}
@@ -56,7 +59,9 @@ export const Container = forwardRef<HTMLDivElement, Props>(
         style={
           {
             ...style,
-            minWidth: `${MIN_WIDTH_CONTAINER_CARD}px`,
+            minWidth: isLargerThan768
+              ? `${MIN_WIDTH_CONTAINER_CARD_LG}px`
+              : `${MIN_WIDTH_CONTAINER_CARD_MD}px`,
             "--columns": columns,
           } as React.CSSProperties
         }

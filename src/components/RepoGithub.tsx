@@ -1,6 +1,7 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 import { Typography } from "./Typography";
+import { IoLogoGithub } from "react-icons/io5";
 import styles from "./components.module.css";
 
 function RepoGithub() {
@@ -8,11 +9,24 @@ function RepoGithub() {
     <Box
       sx={{
         minHeight: "200px",
-        backgroundImage: "linear-gradient(to right, #2e3a50, #000)",
+        backgroundImage: "linear-gradient(to right, #324569, #000)",
         borderRadius: styledPropTheme.borderRadius,
         p: 5,
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <Box
+        opacity={["0.2", "0.5", "0.8", "1"]}
+        sx={{
+          position: "absolute",
+          color: "#fff",
+          right: 0,
+          top: 0,
+        }}
+      >
+        <IoLogoGithub className={styles.Medsos3} size={200} />
+      </Box>
       <Flex>
         <Box sx={{ color: "#fff" }}>
           <Flex className={styles.Medsos3} sx={{ alignItems: "start", gap: 2 }}>
@@ -46,7 +60,7 @@ function RepoGithub() {
             maxWidth={["100%", "70%", "85%"]}
             sx={{ mt: 2, lineHeight: "19px" }}
           >
-            You can get this project on my Gitlab for free by forking this
+            You can get this project on my Github for free by forking this
             repository
           </Typography>
           <Box sx={{ mt: 3 }}>

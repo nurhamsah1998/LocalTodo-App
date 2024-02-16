@@ -110,7 +110,6 @@ function RepoLocal() {
                     borderColor: "gray.200",
                     borderWidth: "1px",
                     borderStyle: "solid",
-
                     width: "100%",
                     py: 1,
                     px: 2,
@@ -118,13 +117,6 @@ function RepoLocal() {
                     position: "relative",
                     overflow: "hidden",
                     transition: "0.3",
-                    // _hover: {
-                    //   transform: styledPropTheme.scaletoBigger,
-                    //   boxShadow: styledPropTheme.boxShadow,
-                    // },
-                    // _active: {
-                    //   transform: "scale(1.0)",
-                    // },
                   }}
                   onClick={() => handleClickRepoItem(item)}
                   key={index}
@@ -234,27 +226,15 @@ function RepoLocal() {
                       justifyContent: "flex-end",
                     }}
                   >
-                    {/* <Box>
-                    <Typography
-                      variantText="xs"
+                    <Box
                       sx={{
-                        color: item?.colorTheme?.color,
+                        bg: "#fff",
+                        px: 5,
+                        py: 1,
+                        borderRadius: styledPropTheme.borderRadius,
+                        zIndex: 2,
                       }}
                     >
-                      created at
-                    </Typography>
-                    <Typography
-                      variantText="xs"
-                      sx={{
-                        color: item?.colorTheme?.color,
-                        textTransform: "capitalize",
-                        mt: -1,
-                      }}
-                    >
-                      {moment(item?.createdAt).format("DD MMM YYYY, h:mm a")}
-                    </Typography>
-                  </Box> */}
-                    <Box>
                       <Typography
                         variantText="xs"
                         sx={{

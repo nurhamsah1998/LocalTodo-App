@@ -55,7 +55,10 @@ export const ModalBase: React.FunctionComponent<
         onClose={onClose}
       >
         <ModalOverlay backdropFilter="blur(10px) hue-rotate(0deg)" />
-        <ModalContent maxWidth={["90%", "80%", "70%"]}>
+        <ModalContent
+          maxWidth={["90%", "80%", "70%"]}
+          marginTop={[2, 20, "auto"]}
+        >
           <ModalHeader
             sx={{
               fontFamily: "Poppins",

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Flex,
   HStack,
   Tooltip,
@@ -8,20 +7,21 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { Typography } from "./Typography";
-import { footerMedSos } from "../const";
+import { medsos } from "../const";
 import styles from "./components.module.css";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 
-function Footer() {
+function SelfBranding() {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   return (
-    <chakra.footer
+    <chakra.div
       sx={{
         py: 10,
         px: 5,
-        bg: "gray.900",
+        backgroundImage: "linear-gradient(to right, primary.dark, green.700)",
         borderRadius: styledPropTheme.borderRadius,
         overflow: "hidden",
+        height: "200px",
       }}
     >
       <Flex
@@ -40,7 +40,7 @@ function Footer() {
               textAlign: isLargerThan768 ? "left" : "center",
             }}
           >
-            <Typography variantText="xs">Made by</Typography>
+            <Typography variantText="xs">made with love by</Typography>
             <Typography
               variantText="2xl"
               sx={{
@@ -52,35 +52,44 @@ function Footer() {
             </Typography>
           </Box>
           <HStack sx={{ mt: 2 }}>
-            {footerMedSos.map((item, index) => {
+            {medsos.map((item, index) => {
               const Icon = item.icon;
               return (
                 <Tooltip label={item.label} key={item.link}>
-                  <Button
-                    className={styles[`FooterMedsos${index}`]}
-                    size="xs"
+                  <chakra.a
+                    href={item.link}
+                    target="_blank"
+                    className={styles[`Medsos${index}`]}
                     sx={{
                       bg: item.colorTheme,
+                      color: "#fff",
+                      p: 1,
+                      borderRadius: styledPropTheme.borderRadius,
                       transition: "0.3s",
-                      border: item.label === "Github" && "#fff 1px solid",
+                      cursor: "pointer",
                       _active: {
                         transform: "scale(0.9)",
                       },
                     }}
                   >
                     <Icon />
-                  </Button>
+                  </chakra.a>
                 </Tooltip>
               );
             })}
           </HStack>
         </Box>
         <Box sx={{ color: "#fff" }}>
-          <Typography className={styles.FooterTitle}>FREE PALESTINE</Typography>
+          <Typography
+            className={styles.BrandingTitlePalestine}
+            sx={{ fontWeight: 700 }}
+          >
+            FREE PALESTINE
+          </Typography>
         </Box>
       </Flex>
-    </chakra.footer>
+    </chakra.div>
   );
 }
 
-export default Footer;
+export default SelfBranding;

@@ -1,16 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Canvas } from "@/components/Canvas";
 import { Typography } from "@/components/Typography";
 import { Box, Button, Container, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { styledPropTheme } from "src/helper/styledPropTheme";
+import { useEncript } from "src/hooks/useEncript";
 import { AuthContext } from "src/store/store";
+import { v4 as uuidv4 } from "uuid";
 
 function Auth() {
-  const { isAuth, mode } = React.useContext(AuthContext);
+  const { isAuth, mode, _signIn } = React.useContext<any>(AuthContext);
   const nav: NavigateFunction = useNavigate();
+  const { data } = useEncript("repo", "array");
   const handleClickOfflineMode = () => {
-    nav("/create-db");
+    if (!data) {
+      nav("/create-db");
+      return;
+    }
+    _signIn({
+      mode: "local",
+      keyToken: uuidv4(),
+    });
+    nav("/local/dashboard");
   };
   React.useEffect(() => {
     if (isAuth) {

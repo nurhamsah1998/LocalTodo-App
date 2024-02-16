@@ -67,7 +67,7 @@ export const priorityStatusKanban: DIFFICULTY_STATUS_KANBAN[] = [
     color: "#fff",
   },
 ];
-export const footerMedSos: MEDSOS_LIST[] = [
+export const medsos: MEDSOS_LIST[] = [
   {
     icon: IoLogoLinkedin,
     label: "LinkedIn",

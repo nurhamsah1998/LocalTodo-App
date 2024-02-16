@@ -4,19 +4,20 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import styles from "./dashboardLocal.module.css";
 import AddTask from "src/assets/svg/AddTask";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer";
+import Branding from "@/components/Branding";
+import RepoGithub from "@/components/RepoGithub";
 
 function DashboardLocal() {
   const nav: NavigateFunction = useNavigate();
   return (
     <Box>
+      <Box sx={{ mb: 3 }}>
+        <Branding />
+      </Box>
       <Box
         sx={{
           height: "200px",
-          bg: "orange.500",
-          // borderColor:"primary.main",
-          // borderWidth:'2px',
-          // borderStyle:"solid",
+          backgroundImage: "linear-gradient(to right, orange.500, orange.700)",
           borderRadius: styledPropTheme.borderRadius,
           color: "#fff",
           p: 4,
@@ -76,8 +77,9 @@ function DashboardLocal() {
           />
         </Box>
       </Box>
+
       <Box sx={{ mt: 3 }}>
-        <Footer />
+        <RepoGithub />
       </Box>
     </Box>
   );

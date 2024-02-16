@@ -1,4 +1,4 @@
-.FooterMedsos0 {
+.Medsos0 {
   animation-name: medsos0;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -16,7 +16,7 @@
     right: 0px;
   }
 }
-.FooterMedsos1 {
+.Medsos1 {
   animation-name: medsos1;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -34,7 +34,7 @@
     right: 0px;
   }
 }
-.FooterMedsos2 {
+.Medsos2 {
   animation-name: medsos2;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -52,7 +52,7 @@
     right: 0px;
   }
 }
-.FooterMedsos3 {
+.Medsos3 {
   animation-name: medsos3;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -70,7 +70,7 @@
     right: 0px;
   }
 }
-.FooterMedsos4 {
+.Medsos4 {
   animation-name: medsos4;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -88,7 +88,7 @@
     right: 0px;
   }
 }
-.FooterMedsos5 {
+.Medsos5 {
   animation-name: medsos5;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -106,7 +106,7 @@
     right: 0px;
   }
 }
-.FooterMedsos6 {
+.Medsos6 {
   animation-name: medsos6;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -124,7 +124,7 @@
     right: 0px;
   }
 }
-.FooterMedsos7 {
+.Medsos7 {
   animation-name: medsos7;
   animation-timing-function: ease-in-out;
   position: relative;
@@ -142,7 +142,7 @@
     right: 0px;
   }
 }
-.FooterTitle {
+.BrandingTitlePalestine {
   animation-name: footer_title;
   animation-timing-function: ease-in-out;
   position: relative;

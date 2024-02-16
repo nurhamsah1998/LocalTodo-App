@@ -6,15 +6,11 @@ import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 import { AuthContext } from "src/store/store";
-import Cookies from "universal-cookie";
 
 function CreateDB() {
-  const cookie = new Cookies();
   const nav: NavigateFunction = useNavigate();
   const { _signIn, isAuth, mode } = React.useContext<any>(AuthContext);
   const handleConfirm = () => {
-    cookie.set("@token", "offline-mode-mamamia", { path: "/" });
-    cookie.set("@mode", "local", { path: "/" });
     _signIn({
       mode: "local",
       keyToken: "offline-mode-mamamia",

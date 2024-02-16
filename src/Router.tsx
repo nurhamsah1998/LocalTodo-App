@@ -76,6 +76,10 @@ function Router() {
       element: <Navigate to="/404" replace />,
     },
     {
+      path: "/",
+      element: <Navigate to="/local/dashboard" replace />,
+    },
+    {
       path: "/auth",
       element: <Auth />,
     },

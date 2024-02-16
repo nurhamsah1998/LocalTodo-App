@@ -8,7 +8,7 @@ import { sideBarLocalMenu } from "@/const/sideBarMenu";
 import Header from "./Header";
 import HeaderSideBar from "@/components/HeaderSIdeBar";
 import { NavItem } from "@/components/NavItem";
-import SignOut from "@/components/SignOut";
+import SignOut from "@/components/ExitApp";
 import { AuthContext } from "src/store/store";
 
 const DESKTOP_SIDEBAR_WIDTH: number = 250;

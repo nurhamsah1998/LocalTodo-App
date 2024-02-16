@@ -11,7 +11,7 @@ import { NavItem } from "./NavItem";
 import { LIST_CARD_COLOR } from "../interface";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import BackToMainMenu from "./BackToMainMenu";
-import SignOut from "./SignOut";
+import SignOut from "./ExitApp";
 import { AuthContext } from "src/store/store";
 import React from "react";
 

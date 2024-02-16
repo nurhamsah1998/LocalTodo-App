@@ -111,7 +111,7 @@ function RepoLocal() {
                     borderWidth: "1px",
                     borderStyle: "solid",
                     width: "100%",
-                    py: 1,
+                    py: 3,
                     px: 2,
                     borderRadius: styledPropTheme.borderRadius,
                     position: "relative",
@@ -121,6 +121,16 @@ function RepoLocal() {
                   onClick={() => handleClickRepoItem(item)}
                   key={index}
                 >
+                  <Box
+                    sx={{
+                      color: item?.colorTheme?.color,
+                      position: "absolute",
+                      right: 0,
+                      zIndex: 1,
+                    }}
+                  >
+                    <IoClipboardSharp size={120} />
+                  </Box>
                   <Box>
                     <Typography
                       sx={{
@@ -132,9 +142,6 @@ function RepoLocal() {
                       {item?.repo}
                     </Typography>
                     <Flex sx={{ gap: 1, mt: 1, alignItems: "center" }}>
-                      <Box sx={{ color: item?.colorTheme?.color }}>
-                        <IoClipboardSharp />
-                      </Box>
                       <Typography
                         sx={{
                           lineHeight: "8px",
@@ -144,6 +151,22 @@ function RepoLocal() {
                       >
                         {item?.totalTask} Total task
                       </Typography>
+                      <Box
+                        sx={{
+                          width: "1px",
+                          height: "20px",
+                          bg: "gray.500",
+                          mx: 1,
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          color: item?.colorTheme?.color,
+                        }}
+                        variantText="xs"
+                      >
+                        last updated {moment(item?.updatedAt).fromNow()}
+                      </Typography>
                     </Flex>
                     <Box>
                       <Flex
@@ -151,7 +174,7 @@ function RepoLocal() {
                           flexWrap: "wrap",
                           lineHeight: "6px",
                           gap: 1,
-                          mt: 2,
+                          mt: 2.5,
                         }}
                       >
                         <Typography
@@ -219,42 +242,6 @@ function RepoLocal() {
                       </Flex>
                     </Box>
                   </Box>
-                  <Flex
-                    sx={{
-                      gap: 4,
-                      mt: 4,
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        bg: "#fff",
-                        px: 5,
-                        py: 1,
-                        borderRadius: styledPropTheme.borderRadius,
-                        zIndex: 2,
-                      }}
-                    >
-                      <Typography
-                        variantText="xs"
-                        sx={{
-                          color: item?.colorTheme?.color,
-                        }}
-                      >
-                        last updated
-                      </Typography>
-                      <Typography
-                        variantText="xs"
-                        sx={{
-                          color: item?.colorTheme?.color,
-                          textTransform: "capitalize",
-                          mt: -1,
-                        }}
-                      >
-                        {moment(item?.updatedAt).fromNow()}
-                      </Typography>
-                    </Box>
-                  </Flex>
                   <Box
                     sx={{
                       bg: item?.colorTheme?.color,

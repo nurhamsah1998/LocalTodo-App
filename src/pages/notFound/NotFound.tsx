@@ -28,7 +28,7 @@ function NotFound() {
         <Typography sx={{ mt: -1.5, color: "gray.600" }} variantText="sm">
           Check the URL address you are going to.
         </Typography>
-        <Button onClick={() => nav("/")} sx={{ mt: 2 }}>
+        <Button onClick={() => nav("/local/dashboard")} sx={{ mt: 2 }}>
           Home
         </Button>
       </Box>

@@ -26,8 +26,10 @@ function Auth() {
   };
   React.useEffect(() => {
     if (isAuth) {
-      if (mode === "local") return nav("/local/dashboard");
-      nav("/");
+      if (mode === "local") {
+        nav("/local/dashboard");
+        return;
+      }
     }
   }, [isAuth]);
   return (

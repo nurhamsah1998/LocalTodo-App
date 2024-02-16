@@ -84,7 +84,7 @@ function SelfBranding() {
             className={styles.BrandingTitlePalestine}
             sx={{ fontWeight: 700 }}
           >
-            FREE PALESTINE
+            STAND WITH PALESTINE
           </Typography>
         </Box>
       </Flex>

@@ -67,9 +67,6 @@ function DashboardLocal() {
           >
             <AddTask size={350} />
           </Box>
-          {/* <Box className={styles.box_animation1}>
-            <IoBrush size={50} />
-          </Box>*/}
           <Box
             sx={{ bg: "orange.600" }}
             display={["none", "none", "block"]}

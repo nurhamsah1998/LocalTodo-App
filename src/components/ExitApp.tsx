@@ -3,7 +3,7 @@ import { styledPropTheme } from "src/helper/styledPropTheme";
 import { IoChevronBack } from "react-icons/io5";
 import { Typography } from "./Typography";
 
-function SignOut({
+function ExitApp({
   bg,
   handleSignOut,
 }: {
@@ -28,10 +28,10 @@ function SignOut({
         <IoChevronBack />
       </Box>
       <Typography color="#fff" variantText="sm">
-        Sign Out
+        Exit
       </Typography>
     </Box>
   );
 }
 
-export default SignOut;
+export default ExitApp;

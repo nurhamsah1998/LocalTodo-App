@@ -81,8 +81,8 @@ function MutationNewTodo({
         onClose();
         setDataEncrypted(cloneDataStorage);
         toast({
-          title: "Todo created",
-          description: "successfully create new Todo",
+          title: "Todo Created",
+          description: "successfully create new todo",
           status: "success",
           isClosable: true,
         });
@@ -120,8 +120,8 @@ function MutationNewTodo({
         setSelectedRepo(cloneSelectedRepo);
         setDataEncrypted(cloneDataStorage);
         toast({
-          title: "Todo updated",
-          description: "successfully update Todo",
+          title: "Todo Updated",
+          description: "successfully update todo",
           status: "success",
           isClosable: true,
         });

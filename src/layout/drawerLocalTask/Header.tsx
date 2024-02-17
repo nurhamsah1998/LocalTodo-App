@@ -13,6 +13,7 @@ import {
 import { HEADER_HEIGHT } from "../drawerLocal/DrawerLocal";
 import { useAtom } from "jotai";
 import { localSelectedRepo } from "src/store/store";
+import { useConciseText } from "src/hooks/useConciseText";
 
 function Header() {
   const { pathname } = useLocation();
@@ -28,6 +29,10 @@ function Header() {
     nav(`${item.path}/${id}`);
     onClose();
   };
+  const { text: repoTitle } = useConciseText({
+    text: selectedRepo?.repo,
+    limit: 70,
+  });
   return (
     <>
       <ModalDrawer
@@ -90,7 +95,7 @@ function Header() {
                 mt: -1.5,
               }}
             >
-              {selectedRepo?.repo}
+              {repoTitle}
             </Typography>
           </Box>
         </Flex>

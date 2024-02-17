@@ -54,17 +54,28 @@ function Auth() {
           borderRadius: styledPropTheme.borderRadius,
         }}
       >
-        <Box sx={{ width: "fit-content", mb: 10 }}>
+        <Flex sx={{ alignItems: "start", gap: 2, mb: 5 }}>
           <Typography
-            variantText="3xl"
-            sx={{ fontWeight: 700, color: "gray.600" }}
+            variantText="2xl"
+            sx={{ fontWeight: 800, lineHeight: 7, color: "gray.800" }}
           >
-            TODO APPS
+            ToDo
           </Typography>
-          <Typography variantText="sm" sx={{ mt: -3, color: "gray.600" }}>
-            by nurhamsah
+          <Typography
+            variantText="xs"
+            sx={{
+              fontWeight: 600,
+              py: 0.5,
+              px: 2,
+              bg: "gray.800",
+              color: "#fff",
+              display: "inline",
+              borderRadius: styledPropTheme.borderRadius,
+            }}
+          >
+            Local Mode
           </Typography>
-        </Box>
+        </Flex>
         <VStack>
           <Button isDisabled sx={{ width: "100%" }}>
             Login

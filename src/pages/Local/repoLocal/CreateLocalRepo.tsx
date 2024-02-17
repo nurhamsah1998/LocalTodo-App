@@ -76,8 +76,8 @@ function CreateLocalRepo({
       setRepo(clone);
     }
     toast({
-      title: "Success create repo",
-      description: "your repo will be save in your local storage",
+      title: "Repo Created",
+      description: "successfully created repo",
       status: "success",
       isClosable: true,
     });

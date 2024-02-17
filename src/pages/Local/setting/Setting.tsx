@@ -31,8 +31,8 @@ function Setting() {
     setDataEncrypted(newRepo);
     nav("/local/repo");
     toast({
-      title: "Success deleting repo",
-      description: "repo has been deleting in your browser local storage",
+      title: "Repo Deleted",
+      description: "the repo has been deleted in your local storage",
       status: "success",
       isClosable: true,
     });

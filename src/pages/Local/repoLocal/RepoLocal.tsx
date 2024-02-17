@@ -1,49 +1,21 @@
 /* eslint-disable no-extra-boolean-cast */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
-import { Typography } from "@/components/Typography";
-import {
-  Box,
-  Button,
-  Flex,
-  VStack,
-  useDisclosure,
-  keyframes,
-  usePrefersReducedMotion,
-} from "@chakra-ui/react";
+
+import { Box, Button, Flex, VStack, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { useEncript } from "src/hooks/useEncript";
 import CreateLocalRepo from "./CreateLocalRepo";
-import { FORM_INPUT_CREATE_REPO_LOCAL } from "@/interface/index";
-import { useNavigate } from "react-router-dom";
-import { styledPropTheme } from "src/helper/styledPropTheme";
-import moment from "moment";
 import EmptyItemMessage from "@/components/EmptyItemMessage";
-import { IoClipboardSharp } from "react-icons/io5";
-import { useAtom } from "jotai";
-import { localSelectedRepo } from "src/store/store";
-
-const spin = keyframes`
-0% {
-  bottom: -200px;
-  right: 0px;
-}
-100% {
-  bottom: 0px;
-  right: 0px;
-}
-`;
+import RepoLocalItem from "./RepoLocalItem";
+import { styledPropTheme } from "src/helper/styledPropTheme";
+import { IoAddSharp } from "react-icons/io5";
 
 function RepoLocal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [, setSelectedRepo] = useAtom(localSelectedRepo);
-  const nav = useNavigate();
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const [repo, setRepo] = React.useState(data);
-  const handleClickRepoItem = (i: any) => {
-    setSelectedRepo(i);
-    nav(`/local-task/todo/${i?.id}`);
-  };
+
   const totalTask = React.useMemo(() => {
     return repo?.map((item: any) => {
       const getTotalTask = () => {
@@ -57,7 +29,6 @@ function RepoLocal() {
       return { ...item, totalTask };
     });
   }, [repo]);
-  const prefersReducedMotion = usePrefersReducedMotion();
   return (
     <Box
       sx={{
@@ -71,17 +42,42 @@ function RepoLocal() {
         repoList={repo}
         setDataEncrypted={setDataEncrypted}
       />
-      <Flex justifyContent="flex-end">
+      <Flex display={["none", "none", "flex"]} justifyContent="flex-end">
         <Button onClick={onOpen} size="sm">
           Create new Repo
         </Button>
       </Flex>
+      <Button
+        onClick={onOpen}
+        display={["block", "block", "none"]}
+        sx={{
+          borderRadius: "100%",
+          width: "70px",
+          height: "70px",
+          position: "fixed",
+          bottom: 7,
+          right: 7,
+          p: 0,
+          boxShadow: styledPropTheme.boxShadow,
+          zIndex: 99,
+          bg: "primary.main",
+        }}
+      >
+        <Flex
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <IoAddSharp size={40} />
+        </Flex>
+      </Button>
       <VStack
         sx={{
           mt: 5,
           gap: 3,
-          pb: 3,
         }}
+        pb={["100px", "110px", 3]}
       >
         {!Boolean(repo?.length) ? (
           <EmptyItemMessage
@@ -90,186 +86,9 @@ function RepoLocal() {
             desc="create some repo to make todo list"
           />
         ) : (
-          totalTask?.map(
-            (
-              item: FORM_INPUT_CREATE_REPO_LOCAL & {
-                totalTask: any;
-                todo: any;
-              },
-              index: number
-            ) => {
-              const animation = prefersReducedMotion
-                ? undefined
-                : `${spin} 1.${index}s  ease-in-out`;
-              return (
-                <Box
-                  animation={animation}
-                  role="button"
-                  sx={{
-                    bg: item?.colorTheme?.bg,
-                    borderColor: "gray.200",
-                    borderWidth: "1px",
-                    borderStyle: "solid",
-                    width: "100%",
-                    py: 3,
-                    px: 2,
-                    borderRadius: styledPropTheme.borderRadius,
-                    position: "relative",
-                    overflow: "hidden",
-                    transition: "0.3",
-                  }}
-                  onClick={() => handleClickRepoItem(item)}
-                  key={index}
-                >
-                  <Box
-                    sx={{
-                      color: item?.colorTheme?.color,
-                      position: "absolute",
-                      right: 0,
-                      zIndex: 1,
-                    }}
-                  >
-                    <IoClipboardSharp size={120} />
-                  </Box>
-                  <Box>
-                    <Typography
-                      sx={{
-                        color: item?.colorTheme?.color,
-                        textTransform: "capitalize",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {item?.repo}
-                    </Typography>
-                    <Flex sx={{ gap: 1, mt: 1, alignItems: "center" }}>
-                      <Typography
-                        sx={{
-                          lineHeight: "8px",
-                          color: item?.colorTheme?.color,
-                        }}
-                        variantText="xs"
-                      >
-                        {item?.totalTask} Total task
-                      </Typography>
-                      <Box
-                        sx={{
-                          width: "1px",
-                          height: "20px",
-                          bg: "gray.500",
-                          mx: 1,
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          color: item?.colorTheme?.color,
-                        }}
-                        variantText="xs"
-                      >
-                        last updated {moment(item?.updatedAt).fromNow()}
-                      </Typography>
-                    </Flex>
-                    <Box>
-                      <Flex
-                        sx={{
-                          flexWrap: "wrap",
-                          lineHeight: "6px",
-                          gap: 1,
-                          mt: 2.5,
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            color: item?.colorTheme?.color,
-                            fontWeight: 600,
-                            bg: "#fff",
-                            p: 2,
-                            borderRadius: styledPropTheme.borderRadius,
-                          }}
-                          variantText="xs"
-                        >
-                          Todo : {item?.todo?.["To Do"]?.length}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: item?.colorTheme?.color,
-                            fontWeight: 600,
-                            p: 2,
-                            borderRadius: styledPropTheme.borderRadius,
-                            bg: "#fff",
-                          }}
-                          variantText="xs"
-                        >
-                          Progress : {item?.todo?.["On Progress"]?.length}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: item?.colorTheme?.color,
-                            fontWeight: 600,
-                            p: 2,
-                            borderRadius: styledPropTheme.borderRadius,
-                            bg: "#fff",
-                          }}
-                          variantText="xs"
-                        >
-                          Done : {item?.todo?.["Done"]?.length}
-                        </Typography>
-                      </Flex>
-                      <Flex sx={{ gap: 1, mt: 1 }}>
-                        <Typography
-                          sx={{
-                            color: item?.colorTheme?.color,
-                            fontWeight: 600,
-                            p: 2,
-                            borderRadius: styledPropTheme.borderRadius,
-                            bg: "#fff",
-                          }}
-                          variantText="xs"
-                        >
-                          Pending : {item?.todo?.["Pending"]?.length}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: item?.colorTheme?.color,
-                            fontWeight: 600,
-                            p: 2,
-                            borderRadius: styledPropTheme.borderRadius,
-                            bg: "#fff",
-                          }}
-                          variantText="xs"
-                        >
-                          Cancel : {item?.todo?.["Cancel"]?.length}
-                        </Typography>
-                      </Flex>
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      bg: item?.colorTheme?.color,
-                      width: "450px",
-                      height: "450px",
-                      borderRadius: "100%",
-                      position: "absolute",
-                      top: -400,
-                      left: -200,
-                      opacity: "0.1",
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      bg: item?.colorTheme?.color,
-                      width: "450px",
-                      height: "450px",
-                      borderRadius: "100%",
-                      position: "absolute",
-                      bottom: -400,
-                      right: -200,
-                      opacity: "0.1",
-                    }}
-                  />
-                </Box>
-              );
-            }
-          )
+          totalTask?.map((item: any, index: number) => {
+            return <RepoLocalItem key={index} item={item} index={index} />;
+          })
         )}
       </VStack>
     </Box>

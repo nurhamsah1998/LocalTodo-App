@@ -79,8 +79,8 @@ function TodoLocal() {
         container: "",
       });
       toast({
-        title: "Kanban deleted",
-        description: "successfully deleted kanban on your local storage",
+        title: "Card Deleted",
+        description: "the card has been deleted in your local storage",
         status: "success",
         isClosable: true,
       });
@@ -133,7 +133,48 @@ function TodoLocal() {
         <Typography>Are you sure wanna delete this card ?</Typography>
       </ModalBase>
       <Box>
-        {!isLargerThan768Width ? (
+        <Button
+          display={["block", "block", "none"]}
+          onClick={() =>
+            setMutationLocalTodo({
+              isOpenModal: true,
+              mutation: "post",
+              data: {},
+              container: "",
+            })
+          }
+          sx={{
+            borderRadius: "100%",
+            width: "70px",
+            height: "70px",
+            position: "fixed",
+            bottom: 7,
+            right: 7,
+            p: 0,
+            boxShadow: styledPropTheme.boxShadow,
+            zIndex: 99,
+            bg: selectedRepo.colorTheme.color,
+          }}
+        >
+          <Flex
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IoAddSharp size={40} />
+          </Flex>
+        </Button>
+        <Flex
+          display={["none", "none", "flex"]}
+          sx={{
+            justifyContent: "flex-end",
+            width: "100%",
+            position: "absolute",
+            right: 2,
+            top: `${HEADER_HEIGHT + 10}px`,
+          }}
+        >
           <Button
             onClick={() =>
               setMutationLocalTodo({
@@ -144,54 +185,12 @@ function TodoLocal() {
               })
             }
             sx={{
-              borderRadius: "100%",
-              width: "70px",
-              height: "70px",
-              position: "fixed",
-              bottom: 7,
-              right: 7,
-              p: 0,
-              boxShadow: styledPropTheme.boxShadow,
-              zIndex: 99,
               bg: selectedRepo.colorTheme.color,
             }}
           >
-            <Flex
-              sx={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <IoAddSharp size={40} />
-            </Flex>
+            Create New Todo
           </Button>
-        ) : (
-          <Flex
-            sx={{
-              justifyContent: "flex-end",
-              width: "100%",
-              position: "absolute",
-              right: 2,
-              top: `${HEADER_HEIGHT + 10}px`,
-            }}
-          >
-            <Button
-              onClick={() =>
-                setMutationLocalTodo({
-                  isOpenModal: true,
-                  mutation: "post",
-                  data: {},
-                  container: "",
-                })
-              }
-              sx={{
-                bg: selectedRepo.colorTheme.color,
-              }}
-            >
-              Create New Todo
-            </Button>
-          </Flex>
-        )}
+        </Flex>
 
         <Box sx={{ mt: 10, pb: isLargerThan768Width ? 0 : 20 }}>
           <MultipleContainers

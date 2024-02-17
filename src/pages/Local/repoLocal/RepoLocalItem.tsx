@@ -27,26 +27,21 @@ const spin = keyframes`
   opacity:1
 }
 `;
-function RepoLocalItem({
+
+export const RepoCard = ({
+  animation,
   item,
-  index,
+  handleClickRepoItem = () => {
+    return null;
+  },
 }: {
+  animation?: any;
   item: FORM_INPUT_CREATE_REPO_LOCAL & {
-    totalTask: any;
-    todo: any;
+    totalTask?: any;
+    todo?: any;
   };
-  index: number;
-}) {
-  const [, setSelectedRepo] = useAtom(localSelectedRepo);
-  const nav: NavigateFunction = useNavigate();
-  const handleClickRepoItem = (i: any) => {
-    setSelectedRepo(i);
-    nav(`/local-task/todo/${i?.id}`);
-  };
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const animation = prefersReducedMotion
-    ? undefined
-    : `${spin} 1.${index + 1}s  ease-in-out`;
+  handleClickRepoItem?: () => void;
+}) => {
   const { text: repoTitle } = useConciseText({ text: item?.repo, limit: 70 });
   return (
     <Box
@@ -65,7 +60,7 @@ function RepoLocalItem({
         overflow: "hidden",
         transition: "0.3",
       }}
-      onClick={() => handleClickRepoItem(item)}
+      onClick={handleClickRepoItem}
     >
       <Box
         display={["none", "block", "block"]}
@@ -239,6 +234,35 @@ function RepoLocalItem({
         }}
       />
     </Box>
+  );
+};
+function RepoLocalItem({
+  item,
+  index,
+}: {
+  item: FORM_INPUT_CREATE_REPO_LOCAL & {
+    totalTask: any;
+    todo: any;
+  };
+  index: number;
+}) {
+  const [, setSelectedRepo] = useAtom(localSelectedRepo);
+  const nav: NavigateFunction = useNavigate();
+  const handleClickRepoItem = (i: any) => {
+    setSelectedRepo(i);
+    nav(`/local-task/todo/${i?.id}`);
+  };
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const animation = prefersReducedMotion
+    ? undefined
+    : `${spin} 1.${index + 1}s  ease-in-out`;
+
+  return (
+    <RepoCard
+      animation={animation}
+      handleClickRepoItem={() => handleClickRepoItem(item)}
+      item={item}
+    />
   );
 }
 

@@ -87,26 +87,3 @@
     right: 0px;
   }
 }
-.box_animation3 {
-  width: 250px;
-  height: 250px;
-  border-radius: 100%;
-  animation-name: showUp3;
-  animation-timing-function: ease-in-out;
-  position: absolute;
-  animation-duration: 1.8s;
-  z-index: 0;
-  animation-fill-mode: forwards;
-}
-
-@keyframes showUp3 {
-  0% {
-    bottom: -200px;
-    left: 0px;
-  }
-  100% {
-    bottom: 50px;
-    left: -50px;
-    opacity: 0.5;
-  }
-}

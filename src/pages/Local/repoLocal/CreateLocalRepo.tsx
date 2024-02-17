@@ -104,10 +104,17 @@ function CreateLocalRepo({
             name="repo"
             control={control}
             render={({ field }) => (
-              <Input autoFocus placeholder="Repo Name" {...field} />
+              <Input
+                variant={errors.repo && "error"}
+                autoFocus
+                placeholder="Repo Name"
+                {...field}
+              />
             )}
           />
-          {errors.repo && <p>{errors.repo.message}</p>}
+          {errors.repo && (
+            <Typography variantText="xs">{errors.repo.message}</Typography>
+          )}
           <Typography variantText="xs" color="gray.500">
             this repo will be created and stored in your local storage, so take
             care of it carefully.

@@ -16,12 +16,13 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { styledPropTheme } from "src/helper/styledPropTheme";
 import { useEncript } from "src/hooks/useEncript";
 import { localSelectedRepo } from "src/store/store";
+import RepoUpdate from "./RepoUpdate/RepoUpdate";
 
 function Setting() {
   const { toast } = createStandaloneToast();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const nav: NavigateFunction = useNavigate();
-  const [selectedRepo] = useAtom(localSelectedRepo);
+  const [selectedRepo, setSelectedRepo] = useAtom(localSelectedRepo);
   const { data, setDataEncrypted } = useEncript("repo", "array");
   const [repoName, setRepoName] = React.useState<string>("");
   const handleDelete = () => {
@@ -110,6 +111,12 @@ function Setting() {
           Delete
         </Button>
       </Flex>
+      <RepoUpdate
+        dataEncript={data}
+        setDataEncrypted={setDataEncrypted}
+        setSelectedRepo={setSelectedRepo}
+        selectedRepo={selectedRepo}
+      />
     </Box>
   );
 }

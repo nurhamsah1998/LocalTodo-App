@@ -17,7 +17,7 @@ function RepoGithub() {
       }}
     >
       <Box
-        opacity={["0.2", "0.5", "0.8", "1"]}
+        opacity={["0.2", "0.2", "0.8", "1"]}
         sx={{
           position: "absolute",
           color: "#fff",

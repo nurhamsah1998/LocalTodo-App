@@ -17,7 +17,8 @@ function DashboardLocal() {
       <Box
         sx={{
           height: "200px",
-          backgroundImage: "linear-gradient(to right, orange.500, orange.700)",
+          backgroundImage:
+            "linear-gradient(to right, primary.main, primary.dark)",
           borderRadius: styledPropTheme.borderRadius,
           color: "#fff",
           p: 4,
@@ -67,11 +68,6 @@ function DashboardLocal() {
           >
             <AddTask size={350} />
           </Box>
-          <Box
-            sx={{ bg: "orange.600" }}
-            display={["none", "none", "block"]}
-            className={styles.box_animation3}
-          />
         </Box>
       </Box>
 

@@ -176,6 +176,7 @@ function TodoLocal() {
           }}
         >
           <Button
+            size="sm"
             onClick={() =>
               setMutationLocalTodo({
                 isOpenModal: true,

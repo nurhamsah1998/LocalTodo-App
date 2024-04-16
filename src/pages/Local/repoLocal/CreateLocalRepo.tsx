@@ -113,7 +113,9 @@ function CreateLocalRepo({
             )}
           />
           {errors.repo && (
-            <Typography variantText="xs">{errors.repo.message}</Typography>
+            <Typography variantText="xs" color="error.main">
+              {errors.repo.message}
+            </Typography>
           )}
           <Typography variantText="xs" color="gray.500">
             this repo will be created and stored in your local storage, so take

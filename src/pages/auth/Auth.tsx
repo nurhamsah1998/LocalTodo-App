@@ -77,11 +77,13 @@ function Auth() {
           </Typography>
         </Flex>
         <VStack>
-          <Button isDisabled sx={{ width: "100%" }}>
-            Login
-          </Button>
-          <Button isDisabled sx={{ width: "100%" }} variant="outline">
-            Register
+          <Button
+            onClick={() =>
+              (window.location.href = "https://todo-premium.vercel.app")
+            }
+            sx={{ width: "100%" }}
+          >
+            Try Cloud Mode
           </Button>
         </VStack>
         <Flex
